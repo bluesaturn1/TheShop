@@ -1,0 +1,48 @@
+
+
+
+
+
+
+
+<script type="text/javascript">
+// <!--
+if ("www" != "shop") {
+	if (""!=""){
+		alert('theShop을 이용 안한지 60분이 지났습니다. 재 로그인 필요 합니다.');
+	} else {
+		alert('회원전용입니다. 로그인이 필요합니다.');
+	}
+}
+
+if ("null" == "Y") {
+    try {
+        opener.opener.top.document.location.href = "https://www.shop.co.kr";
+        opener.close();
+        self.close();
+    } catch (Exception) {
+	    try {
+    		opener.close();
+	    } catch (e) {}
+        self.close();
+    }
+} else if (false) {
+    try {
+        opener.top.document.location.href = "https://www.shop.co.kr";
+        self.close();
+    } catch (Exception) {
+        self.close();
+    }
+} else {
+    try {
+    	if (""!=""){
+    		window.location = "https://www.shop.co.kr/login/logout.do?redirectUrl=";
+    	} else {
+    		top.document.location.href = "https://www.shop.co.kr/login/logout.do?20260422115041";
+    	}
+    } catch (Exception) {
+    	document.location.href = "https://www.shop.co.kr";
+    }
+}
+//-->
+</script>

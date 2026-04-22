@@ -1,0 +1,7 @@
+.env
+playwright_data_theshop/
+__pycache__/
+*.pyc
+.venv/
+venv/
+theshop_monitor_state.json

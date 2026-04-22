@@ -1,0 +1,2257 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml"><head>
+	<meta http-equiv="X-UA-Compatible" content="IE=7,chrome=1">
+    <meta http-equiv="content-type" content="text/html; charset=euc-kr">
+	<meta http-equiv="Content-Script-Type" content="text/javascript">
+	<meta http-equiv="Content-Style-Type" content="text/css">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+    <meta name="author" content="shop.co.kr">
+    <meta name="document-rights" content="Copyrighted shop.co.kr">
+    <meta name="copyright" content="Copyright (c) shop.co.kr">
+
+	<title>theSHOP :::</title>
+	<link rel="shortcut icon" type="image/x-icon" href="https://www.shop.co.kr/resources/theshop_1st/favicon.ico">
+	<link rel="stylesheet" type="text/css" href="https://img.shop.co.kr/css/hos/content_new.css" id="stylesheet">
+	<script src="https://connect.facebook.net/signals/config/1723063321090699?v=2.9.303&amp;r=stable&amp;domain=www.shop.co.kr&amp;hme=97937018cefade17726f0472876fc101316b2ce9008a35a6a5a7977d7436151a&amp;ex_m=104%2C205%2C154%2C22%2C72%2C73%2C145%2C68%2C67%2C11%2C162%2C90%2C16%2C138%2C127%2C39%2C75%2C78%2C134%2C159%2C164%2C8%2C4%2C5%2C7%2C6%2C3%2C91%2C101%2C165%2C170%2C219%2C62%2C186%2C187%2C55%2C276%2C30%2C74%2C231%2C230%2C229%2C23%2C33%2C103%2C61%2C10%2C63%2C97%2C98%2C99%2C105%2C130%2C31%2C29%2C132%2C133%2C129%2C128%2C155%2C76%2C158%2C156%2C157%2C50%2C60%2C123%2C15%2C161%2C45%2C263%2C264%2C262%2C26%2C27%2C28%2C48%2C146%2C77%2C112%2C18%2C20%2C44%2C40%2C42%2C41%2C83%2C92%2C96%2C110%2C144%2C147%2C46%2C111%2C24%2C21%2C119%2C69%2C36%2C149%2C148%2C150%2C141%2C139%2C25%2C35%2C59%2C109%2C160%2C70%2C17%2C152%2C114%2C81%2C66%2C19%2C85%2C86%2C116%2C84%2C136%2C135%2C34%2C278%2C293%2C212%2C201%2C202%2C200%2C296%2C288%2C52%2C213%2C107%2C131%2C80%2C121%2C54%2C47%2C49%2C113%2C120%2C126%2C58%2C64%2C151%2C115%2C37%2C32%2C53%2C56%2C100%2C163%2C1%2C124%2C14%2C122%2C12%2C2%2C57%2C93%2C65%2C118%2C89%2C88%2C166%2C167%2C94%2C95%2C9%2C125%2C102%2C51%2C142%2C87%2C79%2C71%2C117%2C106%2C43%2C143%2C0%2C82%2C137%2C140%2C153%2C38%2C108%2C13%2C168" async=""></script><script async="" src="https://connect.facebook.net/en_US/fbevents.js"></script><script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script type="text/javascript" async="" src="https://www.googletagmanager.com/gtag/js?id=G-K73H0JTTJY&amp;cx=c&amp;gtm=4e64h1"></script><script type="text/javascript" async="" src="https://www.google-analytics.com/analytics.js"></script><script id="happytalkSDK" async="" src="https://design.happytalkio.com/sdk/happytalk.chat.v2.min.js"></script><script async="" src="https://www.googletagmanager.com/gtm.js?id=GTM-5X2G67C"></script><script type="text/javascript" src="/resources/theshop_1st/js/hos/fakeselect.js"></script>
+	<script type="text/javascript" src="/resources/theshop_1st/js/hos/jquery-1.11.2.min.js"></script>
+	<script type="text/javascript" src="/resources/theshop_1st/js/hos/jquery.sliderkit.1.9.2.pack.js"></script>
+	<script type="text/javascript" src="/resources/theshop_1st/js/hos/bootstrap.js"></script>
+	<script type="text/javascript" src="/resources/theshop_1st/js/hos/bootstrap-dnd.js"></script>
+	<script type="text/javascript" src="/resources/theshop_1st/js/hos/common.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+
+    <noscript>
+        본 시스템을 사용하시려면 Java Script가 활성화되어 있어야 합니다.<br />
+        Java Script가 비활성화되어 있거나 브라우저에서 지원되지 않는 것 같습니다.<br />
+        표준 보기를 사용하려면 브라우저 옵션을 변경하여 Java Script를 활성화한 다음 다시 시도해 주십시오.
+    </noscript>        
+    <script type="text/javascript">
+    function cartSummary(){
+                
+    	var objNm = "cartSummary";
+    	var	url = "/hos/ajax/cart/cartSummary.do";
+    	var param = "";
+
+    	new Ajax.Updater( {success : objNm}
+    					    ,url
+    					    ,{method:'post'
+    					      ,asynchronous:false
+    						  , parameters:param} );
+
+    }
+    </script>
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-5X2G67C');</script>
+<!-- End Google Tag Manager -->
+<!-- Global site tag (gtag.js) - Google Analytics --> 
+<script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-53158452-1"></script>
+<script> 
+ window.dataLayer = window.dataLayer || []; 
+ function gtag(){dataLayer.push(arguments);} 
+ gtag('js', new Date());
+
+gtag('config', 'UA-53158452-1'); 
+</script>
+</head>
+
+<body id="renewal" class="sub" onload="" leftmargin="0" topmargin="0">
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-5X2G67C"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<script>
+window.dataLayer = window.dataLayer || [];
+dataLayer.push({
+	'userId':'obgynjh'
+});
+</script>
+<!-- End Google Tag Manager (noscript) -->
+	<!-- headerWrap -->
+	
+
+
+
+
+
+
+
+
+
+
+<!-- [Layout] Header 병원몰 -->
+
+<script type="text/javascript" src="/resources/theshop_1st/js/json_sans_eval.js"></script>
+<script type="text/javascript" src="/resources/theshop_1st/js/hos/search.js"></script>
+<script type="text/javascript" src="/resources/theshop_1st/js/hos/common-front.js"></script>
+<script type="text/javascript" src="/resources/theshop_1st/js/hos/cart/cart.js"></script>
+<script type="text/javascript" src="/resources/theshop_1st/js/jquery-ui-1.12.1.js"></script>
+
+<script type="text/javascript">
+	var sText = '주문전 쿠폰확인하세요~!';
+	var sTextUrl = '/hos/mypage/coupon/couponList.do';
+	
+	$j(document).ready(function() {
+		var userAgent = window.navigator.userAgent;
+		if(userAgent.indexOf("Trident") > 0){
+			 alert("TheSHOP은 Microsoft Edge, Chrome 브라우저에 최적화 되어있습니다. " +
+		        "원활한 사용을 원하시면 Microsoft Edge, Chrome 브라우저를 권장합니다. 확인버튼을 누르면 Edge브라우저로 자동으로 이동됩니다.");
+			window.location = 'microsoft-edge:' + document.location.href;
+			setTimeout(function() {
+				window.location = 'https://go.microsoft.com/fwlink/?linkid=2135547';
+			}, 1);
+		}
+	});
+
+	$j(document).ready(function() {
+		onGoodsKeyWorldInit();
+		getPopularKeyword();
+		getSearchBoxKeyword();
+		$j.getHeaderNoticeList();
+
+	});
+
+	// 메인헤더 공지사항 조회
+	$j.getHeaderNoticeList = function() {
+		var bbsType = "notice_theshop";
+		var param = {"pageRowSize": "5", "bbsType" : bbsType};
+		var incPrePath ="";
+		var serverType 		= "real";
+		//alert(serverType);
+		if(serverType == "local"){
+			jQuery.support.cors = true;
+			incPrePath = "http://www.local.shop.co.kr/front";
+
+		}else{
+			incPrePath = "/front"
+		}
+		//alert(incPrePath);
+		$j.getJSON(incPrePath+"/api/theshop/bbs/get_notice_main_list", param, function (data, status) {
+			var tags = [];
+			if (data.total > 0) {
+				$j.each(data.rows, function(idx, el){
+					var detailUrl = "/hos/bbs/customer/noticeView.do?bbsBean.bbsSeq="+el.bbsSeq;
+					var title = "";
+					/* 공급업체, 약가인하 는 공급업체명 추가 */
+					if (bbsType == "notice_theshop") {
+						title = el.title;
+					} else {
+						title = "["+el.sellerNm+"]"+el.title;
+					}
+					tags.push('<li><a href="'+detailUrl+'" class="link_noti">'+title+'</a></li>');
+				});
+			} else {
+				tags.push('<li>등록되어진 공지사항이 없습니다.</li>');
+			}
+
+			$j(".noti_rolling .list_noti ").html(tags.join(""));
+		});
+		//e.preventDefault();
+	}
+
+	function getPopularKeyword(){
+		$j.ajax({
+			type:"POST",
+			dataType:"json",
+			url:'/2nd/api/header/popularKeyword',
+			success:function(data) {
+				if (data.result == "SUCCESS"){
+					var tags = [];
+					if(data.popKwdList.length){
+						for (var idx = 0; idx < data.popKwdList.length; idx++) {
+							var element = data.popKwdList[idx];
+							tags.push('<li><a href="javascript:goPpkSearch(\''+element['keyword']+'\');" >'+element['keyword']+'</a></li>');
+							if(idx == 4) break;
+						}
+						$j('#popularKeyword').html(tags.join(''));
+					}
+				}
+			},
+			error:function(xhr, ajaxOpts, thrownErr) {
+			},
+			complete: function() {
+			}
+		});
+	}
+
+	function getSearchBoxKeyword(){
+		$j.ajax({
+			type:"POST",
+			dataType:"json",
+			url:'/2nd/api/header/keyword',
+			success:function(data) {
+				if (data.result == "SUCCESS"){
+					sText = data.boxkeyword['keyword'];
+					sTextUrl = data.boxkeyword['keywordUrl'];
+					$j('#autoCompleteText').val(sText);
+					//document.topSearchForm.elements['goodsInfoDataBean.searchVal'].value = sText;
+				}
+			},
+			error:function(xhr, ajaxOpts, thrownErr) {
+			},
+			complete: function() {
+			}
+		});
+	}
+
+	// 장바구니 요약 정보(공급사별)
+	function getCartSummaryinfo() {
+		$j.ajax({
+			type:"POST",
+			dataType:"json",
+			url:"/2nd/api/cart/summary",
+			data:{
+				"cartType":10,
+				"sellerCd":sellerCd
+			},
+			success:function(data) {
+				var tags = [],
+						cartList = data.cartList;
+				if(cartList.length){
+					for (var i = 0; i < cartList.length; i++) {
+						var cartInfo = cartList[i];
+						tags.push('<tr>');
+						tags.push('    <td>'+cartInfo['sellerTypeNm']+'</td>');
+						tags.push('    <td>'+cartInfo['sellerName']+'</td>');
+						tags.push('    <td class="view">'+cartInfo['goodsCnt']+'<a href="#"><img src="https://img.shop.co.kr/images/hos_new/btn_view_item.gif" alt="상세보기" /></a></td>');
+						tags.push('    <td>'+(cartInfo['goodsCnt'] * cartInfo['userCartSeqTotal'].length)+'</td>');
+						tags.push('    <td>'+cartInfo['sellerName']+'</td>');
+						tags.push('    <td>'+formatNumber(cartInfo['sellerTotalPrice'])+'원</td>');
+						tags.push('<tr>');
+					}
+				}
+				$j('#cart_summary').html(tags.join(''));
+			},
+			error:function(xhr, ajaxOpts, thrownErr) {
+				//alert(thrownErr);
+			}
+		});
+	}
+
+	//원격지원
+	function openRemote() {
+		//window.open('http://zook.mcircle.co.kr/', 'remote');
+		window.open('https://939.co.kr/mcircle', 'remote');
+	}
+	//검색
+	function search2Goods(){
+		var url = "/front/api/theshop/search/check_ez3pl_search_keyword?searchVal="+encodeURI(encodeURI($j('#autoCompleteText').val()));
+		$j.getJSON(url, null, function (data, status){
+			if(data.info.ez3plSearchYn == "Y"){
+				var cartBpKeyword = ["카트BP", "카트bp", "카트", "카트비피", "cart비피", "CART비피", "CART BP", "cart bp"
+				                     , "24시간 혈압계", "24h abpm", "커프리스 혈압계","반지형혈압계", "반지 혈압계", "자동혈압계"];
+
+				if($j('#autoCompleteText').val() == "봄" || $j('#autoCompleteText').val() == "봄필러" || $j('#autoCompleteText').val() == "필러" || $j('#autoCompleteText').val() == "VOM" || $j('#autoCompleteText').val() == "vom"){
+
+// 					var ez3plUrl = "/2nd/dncshop/DNC/mainGroup";
+ 					var ez3plUrl = "/2nd/dncshop/DNC/goodsGroup";
+
+					$j.getJSON("/2nd/api/cshop/goods/getYearContractDiscountUser", null, function (data, status) {
+						if (data != null) {
+							if(data.YearContractDiscountYn=='Y'){
+								location.href = "/2nd/dncshop/DNC/mainYearContractDiscount";
+
+							}
+						}
+					});
+				}else if($j('#autoCompleteText').val() == "지젤리뉴" || $j('#autoCompleteText').val() == "지잴리뉴" || $j('#autoCompleteText').val() == "지젤" || $j('#autoCompleteText').val() == "지잴" || $j('#autoCompleteText').val() == "지젤리뉴 필러"){
+
+					var ez3plUrl = "/2nd/dncshop/DNC?tabCd=DNC_CTG_04";
+				}else if($j('#autoCompleteText').val() == "패이스탬" || $j('#autoCompleteText').val() == "페이스탬" || $j('#autoCompleteText').val() == "패이스템" || $j('#autoCompleteText').val() == "페이스템"){
+
+					var ez3plUrl = "/2nd/dncshop/DNC?tabCd=DNC_CTG_09";
+				}else if($j('#autoCompleteText').val() == "volet" || $j('#autoCompleteText').val() == "브이올렛" || $j('#autoCompleteText').val() == "브이올렛주" ){
+
+					var ez3plUrl = "/2nd/dncshop/DNC?tabCd=DNC_CTG_10";
+				}else if($j('#autoCompleteText').val() == "나보타" || $j('#autoCompleteText').val() == "나보" ){
+					var ez3plUrl = "/2nd/dncshop/DNC?tabCd=DNC_CTG_05";
+				}else if($j('#autoCompleteText').val() == "케어트로핀" || $j('#autoCompleteText').val() == "케트" ){
+					var ez3plUrl = "/2nd/dncshop/DNC?tabCd=DNC_CTG_07";
+				// }else if($j('#autoCompleteText').val() == "베어헬스" || $j('#autoCompleteText').val() == "대웅건기식" || $j('#autoCompleteText').val() == "대웅제약건기식" ){
+				// 	var ez3plUrl = "/2nd/sayHealthShop";
+				}else if( cartBpKeyword.indexOf($j('#autoCompleteText').val()) > -1){
+					var ez3plUrl = "/2nd/CARTBP";
+				}
+
+				location.href=ez3plUrl;
+			}else{
+				$j('#autoCompleteText').val($j.trim($j('#autoCompleteText').val()));
+
+				if ($j('#autoCompleteText').val() === '' || $j('#autoCompleteText').val() === sText) {
+					if ($j('#autoCompleteText').val() === sText) {
+						//$j(document).attr('href',sTextUrl);
+						document.location.href = sTextUrl;
+						return false;
+					}
+					alert('검색내용을 넣어주세요');
+					$j('#autoCompleteText').focus();
+					return false;
+				} else {
+					if(document.topSearchForm.elements['goodsInfoDataBean.searchKey'].value === 'policyCd'){
+						$j('#autoCompleteText').val($j('#autoCompleteText').val().toUpperCase());
+					}
+
+					$j('#smartSearchFg').val("N");
+					$j('#stndSearchVal,#mafcSearchVal').val('');
+					if (document.ifm != undefined &&
+							document.URL.indexOf("/hos/shop/goodsSpecialList.do") == -1 &&
+							document.URL.indexOf("/hos/sellershop/goodsList.do") == -1 &&
+							'-1' == '-1'  ) {
+						clearSendList();
+						$j("#topSearchForm").attr("target", "ifm");
+						$j("#topSearchForm").attr("action", "/hos/shop/goodsSearchListFrame.do");
+						$j("#topSearchForm").submit();
+					} else {
+						$j("#topSearchForm").attr("action", "/hos/shop/goodsSearchList.do");
+						$j("#topSearchForm").submit();
+					}
+				}
+			}
+		});
+	}
+
+	//스마트 검색
+	function smartSearch2Goods() {
+
+		var smartSearchVals = $j("[id^=smartSearchVal]");
+		var inputCnt = 0;
+		for (var i = 0; i < smartSearchVals.length; i++) {
+			var obj = smartSearchVals.eq(i);
+			var val = $j.trim(obj.val());
+			if (val != '' && val != obj.attr("title")) {
+				inputCnt++;
+			}
+		}
+		var sellerCd = document.topSearchForm.elements['goodsInfoDataBean.searchSellerCd'].value;
+		if (inputCnt == 0 && $j('#stndSearchVal').val() == "" && $j('#mafcSearchVal').val() == "" && sellerCd == "") {
+			alert("검색내용을 넣어주세요");
+			smartSearchVals.eq(0).focus();
+			return false;
+		}
+		var selectIdx = document.topSearchForm.elements['goodsInfoDataBean.searchSellerCd'].options.selectedIndex;
+		var sellerNm = document.topSearchForm.elements['goodsInfoDataBean.searchSellerCd'].options[selectIdx].text;
+		if (inputCnt == 0 && sellerCd != "") {
+			$j('#sellerSearchVal').val(sellerNm);
+			document.topSearchForm.elements['goodsInfoDataBean.searchVal'].value="";
+		}else{
+			$j('#sellerSearchVal').val("");
+		}
+		for (var i=0; i<smartSearchVals.length; i++) {
+			var obj = smartSearchVals.eq(i);
+			var val = $j.trim(obj.val());
+			if (val == '' || val == obj.attr("title")) {
+				obj.val("");
+			}
+		}
+
+		$j('#smartSearchFg').val("Y");
+		document.topSearchForm.elements['goodsInfoDataBean.searchKey'].value == "all";
+		if (document.ifm != undefined && document.URL.indexOf("/hos/shop/goodsSpecialList.do") == -1 && '-1' == '-1'  ) {
+			document.topSearchForm.target = "ifm";
+			document.topSearchForm.action = "/hos/shop/goodsSearchListFrame.do";
+			document.topSearchForm.submit();
+		} else {
+			//document.topSearchForm.elements['goodsInfoDataBean.searchVal'].value = $j('#smartSearchVal1').val();
+			document.topSearchForm.action = "/hos/shop/goodsSearchList.do";
+			document.topSearchForm.submit();
+		}
+		$j(".pop_smart").removeClass("on");
+	}
+
+	function smartSearchClear() {
+		var smartSearchVals = $j("[id^=smartSearchVal]");
+		for (var i = (smartSearchVals.length - 1); i >= 0; i--) {
+			var obj = smartSearchVals.eq(i);
+			obj.val("").focus();
+		}
+		$j("[id^=stndSearchVal]").val("");
+		$j("[id^=mafcSearchVal]").val("");
+	}
+
+	function cutString2JS(str) {
+		if (str.length > 5) {
+			return str.substring(0, 5) + "...";
+		}
+		return str;
+	}
+
+	var text;
+	// 변수값 초기화
+	function onGoodsKeyWorldInit() {
+		text = document.getElementById("autoCompleteText");
+		clearSendList();
+	}
+
+	//검색어 입력 창 foucs 이벤트
+	function textBlock() {
+		if (text.value !== null && $j.trim(text.value) !== "") {
+			if (text.value === sText) {
+				text.value = '';
+			}
+			text.select();
+		}
+	}
+
+	// 추천 검색어 list 조회
+	function listAutoComplete(event) {
+		var keyCode = event.which || event.keyCode;
+		var url = "/front/api/theshop/search/check_ez3pl_search_keyword?searchVal="+encodeURI(encodeURI($j('#autoCompleteText').val()));
+		$j.getJSON(url, null, function (data, status){
+
+			if(data.info.ez3plSearchYn == "Y"){
+
+				if (keyCode == "13") {
+
+					if($j('#autoCompleteText').val() == "봄" || $j('#autoCompleteText').val() == "봄필러" || $j('#autoCompleteText').val() == "필러" || $j('#autoCompleteText').val() == "VOM" || $j('#autoCompleteText').val() == "vom"){
+
+//	 					var ez3plUrl = "/2nd/dncshop/DNC/mainGroup";
+						var ez3plUrl = "/2nd/dncshop/DNC/goodsGroup";
+
+						$j.getJSON("/2nd/api/cshop/goods/getYearContractDiscountUser", null, function (data, status) {
+							if (data != null) {
+								if(data.YearContractDiscountYn=='Y'){
+									location.href = "/2nd/dncshop/DNC/mainYearContractDiscount";
+
+								}
+							}
+						});
+
+					}else if($j('#autoCompleteText').val() == "지젤리뉴" || $j('#autoCompleteText').val() == "지잴리뉴" || $j('#autoCompleteText').val() == "지젤" || $j('#autoCompleteText').val() == "지잴" || $j('#autoCompleteText').val() == "지젤리뉴 필러"){
+
+						var ez3plUrl = "/2nd/dncshop/DNC?tabCd=DNC_CTG_04";
+					}else if($j('#autoCompleteText').val() == "패이스탬" || $j('#autoCompleteText').val() == "페이스탬" || $j('#autoCompleteText').val() == "패이스템" || $j('#autoCompleteText').val() == "페이스템"){
+
+						var ez3plUrl = "/2nd/dncshop/DNC?tabCd=DNC_CTG_09";
+					}else if($j('#autoCompleteText').val() == "volet" || $j('#autoCompleteText').val() == "브이올렛" || $j('#autoCompleteText').val() == "브이올렛주" ){
+
+						var ez3plUrl = "/2nd/dncshop/DNC?tabCd=DNC_CTG_10";
+					}else if($j('#autoCompleteText').val() == "나보타" || $j('#autoCompleteText').val() == "나보" ){
+						var ez3plUrl = "/2nd/dncshop/DNC?tabCd=DNC_CTG_05";
+					}else if($j('#autoCompleteText').val() == "케어트로핀" || $j('#autoCompleteText').val() == "케트" ){
+
+						var ez3plUrl = "/2nd/dncshop/DNC?tabCd=DNC_CTG_07";
+					}
+
+					location.href=ez3plUrl;
+				}
+			}else{
+				if ($j.trim(text.value) != "") {
+					if (keyCode == "13") {
+						if (document.ifm != undefined) {
+							$j('displayDiv').hide();
+							$j("#topSearchForm").attr("target", "ifm");
+							$j("#topSearchForm").attr("action","/hos/shop/goodsSearchListFrame.do");
+						}
+						$j("#topSearchForm").submit();
+						return;
+					}
+					if (document.getElementsByName("goodsInfoDataBean.searchKey")[0].value == "goodsCode") {
+						clearSendList();
+					}
+					// 화살표 위
+					if (keyCode == 38 || keyCode == 40) {
+						keyUpEvent(text);
+					} else {
+						if (document.getElementsByName("goodsInfoDataBean.searchKey")[0].value == "goodsNm"
+								|| document.getElementsByName("goodsInfoDataBean.searchKey")[0].value == "all") {
+							if (keyCode == 229) {
+								//크롬 자동검색 이벤트 방지
+								//keyUpEvent(text);
+							}
+							// a ~ z, 0 ~ 9 까지의 입력(_ 등의 추가 필요), del키
+							else if ((keyCode >= 48 && keyCode <= 90) ||
+									(keyCode >= 96 && keyCode <= 105) ||
+									keyCode == 8 ||
+									keyCode == 46) {
+								getSendHistory(text);
+							}
+						}
+					}
+				} else {
+					clearSendList();
+				}
+			}
+		});
+	}
+
+	//인기검색어 검색
+	function goPpkSearch(ppkeyword) {
+		document.getElementsByName("goodsInfoDataBean.searchKey")[0].value = "goodsNm";
+		$j('#autoCompleteText').val(ppkeyword);
+		search2Goods();
+	}
+
+	function goLshopUrl(lUrl) {
+		var pshopWin = window.open("","lshopWin","");
+		document.lshopForm.action = lUrl;
+		document.lshopForm.target = "lshopWin";
+		document.lshopForm.submit();
+		pshopWin.focus();
+	}
+	// 즐겨찾기
+	function addBookmark(title, url) {
+		// Internet Explorer
+		if (document.all) {
+			window.external.AddFavorite(url, title);
+		}
+		// Google Chrome
+		else if (window.chrome) {
+			alert("Ctrl+D키를 누르시면 즐겨찾기에 추가하실 수 있습니다.");
+		}
+		// Firefox
+		else if (window.sidebar) // firefox
+		{
+			window.sidebar.addPanel(title, url, "");
+		}
+		// Opera
+		else if (window.opera && window.print) { // opera
+			var elem = document.createElement('a');
+			elem.setAttribute('href', url);
+			elem.setAttribute('title', title);
+			elem.setAttribute('rel', 'sidebar');
+			elem.click();
+		} else {
+			alert("Ctrl+D키를 누르시면 즐겨찾기에 추가하실 수 있습니다.");
+		}
+	}
+
+	// 상품문의 페이지이동
+	function moveProdQa(){
+		location.href = "/hos/bbs/customer/qaFormNew.do?searchProd=Y";
+	}
+</script>
+<!-- 2015.07.08 추가 공통헤더배너(회원연동) [s]-->
+
+<!-- 2015.07.08 추가 공통헤더배너(회원연동) [e]-->
+<form name="lshopForm" method="post" style="margin:0px;padding:0px">
+	<input type="hidden" name="m_id" value="obgynjh">
+	<input type="hidden" name="pwd" value="1234567890">
+	<input type="hidden" name="mode" value="D">
+	<input type="hidden" name="salemall" value="0">
+</form>
+<!-- 2018.04.25 이제너두 자동로그인 [s] -->
+<form id="ejndForm" accept-charset="UTF-8" target="">
+	<input type="hidden" name="cmpyNo" value="CAG">
+	<input type="hidden" name="memID" value="1000076833">
+	<input type="hidden" name="mbrNm" value="나재호">
+	<!-- <input type="hidden" name="lc" value=""> -->
+</form>
+<!-- 2018.04.25 이제너두 자동로그인 [e] -->
+<!-- header [s] -->
+<div id="header">
+	<div class="section">
+		<!-- 2018-02-27 공지사항 롤링 추가 -->
+		<div class="noti_rolling">
+			<strong class="tit_noti"><a href="/hos/bbs/customer/noticeList.do" class="link_tit">[공지사항]</a></strong>
+			<ul class="list_noti"><li><a href="/hos/bbs/customer/noticeView.do?bbsBean.bbsSeq=1143680" class="link_noti">대웅바이오 크라틴정5mg 자진 회수 관련 추가 안내</a></li><li><a href="/hos/bbs/customer/noticeView.do?bbsBean.bbsSeq=1142617" class="link_noti">해피톡 접속 장애 복구 완료 안내</a></li><li><a href="/hos/bbs/customer/noticeView.do?bbsBean.bbsSeq=1142245" class="link_noti">대웅그룹사 일부 거점 토요배송 휴무일정 안내(동원아이팜, 복산약품, 유진약품)</a></li><li><a href="/hos/bbs/customer/noticeView.do?bbsBean.bbsSeq=1141389" class="link_noti">대웅바이오 의약품 패키지 리뉴얼 안내</a></li><li><a href="/hos/bbs/customer/noticeView.do?bbsBean.bbsSeq=1144865" class="link_noti">[공지] 시스템 점검에 따른 서비스 일시 중단 안내</a></li></ul>
+		</div>
+		<!-- //2018-02-27 공지사항 롤링 추가 -->
+		<ul class="common">
+
+			<li><a href="javascript:logout();">로그아웃</a></li>
+			<li><a href="/hos/cart/cartList.do">장바구니</a></li>
+			
+			<li><a href="/hos/customer/supplyNotice.do">공급업체연락처</a></li>
+			
+			<li><a href="#" onclick="openRemote();return false;">원격지원</a></li>
+			<li class="end"><a href="/hos/customer/main.do">고객센터</a></li>
+			
+			<li><a href="/hos/customer/dlvrIntro.do">배송안내</a></li>
+			
+			<li class="basket"><a href="#pop_basket" onclick="javascript:cartPreview();">장바구니 미리보기</a></li>
+		</ul>
+		<!-- 장바구니 팝업 [s] -->
+		<div id="pop_basket" class="pop_basket"></div>
+		<!-- 장바구니 팝업 [e] -->
+		<div class="head_wrap">
+			
+			<h1><a href="javascript:goHome();"><img src="https://img.shop.co.kr/images/hos_new/logo.png" alt="the SHOP"></a></h1> <!--원래로고-->
+			 <!--추모용로고-->
+			
+			<!-- search [s] -->
+			<div class="head_search">
+				<form method="post" id="topSearchForm" name="topSearchForm" style="margin:0;padding:0">
+					<input type="hidden" name="goodsInfoDataBean.orderBy" value="saleCnt">
+					<div class="top_search">
+						<strong>인기검색어</strong>
+						<ul id="popularKeyword"></ul>
+					</div>
+					<div class="search_wrap">
+						<div class="search_bar">
+							<span class="selectbox_titleM selectMain" style="width:43px;vertical-align:middle;display:inline-block;cursor:pointer;"><strong>통합검색</strong></span><select class="selectMain" name="goodsInfoDataBean.searchKey" id="searchKeySel" title="검색선택" style="position: absolute; left: -100000px; height: auto;">
+								<option value="all" selected="">통합검색</option>
+								<option value="goodsNm">상품명</option>
+								<option value="mafcNm">제조사</option>
+								<option value="sellerNm">공급사</option>
+								<option value="goodsCode">상품코드</option>
+								
+							</select>
+							<input id="autoCompleteText" autocomplete="off" type="text" class="iText" style="background: rgb(255, 255, 255);" name="goodsInfoDataBean.searchVal" value="일회용주사기" onkeyup="listAutoComplete(event);" onfocus="textBlock();" onblur="clearSendList();" onkeypress="if(event.keyCode==13) return search2Goods();" title="검색어를 입력해주세요.">
+
+							<button type="button" class="btnSearch" alt="검색" onclick="search2Goods();">검색</button>
+						</div>
+						<p class="btn_smart"><a href="#pop_smart"><img src="https://img.shop.co.kr/images/hos_new/btn_smart_search.gif" alt="스마트검색"></a></p>
+					</div>
+
+					<iframe id="displayDivBack" scrolling="no" frameborder="0" style="position: absolute; border: none; z-index: 0; display: none;"></iframe>
+					<!-- 자동완성 [s] -->
+					<div class="autocomplete" id="displayDiv" style="border: none; display: none;">
+						<ul id="sendHistoryTableBody"></ul>
+						<p class="result">
+							최대 15개 상품이 검색됩니다.
+							<a class="close" href="#" onclick="clearSendList();return false;"><img src="https://img.shop.co.kr/images/hos_new/btn_close_basket.gif" alt="팝업 닫기"></a>
+						</p>
+					</div>
+					<!-- 자동완성 [e] -->
+
+					<!-- 스마트 검색 [s] -->
+					<div class="pop_smart">
+						<h2><img src="https://img.shop.co.kr/images/hos_new/tit_smartsearch.gif" alt="스마트검색 원하시는 검색어를 입력해 주세요. 다중검색이 가능합니다!"></h2>
+						<div class="search_list">
+							<input type="hidden" id="smartSearchFg" name="smartSearchFg" value="N">
+							<ul>
+								<li>
+									<span class="lb_tit">카테고리별</span>
+									<span class="selectbox_title1 selectArt" style="width:367px;vertical-align:middle;display:inline-block;cursor:pointer;"><strong>카테고리 전체</strong></span><select id="ctgCdSel" name="goodsInfoDataBean.ctgCd" class="selectArt" style="width: 394px; position: absolute; left: -100000px; height: auto;" title="카테고리 선택">
+										<option value="">카테고리 전체</option>
+										
+										<option value="H01">의료소모품(일반)</option>
+										<option value="H05">의료기기</option>
+										<option value="MWH">의약품</option>
+										<option value="TMS">의료소모품(요양)</option>
+										<option value="TME">의료소장비</option>
+										<option value="H08">일반부외품</option>
+										<option value="TMO">기타용품</option>
+										<option value="P02">닥터스킨케어</option>
+										<option value="H07">건강기능식품</option>
+										<option value="LIF">사무/생활/식음료</option>
+										<option value="COM">전산/컴퓨터/토너</option>
+										
+									</select>
+								</li>
+								<li>
+									<p>
+										<span class="lb_tit">특가/타임세일</span>
+										<span class="selectbox_title1 selectArt" style="width:124px;vertical-align:middle;display:inline-block;cursor:pointer;"><strong>전체</strong></span><select name="goodsInfoDataBean.goodsSalesType" id="goodsSalesTypeSel" class="selectArt" style="width: 151px; position: absolute; left: -100000px; height: auto;" title="특가/타임세일 선택">
+											<option value="" selected="">전체</option>
+											<option value="1">특가</option>
+											<option value="2">타임세일</option>
+										</select>
+									</p>
+									<p>
+										<span class="lb_tit2">공급사</span>
+										<span class="selectbox_title1 selectArt" style="width:48px;vertical-align:middle;display:inline-block;cursor:pointer;"><strong>공급사전체</strong></span><select name="goodsInfoDataBean.searchSellerCd" class="selectArt" id="goodsInfoDataBean.searchSellerCd" style="position: absolute; left: -100000px; height: auto;"> 
+	<option value="">공급사전체</option> 
+	<option value="10003">이지메디컴</option> 
+	<option value="11425">금보메디넷</option> 
+	<option value="11837">LJ헬스케어(엠서클)</option> 
+	<option value="11838">KD상사(엠서클)</option> 
+	<option value="11857">종수약품</option> 
+	<option value="11861">디엔코스메틱스</option> 
+	<option value="12004">대웅바이오</option> 
+	<option value="12006">대웅제약</option> 
+	<option value="12008">제이웰팜(엠서클)</option> 
+	<option value="12009">시지바이오</option> 
+	<option value="12014">보덕메디팜</option> 
+	<option value="12018">엘재이컴퍼니</option> 
+	<option value="12019">이메디샵(엠서클)</option> 
+	<option value="12033">모든오피스</option> 
+	<option value="12035">한올바이오파마</option> 
+	<option value="12040">솔리드팜</option> 
+	<option value="12042">백신공급사</option> 
+	<option value="12047">피엠오헬시라이프</option> 
+	<option value="12049">비에프메디컬(엠서클)</option> 
+	<option value="12054">이지메디컴(렌탈)</option> 
+	<option value="12055">엠서클</option> 
+	<option value="12101">메디바이스</option> 
+	<option value="12112">내일약품</option> 
+	<option value="12115">의약품공급사</option> 
+	<option value="12123">비전가(엠서클)</option> 
+	<option value="12132">웰메디</option> 
+	<option value="12133">제노덤(엠서클)</option> 
+	<option value="12134">뉴셀파마코리아(엠서클)</option> 
+	<option value="12171">유진의료전자(엠서클)</option> 
+	<option value="12192">SSP</option> 
+	<option value="12197">VACCINE</option> 
+	<option value="12201">유벤타헬스케어</option> 
+	<option value="12211">건강한메디</option> 
+	<option value="12223">제마헬스케어</option> 
+	<option value="12228">디엔컴퍼니</option> 
+	<option value="12231">비더케이(엠서클)</option> 
+	<option value="12252">얼라이브(엠서클)</option> 
+	<option value="12256">이지스헬스케어</option> 
+	<option value="12264">더세이폴(엠서클)</option> 
+	<option value="12271">백신W</option> 
+	<option value="12299">에스지메디팜</option> 
+	<option value="12307">KD상사</option> 
+	<option value="12319">더편한샵</option> 
+	<option value="12344">스카이메디</option> 
+	<option value="12348">에코비엔</option> 
+	<option value="12350">씨어스테크놀로지</option> 
+	<option value="12359">에디팜</option> 
+	<option value="12373">라온스랩</option> 
+	<option value="12382">에이앤엘팜</option> 
+	<option value="12383">에이앤엘팜(냉장)</option> 
+	<option value="12388">(주)아크</option> 
+	<option value="12413">도팜인(당일배송)</option> 
+	<option value="12422">(주)다빛바이오</option> 
+	<option value="12431">아이쿱</option> 
+	<option value="12437">튠헬스케어</option> 
+	<option value="12442">알피스페이스</option> 
+	<option value="12444">지앤씨아이</option> 
+	<option value="12447">SFit</option> 
+	<option value="12451">렌탈테스트</option> 
+	<option value="12456">㈜비즈마켓렌탈</option> 
+	<option value="12480">(주)이지메디컴</option> 
+</select>
+										<input id="sellerSearchVal" name="sellerSearchVal" type="hidden">
+									</p>
+								</li>
+								<li>
+									<p>
+										<label for="stndSearchVal" class="lb_tit">규격</label>
+										<input id="stndSearchVal" name="stndSearchVal" value="" type="text" class="inputLine" style="width:139px;" onkeydown="if(event.keyCode==13) return smartSearch2Goods();">
+									</p>
+									<p>
+										<label for="mafcSearchVal" class="lb_tit2">제조사</label>
+										<input id="mafcSearchVal" name="mafcSearchVal" value="" type="text" class="inputLine" style="width:139px;" onkeydown="if(event.keyCode==13) return smartSearch2Goods();">
+									</p>
+								</li>
+							</ul>
+							<p class="txt_notice"><img src="https://img.shop.co.kr/images/hos_new/txt_smartsearch.gif" alt="상품명란에 원하시는 상품명을 입력해 다중검색을 해주세요!"></p>
+							<div class="product_list">
+								<ul>
+									<li>
+										<label for="smartSearchVal1" class="lb_tit">상품명1</label>
+										<input id="smartSearchVal1" name="smartSearchVal1" value="" type="text" style="width: 323px;" title="검색어를 입력해주세요." onkeydown="if(event.keyCode==13) return smartSearch2Goods();">
+									</li>
+									<li>
+										<label for="smartSearchVal2" class="lb_tit">상품명2</label>
+										<input id="smartSearchVal2" name="smartSearchVal2" value="" type="text" style="width: 323px;" title="검색어를 입력해주세요." onkeydown="if(event.keyCode==13) return smartSearch2Goods();">
+									</li>
+									<li>
+										<label for="smartSearchVal3" class="lb_tit">상품명3</label>
+										<input id="smartSearchVal3" name="smartSearchVal3" value="" type="text" style="width: 323px;" title="검색어를 입력해주세요." onkeydown="if(event.keyCode==13) return smartSearch2Goods();">
+									</li>
+								</ul>
+								<p class="product_btn">
+									<button type="button" onclick="smartSearch2Goods();">검색</button>
+									<input type="reset" value="초기화" onclick="smartSearchClear();">
+								</p>
+							</div>
+						</div>
+						<p class="btn">
+							<a href="#" onclick=""><img src="https://img.shop.co.kr/images/hos_new/btn_smart_search.png" alt="닫기"></a>
+						</p>
+					</div>
+					<!-- 스마트 검색 [e] -->
+				</form>
+			</div>
+			<!-- search [e] -->
+
+			<!-- 추모 메세지 추가 2022-11-01 -->
+<!-- 			<span style="display: inline-block; margin-top: -88px;margin-left:800px;"><img src="https://img.shop.co.kr/images/main/rip_msg.png"></span> -->
+
+			<!-- 2018-02-19 배너영역 추가 -->
+			
+
+			<!-- //2018-02-19 배너영역 추가 -->
+			<div class="head_cs">
+				
+				<img src="https://img.shop.co.kr/images/hos_new/head_cs2.png" alt="고객센터" usemap="#eventMap">
+				<map id="eventMap" name="eventMap">
+					<area shape="rect" alt="연락처 확인하기" coords="74,45,145,62" href="/hos/customer/supplyNotice.do">
+				</map>
+				
+			</div>
+		</div>
+		
+		<!-- navigation [s] -->
+		<div class="nav">
+			<p class="btn_allmenu">
+				<a href="#"><img src="https://img.shop.co.kr/images/hos_new/gnb_allmenu.gif" alt="카테고리 전체보기"></a>
+			</p>
+			<ul>
+				<li class="btn_suppliers"><!-- 2016-11-29 추가[s] -->
+					<a href="#suppliersMenu"><img src="https://img.shop.co.kr/images/hos_new/gnb_menu07.gif" alt="공급사별보기"></a>
+					<div id="suppliersMenu" style="">
+						<div class="menu_inner">
+							<div class="menu_depth" style="height: 605px;">
+								<h2><img src="https://img.shop.co.kr/images/hos_new/suppliers_menu_consumable.gif" alt="의료소모품업체"></h2>
+								<ul>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=11838">KD상사(엠서클)</a></li>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=11837">LJ헬스케어(엠서클)</a></li>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12211">건강한메디</a></li>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=11425">금보메디넷</a></li>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12134">뉴셀파마코리아(엠서클)</a></li>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12422">다빛바이오</a></li>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12264">더세이폴(엠서클)</a></li>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12373">라온스랩</a></li>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12101">메디바이스</a></li>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12231">비더케이(엠서클)</a></li>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12049">비에프메디컬(엠서클)</a></li>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12344">스카이메디</a></li>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12350">씨어스테크놀로지</a></li>
+									
+
+								</ul>
+								<ul>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12442">알피스페이스</a></li>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12252">얼라이브(엠서클)</a></li>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12299">에스지메디팜</a></li>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12171">유진의료전자(엠서클)</a></li>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12019">이메디샵(엠서클)</a></li>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=10003">이지메디컴</a></li>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12256">이지스헬스케어</a></li>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12223">제마헬스케어</a></li>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12008">제이웰팜(엠서클)</a></li>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12444">지앤씨아이</a></li>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12047">피엠오헬시라이프</a></li>
+									
+
+								</ul>
+								<ul>
+									
+
+								</ul>
+							</div>
+							<div class="menu_depth" style="height: 605px;">
+								<h2><img src="https://img.shop.co.kr/images/hos_new/suppliers_menu_pharmacist.gif" alt="제약사"></h2>
+								<ul>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12004">대웅바이오</a></li>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12006">대웅제약</a></li>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12228">디엔컴퍼니</a></li>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=11861">디엔코스메틱스</a></li>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12009">시지바이오</a></li>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12035">한올바이오파마</a></li>
+									
+
+								</ul>
+
+								<h2><img src="https://img.shop.co.kr/images/hos_new/suppliers_menu_medicine.gif" alt="의약품업체"></h2>
+								<ul>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12307">KD상사</a></li>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12447">SFit</a></li>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12192">SSP</a></li>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12197">VACCINE</a></li>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12112">내일약품</a></li>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12413">도팜인(당일배송)</a></li>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12271">백신W</a></li>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12042">백신공급사</a></li>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12014">보덕메디팜</a></li>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12040">솔리드팜</a></li>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12359">에디팜</a></li>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12382">에이앤엘팜</a></li>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12383">에이앤엘팜(냉장)</a></li>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12018">엘재이컴퍼니</a></li>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12132">웰메디</a></li>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12115">의약품공급사</a></li>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=11857">종수약품</a></li>
+									
+								</ul>
+							</div>
+							<div class="menu_depth" style="height: 605px;">
+								<h2><img src="https://img.shop.co.kr/images/hos_new/suppliers_menu_oriental.gif" alt="한방용품업체"></h2>
+								<ul>
+									
+
+								</ul>
+								<h2><img src="https://img.shop.co.kr/images/hos_new/suppliers_menu_device.gif" alt="의료장비업체"></h2>
+								<ul>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12388">아크</a></li>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12201">유벤타헬스케어</a></li>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12171">유진의료전자(엠서클)</a></li>
+									
+
+								</ul>
+							</div>
+							<div class="menu_depth" style="height: 605px;">
+								<h2><img src="https://img.shop.co.kr/images/hos_new/suppliers_menu_mro.gif" alt="MRO업체"></h2>
+								<ul>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12033">모든오피스</a></li>
+									
+
+								</ul>
+								<h2><img src="https://img.shop.co.kr/images/hos_new/suppliers_menu_cosmetic.gif" alt="화장품업체"></h2>
+								<ul>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12133">제노덤(엠서클)</a></li>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12437">튠헬스케어</a></li>
+									
+
+								</ul>
+								<h2><img src="https://img.shop.co.kr/images/hos_new/suppliers_menu_interior.gif" alt="인테리어업체"></h2>
+								<ul>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12123">비전가(엠서클)</a></li>
+									
+									<li><a href="https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12348">에코비엔</a></li>
+									
+
+								</ul>
+							</div>
+						</div>
+					</div>
+				</li>
+				<!-- 2016-11-29 추가[e] -->
+
+				
+				<li><a href="https://the.shop.co.kr/promotion"><img src="https://img.shop.co.kr/images/hos_new/gnb_menu01.gif" alt="이벤트"></a>
+				</li><!-- 2020-04-09 추가 -->
+				
+				<li><a href="/hos/shop/goodsSpecialList.do?goodsSalesType=1"><img src="https://img.shop.co.kr/images/hos_new/gnb_menu03.gif" alt="특가"></a></li>
+				<li><a href="/hos/additiService/hosGuideBoardList.do?bbsCd=1721"><img src="https://img.shop.co.kr/images/hos_new/gnb_menu_additi.gif" alt="부가서비스"></a></li>
+				
+				<li><a href="/hos/mypage/main.do"><img src="https://img.shop.co.kr/images/hos_new/gnb_menu04.gif" alt="마이더샵"></a></li>
+				
+					<li><a href="/2nd/dncshop/DNC"><img src="https://img.shop.co.kr/images/hos_new/gnb_menu_skin.gif" alt="피부성형전용관"></a></li>
+					
+
+				<li><a href="/hos/bbs/customer/qaFormNew.do?searchProd=Y"><img src="https://img.shop.co.kr/images/hos_new/gnb_menu_prod.gif" alt="이런 상품 구해주세요"></a></li>
+				
+				<!-- #35465 김가영님 요청  -->
+				
+			</ul>
+
+			<!-- navigation [e] -->
+		</div>
+		
+	</div>
+	<div id="pop_allmenu">
+		<div class="menu_depth" style="height: 605px;">
+			<h2><img src="https://img.shop.co.kr/images/hos_new/total_menu_tit01.gif" alt=""></h2>
+			<ul>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H01112000">주사기 / 주사침 / 나비침</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H01107000">반창고 / 부직 / 테이프</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H01210000">마스크 / 모자</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H01115000">카테타 / 수액셋트</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H01103000">글러브 / 라텍스 / 석션관</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H01118000">탈지면 / 탄력 / 스타키넷</a></li>
+				<li class="br"><a href="/hos/shop/goodsList.do?ctgCd=H01119000">필름 / 현상/정착</a></li>
+
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H01101000">거즈 / 망 붕대 / 붕대</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H01109000">소독약품류 / 소독제</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H01105000">린넨 / 보호대 / 지지대</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H01117000">캔 / 밧드 / 드레싱카/링겔대</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H01108000">봉합사류 / 봉합침</a></li>
+				<li class="br"><a href="/hos/shop/goodsList.do?ctgCd=H01140000">인체모형</a></li>
+
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H01102000">검사 / 임상 / 페이퍼</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H01110000">수술기구 / 스파이날</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H01113000">진찰용품 / 처치 / 수술</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H01114000">측정/혈압계 / 청진기</a></li>
+				<li class="br"><a href="/hos/shop/goodsList.do?ctgCd=H01116000">캐스트 / 스프린트 / 목발</a></li>
+
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H01106000">물리치료용품</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H01111000">실버용품류</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H01120000">한방의료용품</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H01104000">기타의료용품</a></li>
+			</ul>
+		</div>
+		<div class="menu_depth" style="height: 605px;">
+			<h2><img src="https://img.shop.co.kr/images/hos_new/total_menu_tit02.gif" alt=""></h2>
+			<ul class="menu02">
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H10280000">백신제제</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H10010000">고지혈 / 고혈압</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H10080000">골/관절 / 류마티스</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H10090000">근이완제</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H10100000">내분비계</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H10030000">소화기용제</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H10020000">순환기용제</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H10110000">신경기계용제</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H10050000">진통 / 해열 / 소염</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H10060000">진해거담</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H10120000">피부 / 비만 / 비뇨기</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H10040000">항생제 / 항진균</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H10070000">항히스타민</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H10130000">기타</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H10190000">주사관절염 / 류마티스</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H10160000">주사근이완 / 부산피질호르몬</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H10210000">주사마늘 / 태반 / 비타민</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H10150000">주사마취제</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H10240000">주사소화기계용제</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H10200000">주사수액제</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H10180000">주사항상제</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H10220000">주사항히스타민</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H10170000">주사해열 / 진통/소염</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H10250000">주사혈전용해제</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H10230000">주사호흡기계용제</a></li>
+			</ul>
+		</div>
+		<div class="menu_depth" style="height: 605px;">
+			<h2><img src="https://img.shop.co.kr/images/hos_new/total_menu_tit03.gif" alt=""></h2>
+			<ul class="menu07"><!-- 2019-11-25 클래스 수정 -->
+				<!-- 2020-01-10 수정 시작 -->
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H11100000">톡신</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H11090000">필러</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H11020000">실리프팅</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H11080000">모발/두피관리</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H11040000">피부성형화장품</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H11060000">피부치료 / 미용</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H11070000">피부성형소모품</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H11030000">관리실소모품</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H11010000">피부성형 의료장비</a></li>
+				<!-- 2020-01-10 수정 끝 -->
+			</ul>
+			<!-- 2019-11-25 추가 시작 -->
+			<h2><img src="https://img.shop.co.kr/images/hos_new/total_menu_reagent.gif" alt=""></h2>
+			<ul class="menu07">
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H05080001">래피드키트</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H05080002">소변진단</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H05080003">염색시약</a></li>
+			</ul>
+			<!-- 2019-11-25 추가 끝 -->
+		</div>
+		<div class="menu_depth" style="height: 605px;">
+			<h2><img src="https://img.shop.co.kr/images/hos_new/total_menu_tit04.gif" alt=""></h2>
+			<ul class="menu04">
+				<li><a href="/hos/shop/goodsList.do?ctgCd=OPE010000">가위</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=OPE020000">견인기</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=OPE030000">일반기구</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=OPE040000">지침기</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=OPE050000">진단</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=OPE060000">포셉</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=OPE070000">핀셋</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=OPE080000">산부인과</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=OPE090000">성형외과</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=OPE100000">신경외과</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=OPE110000">안과</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=OPE120000">이비인후과</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=OPE130000">정형외과</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=OPE140000">치과</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=OPE150000">피부 / 직장</a></li>
+			</ul>
+		</div>
+		<div class="menu_depth" style="height: 605px;">
+			<h2><img src="https://img.shop.co.kr/images/hos_new/total_menu_tit05.gif" alt=""></h2>
+			<!-- 2020-02-20 수정[s] -->
+			<ul> <!-- 2020-01-10 수정 -->
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H02010000">살균기 / 멸균기/소독기</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H02020000">복지용구</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H02030000">운동 / 다이어트용품</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H02040000">재활용품</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H02050000">재활운동기구</a></li>
+				<li class="btn_area"><a href="https://www.shop.co.kr/hos/mediDevice/mediDeviceList.do?mediDeviceTk=CT"><img src="https://img.shop.co.kr/images/hos_new/btn_medi.gif" alt="의료기기 전용관"></a></li>
+			</ul>
+			<!-- 2020-02-20 수정[e] -->
+			<!-- 			<ul class="menu_type02"> 2020-01-10 수정 -->
+			<!-- 				<li><a href="/hos/shop/goodsList.do?ctgCd=H02010000" >살균기 / 멸균기/소독기</a></li> -->
+			<!-- 				<li><a href="/hos/shop/goodsList.do?ctgCd=H02020000" >복지용구</a></li> -->
+			<!-- 				<li><a href="/hos/shop/goodsList.do?ctgCd=H02030000" >운동 / 다이어트용품</a></li> -->
+			<!-- 				<li><a href="/hos/shop/goodsList.do?ctgCd=H02040000" >재활용품</a></li> -->
+			<!-- 				<li><a href="/hos/shop/goodsList.do?ctgCd=H02050000" >재활운동기구</a></li> -->
+			<!-- 			</ul> -->
+			<!-- 2020-01-10 추가 시작 -->
+			<h2><img src="https://img.shop.co.kr/images/hos_new/total_menu_uniform.gif" alt=""></h2>
+			<ul class="menu_type02">
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H14010000">의사복</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H14020000">간호사복</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H14030000">환자복</a></li>
+			</ul>
+			<!-- 2020-01-10 추가 끝 -->
+			<h2><img src="https://img.shop.co.kr/images/hos_new/total_menu_tit06.gif" alt=""></h2>
+			<ul class="menu06">
+				<!-- 				<li><a href="/hos/shop/goodsList.do?ctgCd=DEN200000">노보시스</a></li> -->
+				<li><a href="/hos/shop/goodsList.do?ctgCd=DEN220000">rhBMPㅡ2</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=DEN230000">뼈이식재</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=DEN240000">멤브레인</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=DEN250000">구강케어</a></li>
+			</ul>
+		</div>
+		<div class="menu_depth" style="height: 605px;">
+			<h2><img src="https://img.shop.co.kr/images/hos_new/total_menu_tit07.gif" alt=""></h2>
+			<ul class="menu07">
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H13010000">사무기기</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H13020000">사무용품</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H13040000">생활용품</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H13080000">처방전</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H13050000">식음료</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H13180000">TV/냉장고/세탁기</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H13170000">계절가전/에어컨</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H13030000">생활가전</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H13190000">주방가전</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H13200000">영상/음향가전</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H13210000">컴퓨터/주변기기</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H13220000">모바일/주변기기</a></li>
+			</ul>
+			<h2><img src="https://img.shop.co.kr/images/hos_new/total_menu_tit08.gif" alt=""></h2>
+			<ul class="menu07">
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H12010000">의약부외품/생활/홈케</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H12020000">건강기능식품</a></li>
+				<li><a href="/hos/shop/goodsList.do?ctgCd=H12030000">일반화장품</a></li>
+			</ul>
+		</div>
+
+		<!-- 2020-04-08 추가[s] -->
+		<div class="dentist_menu">
+			<h2 class="tit_dentist">치과재료</h2>
+			<div class="menudepth">
+				<h3>뼈이식재</h3>
+				<ul>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN230008">rhBMP-2</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN230001">본그로스</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN230002">엑셀오스</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN230003">엑셀오스인젝트</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN230004">본셀오스</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN230005">동종골</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN230006">이종골</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN230007">합성골</a></li>
+				</ul>
+				<h3>절삭연마재</h3>
+				<ul>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN090001">다이아바</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN090002">카바이드바</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN090003">다이아디스크</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN090004">다이아키트</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN090005">덴쳐바</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN090006">스톤/실리콘포인트</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN090007">메탈스트립</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN090009">폴리싱/피니싱</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN090008">기타</a></li>
+				</ul>
+				<h3>위생/소독/멸균</h3>
+				<ul>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN210001">위생재료</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN210002">소독용품</a></li>
+				</ul>
+				<h3>보철치료</h3>
+				<ul>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN190001">귀금속합금</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN190002">비귀금속합금</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN190003">기타</a></li>
+				</ul>
+			</div>
+			<div class="menudepth">
+				<h3>멤브레인</h3>
+				<ul>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN010002">멤브레인</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN010003">기타</a></li>
+				</ul>
+				<h3>치아미백제</h3>
+				<ul>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN160001">치아미백제</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN160002">기타</a></li>
+				</ul>
+				<h3>교정재료/기구</h3>
+				<ul>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN150003">몰라밴드</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN150004">와이어</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN150005">교정용본딩/레진</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN150006">교정용기구</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN150008">Ormco기구</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN150009">Dentaurum기구</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN150012">교합기</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN150015">기타</a></li>
+				</ul>
+			</div>
+			<div class="menudepth">
+				<h3>인상용재료/기구</h3>
+				<ul>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN020001">러버/실리콘인상재</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN020002">알지네이트</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN020003">퍼티</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN020004">아가</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN020005">왁스</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN020006">인상재기구/기계</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN020007">진지코드/기구</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN020008">석고</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN020009">지혈제</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN020010">기타</a></li>
+				</ul>
+				<h3>임플란트</h3>
+				<ul>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN140001">임플란트장비</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN140002">임플란트기구</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN140003">어버트먼트</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN140004">기타</a></li>
+				</ul>
+				<h3>진단/시술기구</h3>
+				<ul>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN100001">미러/핀셋/익스플로러</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN100002">프로브</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN100004">외과용기구</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN100005">치주용기구</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN100006">보철_보존용</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN100003">기타</a></li>
+				</ul>
+			</div>
+			<div class="menudepth">
+				<h3>근관치료재</h3>
+				<ul>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN030001">핸드파일 / HKRemer</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN030002">엔진파일/NiTi</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN030003">GP/PP</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN030011">리머/브로치/스프레더</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN030010">엔도박스/이리게이션</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN030004">근관충전재</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN030005">템포러리크라운</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN030006">템포러리필링</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN030007">치수보호이장재</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN030008">근관치료장비</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN030009">기타</a></li>
+				</ul>
+				<h3>수술관련재료</h3>
+				<ul>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN080001">수술관련기구</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN080002">임플란트관련재료</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN080003">외과수술관련재료</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN080004">기타</a></li>
+				</ul>
+				<h3>국소마취제</h3>
+				<ul>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN180001">도포마취제</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN180002">기타</a></li>
+				</ul>
+				<h3>구강용품</h3>
+				<ul>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN130001">칫솔</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN130002">치간칫솔</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN130003">치실</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN130004">덴쳐/틀니용품</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN130005">구강세정기</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN130006">치약</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN130010">기타</a></li>
+				</ul>
+			</div>
+			<div class="menudepth">
+				<h3>시멘트/에칭</h3>
+				<ul>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN040001">GI/루팅시멘트</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN040002">ZPC/Carbo</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN040003">본딩제</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN040004">임시시멘트</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN040006">에칭제</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN040007">레진시멘트</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN040008">기타</a></li>
+				</ul>
+				<h3>기타진료관련재료</h3>
+				<ul>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN060001">불소겔/바니쉬/트레이</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN060002">지각과민처치재</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN060003">러버댐/클램프</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN060007">러버컵</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN060011">베이스/라이너</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN060012">석고/스톤/매몰제</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN060013">바이트 인상</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN060004">교합지</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN060006">교합인지재료</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN060005">브러쉬</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN060008">메트릭스밴드</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN060010">기타</a></li>
+				</ul>
+				<h3>방사선장비/재료</h3>
+				<ul>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN110001">필름/홀더</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN110002">현상/정착액</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN110003">현상기구</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN110005">방사선장비</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN110006">기타</a></li>
+				</ul>
+			</div>
+			<div class="menudepth">
+				<h3>레진/코아축조</h3>
+				<ul>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN050006">레진</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN050002">플로우레진</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN050003">레진기구</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN050001">레진시멘트</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN050004">POST/코아축조</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN050007">기타</a></li>
+				</ul>
+				<h3>예방재료</h3>
+				<ul>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN170001">실란트</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN170002">기타</a></li>
+				</ul>
+				<h3>진료용장비/기계</h3>
+				<ul>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN120009">초음파세척기</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN120010">근관측정기</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN120011">핸드피스</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN120012">미백기</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN120014">Digital Panorama</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN120015">Intra Oral Xray/센서</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN120017">스켈러팁</a></li>
+					<li><a href="/hos/shop/goodsList.do?ctgCd=DEN120018">기타</a></li>
+				</ul>
+			</div>
+		</div>
+		<!-- 2020-04-08 추가[e] -->
+		<p class="btn"><a href="#"><img src="https://img.shop.co.kr/images/hos_new/btn_menu_close.gif" alt="닫기"></a></p>
+	</div>
+</div>
+<!-- header [e] -->
+
+<!--2023-12-28 로그아웃 레이어[S]-->
+<div id="logoutLayerPopup" class="layer_dim" style="display:none;">
+	<div class="pop_layer_wrap logout2_pop">
+		<div class="pop_layer" style="display: block;">
+			<div class="popup_wrap">
+				<div class="popup_body">
+					<button type="button" class="btn_close"><span class="ico_close"></span></button>
+					<div class="title">로그아웃</div>
+					<div class="conts">
+						<h4><strong class="primary">통합회원 로그아웃</strong>까지 하시겠습니까?</h4>
+						<p>통합회원 로그아웃 선택 시, 통합회원 마이페이지로 이동합니다.</p>
+					</div>
+					<div class="btn_box">
+						<button class="btn" onclick="logoutMims();">
+							네
+							<div class="bb_box">
+								<i class="arrow"></i>
+								<strong class="primary">공용 PC</strong> 시 추천
+							</div>
+						</button>
+						<button class="btn" onclick="location.href='/login/logout.do'">아니요</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<!--//2023-12-28 로그아웃 레이어 [E]-->
+
+
+<script>
+	var menu_height=$j("#header #suppliersMenu").outerHeight();
+	$j(".menu_depth").css('height',menu_height+'px');
+
+	// 로그아웃 레이어 닫기
+	$j('.pop_layer_wrap .btn_close').click(function(){
+		$j('.layer_dim').css('display','none');
+	});
+
+	// 로그아웃
+	function logout() {
+		if ('EMAIL' !== 'NONE') {
+			document.getElementById('logoutLayerPopup').style.display = 'block';
+		} else {
+			location.href = 'https://www.shop.co.kr/login/logout.do';
+		}
+	}
+
+	// 더샵 로그아웃 후 통합회원 바로가기
+	function logoutMims() {
+		var url = 'MIMS';
+		location.href = 'https://www.shop.co.kr/login/logout.do?redirectUrl=' + url;
+	}
+
+	// 포인트몰 동의여부 체크 및 이동 처리
+	function goPointMall() {
+
+		var pointMallAgree = "N";
+		var serverType 		= "real";
+		var serviceCode = "ejnd";
+		var apiTsp = "";
+		var callback = "";
+		var privatePopupUrl = "/front/theshopplus/welfare_popup/welfare_popup";
+
+		if(serverType == "local"){
+			$j.support.cors = true;
+			apiTsp = "/front/";
+			callback = "callback=?&";
+			privatePopupUrl = "http://www.local.shop.co.kr/front/theshopplus/welfare_popup/welfare_popup";
+		}else{
+			apiTsp = "/front/"
+		}
+
+		var url = apiTsp + "api/theshopplus/welfare/get_user_welfare_agree_info?serviceCode=" + serviceCode;
+		//window.open(privatePopupUrl, "pointmall", "width=550, height=750");
+		$j.getJSON(url, null, function (data, status){
+			if(data.info.agreeYn != null){
+				if(data.info.agreeYn == "Y"){
+					// 포인트몰 새창 이동
+					goEjnd();
+				} else {
+					// 동의하기 팝업
+					window.open(privatePopupUrl, "pointmall", "width=550, height=750");
+				}
+			} else {
+
+				// 동의하기 팝업
+				window.open(privatePopupUrl, "pointmall", "width=550, height=750");
+			}
+		});
+
+	}
+
+	//포인트몰 이동
+	function goEjnd(){
+		var hostname = location.hostname;
+		var ejndDomain = "http://dev-fo.etbs.co.kr";
+
+		if(hostname.indexOf("www.shop.co.kr") == 0){
+			ejndDomain = "http://theshop1.benecafe.co.kr";
+		}
+
+		ejndDomain += "/sso/loginSsoGateAutoJoin";
+
+		document.charset = "UTF-8";
+		var win = window.open('about:blank', 'newWin', 'toolbar=0, scrollbars=1, resizable=1');
+		$j("#ejndForm").attr("target", "newWin");
+		$j("#ejndForm").attr("action", ejndDomain);
+		$j("#ejndForm").submit();
+		document.charset = "EUC-KR";
+	}
+</script>
+	<!-- //headerWrap -->
+	
+	<!-- containerWrap -->
+	<div id="containerWrap">
+	
+		
+
+    
+
+
+
+
+
+<script type="text/javascript">
+ function showMileage(){
+	 var obj = $j("#showMileage").offset();	 
+	 $j("#mileageLastBalanceAmt").show();
+ }
+ function hideMileage(){	 
+	 $j("#mileageLastBalanceAmt").hide();
+ }
+</script>
+
+
+	<p class="login_txt">
+		반갑습니다. 
+		<span><strong>압해연합의원</strong>고객님! </span>
+		<span>할인쿠폰 : <strong><a href="/hos/mypage/coupon/couponList.do">1</a></strong>장 </span>
+		<span>예치금 : <strong><a href="/hos/mypage/reserveamt/reserveAmtDetailList.do">0</a></strong>원 </span>
+		<span>마일리지 : <strong><a href="/hos/mypage/mileage/mileageList.do" onmouseout="javascript:hideMileage();">0</a></strong>점</span>
+	</p>
+	<div id="mileageLastBalanceAmt" style="display:none; position:absolute; left:600px; top:204px; width:294px; padding:10px 0 10px 10px;background:#fff; border:3px solid #f77f1c;z-index:99;'">
+	
+	</div>
+
+		
+		<!-- container -->
+		<div id="container">
+			
+			<iframe name="ifm" id="ifm" src="/hos/shop/goodsSearchListFrame.do?goodsInfoDataBean.orderBy=saleCnt&amp;goodsInfoDataBean.searchKey=all&amp;mafcSearchVal=&amp;goodsInfoDataBean.searchVal=일회용주사기&amp;smartSearchFg=N&amp;stndSearchVal=" width="100%" scrolling="no" height="2600" frameborder="0" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" hspace="0" vspace="0" style="height: 2620px;"></iframe>
+		
+			<!-- quickWrap -->
+			
+<!-- <div style="Z-INDEX:1;LEFT:expression(((document.body.clientWidth+530)+Math.abs(document.body.clientWidth+530))/4); TOP:105px; POSITION:absolute;"> -->
+	
+
+
+
+
+
+
+<!-- [Layout] 퀵메뉴 약국몰 우측 마이페이지 -->
+<div class="right_quick">
+
+	<div class="section btn_menu" style="margin-top:5px;padding-bottom:0px;">
+		<a href="/hos/mypage/reserveamt/reserveAmtDetailList.do"><img src="https://img.shop.co.kr/images/hos_new/quick/main_my_grade.jpg" alt="DNC전용관"></a>
+		<a href="javascript:window.open('/front/theshop/popup/popup/pop_pay1','deposit_pop','width=580, height=720, scrollbars= 0, toolbar=0, menubar=no');"><img src="https://img.shop.co.kr/images/hos_new/quick/main_deposit_money.gif" alt="예치금선구매"></a><!-- 2017-03-03 추가 -->
+		<a href="/hos/additiService/popBoardList.do"><img src="https://img.shop.co.kr/images/hos_new/quick/main_pop_board_new.gif" alt="POP게시판"></a><!-- 2016-12-20 추가 -->
+	</div>
+	
+	<!-- 2018-01-17 추가 -->
+	<!-- #52562 리브레 영상 시청 안내 배너 추가 -->
+	<div class="section" style="padding-bottom: 0;">
+		<a href="/hos/event/hosEventIntro.do?promotionSeq=25730&amp;pageType=1&amp;eventId=eventFreeStylelibre&amp;promotionSeq=25730&amp;pageType=1" title="리브레2 첫구매시 동영상 시청 필수!" target="_parent" style="display: block;">
+			<img src="http://img.shop.co.kr/images/event/202405/libre_bn.jpg" alt="리브레" width="86" height="145">
+		</a>
+	</div>
+    <!-- //2018-01-17 추가 -->
+	<div class="section" id="cartInfo">					 
+		<h3><img src="https://img.shop.co.kr/images/hos_new/quick_title01.gif" alt="장바구니"></h3>
+		<p class="product_txt">
+			<a href="/hos/cart/cartList.do"><strong id="cartGoodsCnt">0</strong></a>개 상품
+		</p>
+		<p class="product_txt">
+			<a href="/hos/cart/cartList.do"><strong id="cartTotalPrice">0</strong></a>원
+		</p>
+	</div>
+	<div class="section">
+		<ul class="inquiry">
+			<li><a href="/hos/mypage/tradeOrderList.do">주문/배송조회</a></li>
+			<li><a href="/hos/mypage/orderReBuyList.do">주문상품재구매</a></li>
+			<li><a href="/hos/mypage/taxbill/eTaxBillList.do">세금계산서 조회</a></li>
+			<li><a href="/hos/mypage/userclip/userClipList.do">MY 클립보기</a></li>
+		</ul>
+	</div>
+	<div class="section">
+		<h3><img src="https://img.shop.co.kr/images/hos_new/quick_title02.gif" alt="최근 본 상품"></h3>
+		<div id="recentViewGoodsList"><ul class="product_img on"><li><a href="/hos/shop/goodsSearchList.do?goodsCode=03662"><img src="https://img.shop.co.kr/upload/product/206231_01_M.jpg" width="60" height="61"></a>	<div class="view_item">	    <dl>	        <dt>일회용주사기(D/Syringe)</dt>	        <dd><strong>10,500</strong>원</dd>	    </dl>    </div></li><li><a href="/hos/shop/goodsSearchList.do?goodsCode=03534"><img src="https://img.shop.co.kr/upload/product/SELLER/201206/364147_01_M.jpg" width="60" height="61"></a>	<div class="view_item">	    <dl>	        <dt>일회용주사기(D/Syringe)</dt>	        <dd><strong></strong>원</dd>	    </dl>    </div></li><li><a href="/hos/shop/goodsSearchList.do?goodsCode=03657"><img src="https://img.shop.co.kr/images/common/noimg9070.gif" width="60" height="61"></a>	<div class="view_item">	    <dl>	        <dt>일회용주사기 (D/Syringe)</dt>	        <dd><strong>14,500</strong>원</dd>	    </dl>    </div></li></ul><ul class="product_img"><li><a href="/hos/shop/goodsSearchList.do?goodsCode=260421002"><img src="https://img.shop.co.kr/upload/product/https://d35klgm3oxiljr.cloudfront.net/production/goods/master/d9a6098c-43fe-408f-9030-2d4db7db59f5.jpg" width="60" height="61"></a>	<div class="view_item">	    <dl>	        <dt>동화 인슐린주사기 EZ일회용주사기 인슈린주사기</dt>	        <dd><strong>12,000</strong>원</dd>	    </dl>    </div></li><li><a href="/hos/shop/goodsSearchList.do?goodsCode=04874"><img src="https://img.shop.co.kr/upload/product/SELLER/201710/547197_01_M.jpg" width="60" height="61"></a>	<div class="view_item">	    <dl>	        <dt>병원처방전 병원과컴퓨터 A4낱장</dt>	        <dd><strong>77,000</strong>원</dd>	    </dl>    </div></li><li><a href="/hos/shop/goodsSearchList.do?goodsCode=1003780637"><img src="https://img.shop.co.kr/upload/product/https://d35klgm3oxiljr.cloudfront.net/production/goods/master/67e78aa7-c287-4120-b3e6-3c7dc14b4498.jpg" width="60" height="61"></a>	<div class="view_item">	    <dl>	        <dt>삼성 고해상도 27인치 뷰피니티 모니터 LS27D800UAKXKR</dt>	        <dd><strong>470,000</strong>원</dd>	    </dl>    </div></li></ul><ul class="product_img"><li><a href="/hos/shop/goodsSearchList.do?goodsCode=1003747352"><img src="https://img.shop.co.kr/upload/product/https://d35klgm3oxiljr.cloudfront.net/production/goods/master/47acbfbd-443b-469e-b5fb-7d58f7189fc7.jpg" width="60" height="61"></a>	<div class="view_item">	    <dl>	        <dt>삼성 24년 NEW 32인치 스마트 모니터 M5 M50D 화이트 80.1cm LS32DM503EKXKR</dt>	        <dd><strong>305,000</strong>원</dd>	    </dl>    </div></li><li><a href="/hos/shop/goodsSearchList.do?goodsCode=03805"><img src="https://img.shop.co.kr/upload/product/SELLER/201206/420673_01_M.jpg" width="60" height="61"></a>	<div class="view_item">	    <dl>	        <dt>일회용주사침 (D/Needles)</dt>	        <dd><strong>3,500</strong>원</dd>	    </dl>    </div></li></ul></div>
+		<div class="quick_paging">
+			<p class="count"><span>1</span>/3</p>
+			<p class="btn">
+				<button class="prev">이전</button>
+				<button class="next">다음</button>
+			</p>
+		</div>					
+	</div>
+	
+	
+<!-- 	<div class="section"> -->
+
+<!-- 	</div> -->
+
+</div>
+<script src="//developers.kakao.com/sdk/js/kakao.min.js"></script>
+
+<script id="happytalkSDK" src="https://design.happytalkio.com/sdk/happytalk.chat.v2.min.js"></script>
+<script>
+	function showPopUp() {
+		window.open('/front/theshop/popup/popup/pop_pay1','deposit_pop','width=580, height=720, scrollbars= 0, toolbar=0, menubar=no');
+	}
+
+	
+	function tradeList2() {
+		var list = [];
+		var userGroupCd = 'MX21';
+		var url = "/front/api/theshop/user/get_user_sitetrade_hos";
+		jQuery.ajax({
+			type: "GET"
+			, url: url
+			, dataType: "json"
+			, async: false
+			, data: null
+			, success: function (data) {
+				var tempArr = []; //담당자명이 있는 리스트
+				jQuery.each(data.rows, function (idx, el) {
+                    if(el.tradeName){ //담당자명이 있는 경우만 노출
+                        tempArr.push(el.zzsdabw);
+                    }
+				});
+				//console.log(tempArr);
+				var arrIdx = -1;
+				if (userGroupCd == "MX21" || userGroupCd == "MX27") {   // 회원그룹이 DW, DWCG일 경우
+					if (tempArr.indexOf("DW06") > -1) {
+						arrIdx = tempArr.indexOf("DW06");
+					} else if (tempArr.indexOf("DW05") > -1) {
+						arrIdx = tempArr.indexOf("DW05");
+					} else {
+						arrIdx = -1;
+					}
+				} else if (userGroupCd == "MX09") {   // 회원그룹이 DWHA일 경우
+					if (tempArr.indexOf("DW06") > -1) {
+						arrIdx = tempArr.indexOf("DW06");
+					} else if (tempArr.indexOf("HA08") > -1) {
+						arrIdx = tempArr.indexOf("HA08");
+					} else {
+						arrIdx = -1;
+					}
+				} else if (userGroupCd == "MX25") {   // 회원그룹이 DWSAY일 경우
+					if (tempArr.indexOf("DW05") > -1) {
+						arrIdx = tempArr.indexOf("DW05");
+					} else {
+						arrIdx = -1;
+					}
+				} else if (userGroupCd == "MX10") {   // 회원그룹이 HA일 경우
+					if (tempArr.indexOf("HA08") > -1) {
+						arrIdx = tempArr.indexOf("HA08");
+					}else if (tempArr.indexOf("DW06") > -1) {
+						arrIdx = tempArr.indexOf("DW06");
+					} else {
+						arrIdx = -1;
+					}
+				} else if (userGroupCd == "MX11") { // 회원그룹이 HA110일 경우
+					if (tempArr.indexOf("HA10") > -1) {
+						arrIdx = tempArr.indexOf("HA10");
+					} else if (tempArr.indexOf("DW06") > -1) {
+						arrIdx = tempArr.indexOf("DW06");
+					} else {
+						arrIdx = -1;
+					}
+				} else if (userGroupCd == "MX22" || userGroupCd == "MX08" || userGroupCd == "MX13") {   // 회원그룹이 DNC, DNCHA, DNCCG일 경우
+					if (tempArr.indexOf("DA01") > -1) {
+						arrIdx = tempArr.indexOf("DA01");
+					} else if (tempArr.indexOf("DA03") > -1) {
+						arrIdx = tempArr.indexOf("DA03");
+					} else if (tempArr.indexOf("DA11") > -1) {
+						arrIdx = tempArr.indexOf("DA11");
+					} else {
+						arrIdx = -1;
+					}
+				} else if(userGroupCd == "MX01" || userGroupCd == "MX23") {  // 회원그룹이 요양병원, 일반회원인 경우
+					if (tempArr.indexOf("DW06") > -1) {
+						arrIdx = tempArr.indexOf("DW06");
+					} else if (tempArr.indexOf("DW05") > -1) {
+						arrIdx = tempArr.indexOf("DW05");
+					} else if (tempArr.indexOf("DA01") > -1) {
+						arrIdx = tempArr.indexOf("DA01");
+					} else if (tempArr.indexOf("DA02") > -1) {
+						arrIdx = tempArr.indexOf("DA02");
+					} else if (tempArr.indexOf("HA08") > -1) {
+						arrIdx = tempArr.indexOf("HA08");
+					} else if (tempArr.indexOf("HA10") > -1) {
+						arrIdx = tempArr.indexOf("HA10");
+					} else if (tempArr.indexOf("DB18") > -1) {
+						arrIdx = tempArr.indexOf("DB18");
+					} else {
+						arrIdx = -1;
+					}
+				}else{ // 회원그룹이 면허회원, 바른검진네트워크인 경우 미노출
+					arrIdx = -1;
+				}
+				//console.log(tempArr[arrIdx]); // 해당 회원에게 노출될 채널 코드(zzsdabw)
+
+                var index = -1; //전체영업사원리스트 인덱스
+                jQuery.each(data.rows, function (idx, el) {
+                    //전체영업사원리스트에서 매칭된 채널 코드 인덱스 추출
+                    if(el.zzsdabw == tempArr[arrIdx]){
+                        index = idx;
+                    }
+			    });
+
+                if(data.rows != null){
+                    if(index == -1){ //영업사원정보가 없는 경우 - 미노출
+                        list = [null,null,null,data.rows[0].userGroupNm]; //회원그룹만 노출
+                    }else { //영업사원정보 전달
+                        list.push(data.rows[index].sapCustomerCd);
+                        list.push(data.rows[index].tradeName);
+                        list.push(data.rows[index].tradeOffice);
+                        list.push(data.rows[index].userGroupNm);
+                    }
+                }
+                //console.log(data.rows[index]);
+            }
+		});
+
+		return list;
+	}
+
+	//병원몰 프론트
+	//해피톡
+	var ht = null;
+	var tradeList = tradeList2();
+	var sapCustomerCd = tradeList[0];
+	var tradeName = tradeList[1];
+	var tradeOffice = tradeList[2];
+	var userGroupNm = tradeList[3];
+
+	(function(id, scriptSrc, callback) {
+		var d = document,
+				tagName = 'script',
+				$script = d.createElement(tagName),
+				$element = d.getElementsByTagName(tagName)[0];
+
+		$script.id = id;
+		$script.async = true;
+		$script.src = scriptSrc;
+
+		if (callback) { $script.addEventListener('load', function (e) { callback(null, e); }, false); }
+		$element.parentNode.insertBefore($script, $element);
+	})('happytalkSDK', 'https://design.happytalkio.com/sdk/happytalk.chat.v2.min.js', function() {
+		ht = new Happytalk({
+			siteId: '1000216754',
+			siteName: '더샵',
+			categoryId: '64695',
+			divisionId: '64698',
+			params:'site_uid='+'obgynjh'+',cus_extra_username='+'나재호'+',parameter1='+'압해연합의원'+',parameter2='+sapCustomerCd+',parameter3='+tradeName+',parameter4='+tradeOffice+',parameter5='+userGroupNm
+		});
+	});
+	
+
+	$j(document).ready(function () {
+		getCartSummaryinfo();
+		getRecentViewGoodsList();
+	});
+	
+	function getRecentViewGoodsList() {
+		$j.ajax({
+			type:"POST",
+			dataType:"json",
+			url:"/2nd/api/goods/recent/view/list",
+			success:function(data) {
+				if (data.result == "SUCCESS"){
+					if (data.recentViewGoodsList.length) {
+						var tag = "";						
+						tag += '<ul class="product_img on">';
+						$j.each(data.recentViewGoodsList, function(idx, element){
+							tag += '<li>';
+							tag += '<a href="/hos/shop/goodsSearchList.do?goodsCode='+element.goodsCode+'"><img src="'+element.imgUrl+'" width="60" height="61"></a>';
+							tag += '	<div class="view_item">';
+							tag += '	    <dl>';
+							tag += '	        <dt>'+element.goodsNm+'</dt>';
+							tag += '	        <dd><strong>'+element.goodsPrice+'</strong>원</dd>';
+							tag += '	    </dl>';
+							tag += '    </div>'; 
+	                        tag += (idx == 2 || idx == 5) ? '</ul></li><ul class="product_img">' :  '';
+	                        if(idx == 8) return false;
+						});
+						$j("#recentViewGoodsList").append(tag);
+						
+						// 최근 본 상품
+						$j(".product_img > li > a").mouseenter(function() {
+							$j(".view_item").hide();
+							$j(this).next("div").show();
+						})
+						$j(".product_img").mouseout(function() {
+							$j(".view_item").hide();
+						});
+					}
+				} else {
+					
+				}
+			},
+			error:function(xhr, ajaxOpts, thrownErr) {
+				//alert(thrownErr);
+			}
+		});
+	}
+
+	// 장바구니 요약 정보(공급사별)
+	function getCartSummaryinfo() {
+		$j.ajax({
+			type:"POST",
+			dataType:"json",
+			url:"/2nd/api/cart/summary",
+			data:{
+				"cartType":'01',
+				"sellerCd":0
+			},			
+			success:function(data) {
+				var tags = [],
+				    cartList = data.cartList,
+				    cartTotalPrice = 0,
+				    cartGoodsCnt = 0,
+					transPrice = 0;
+				if(cartList.length){
+					for (var i = 0; i < cartList.length; i++) {
+						var cartInfo = cartList[i];
+						cartTotalPrice += cartInfo['sellerTotalPrice'];
+						cartGoodsCnt += cartInfo['goodsCnt'];
+						if(cartInfo['sellerTotalPrice'] < cartInfo['transBasicPrice']){
+							transPrice += cartInfo['transPrice']
+						}
+					}
+				}
+				$j('#cartGoodsCnt').text(cartGoodsCnt);
+				$j('#cartTotalPrice').text(set_comma(cartTotalPrice + transPrice));
+			},
+			error:function(xhr, ajaxOpts, thrownErr) {
+				//alert(thrownErr);
+			}
+		});
+	}
+	
+	function set_comma(n) {
+	    var reg = /(^[+-]?\d+)(\d{3})/;
+	    n += '';
+	    while (reg.test(n))
+	     n = n.replace(reg, '$1' + ',' + '$2');
+
+	    return n;
+	}	
+	
+	var pharmacyName = "%EC%95%95%ED%95%B4%EC%97%B0%ED%95%A9%EC%9D%98%EC%9B%90";
+    var userNm = "%EB%82%98%EC%9E%AC%ED%98%B8";
+	
+	function goHappyTalk(userId, value){
+    	
+    	var url = "/ajax/main/mainOtcPerson.do";
+	    var param = "userId="+userId;
+	    
+	    jQuery.ajax({
+    		 type:"POST"
+    		,url:url
+    		,dataType:"html"
+    		,data:param
+    		,success:function(msg) {
+    			
+    			if(value == 'happy'){
+    				if(confirm("상담신청하시겠습니까?")){
+    					goHappyTalkPopup(msg, userId);
+    				}    				
+    			}else{
+    				
+    				goKakaoTalk(msg, userId);
+    			}
+    		}
+    	});
+    }
+    
+    function goHappyTalkPopup(msg, userId){
+		var url = "https://design.happytalkio.com/chatting?siteId=1000216754&siteName="+encodeURIComponent("더샵")+"&categoryId=64695&divisionId=64698&partnerId=&shopId=&params=site_uid="+userId+",paramter1="+encodeURIComponent(pharmacyName)+",paramter2="+encodeURIComponent(userNm)+",parameter3="+encodeURI(encodeURIComponent(msg));
+		//"https://customer.happytalk.io/public_v1/chat_v4/public_point?go=C&is_login=Y&uid="+userId+"&parameter1="+userNm+"&parameter2="+pharmacyName+"&parameter3="+encodeURI(encodeURIComponent(msg))+"&site_id=1000216754&category_id=62544&division_id=62545&usergb=W&title=[test]"
+    	var _popUp = window.open(url, "new", "width=400,height=750,left=1400px,top=100px");
+		//_popUp.focus();
+    }
+    
+    function goKakaoTalk(msg, userId){    	
+    	var _popUp = window.open("https://api.happytalk.io/api/kakao/chat_open?yid=%40%EB%8D%94%EC%83%B5%EB%B3%91%EC%9B%90%EB%AA%B0&site_uid="+userId+"&parameter1="+userNm+"&parameter2="+pharmacyName+"&parameter3="+encodeURI(encodeURIComponent(msg))+"&site_id=1000216754&category_id=62544&division_id=62545", "new", "width=400,height=550,left=10%,top=100px");
+		//_popUp.focus();
+    }
+    
+    Kakao.init('');
+	function addPlusFriend(){
+		 Kakao.PlusFriend.addFriend({
+	        plusFriendId: '_ZxaxbxfC' // 플러스친구 홈 URL에 명시된 id로 설정합니다.
+	      });
+    }
+</script>
+
+<!-- </div> -->
+			<!-- //quickWrap -->
+		</div>
+		<!-- //container -->
+	</div>
+<script type="text/javascript" id="" charset="">!function(b,e,f,g,a,c,d){b.fbq||(a=b.fbq=function(){a.callMethod?a.callMethod.apply(a,arguments):a.queue.push(arguments)},b._fbq||(b._fbq=a),a.push=a,a.loaded=!0,a.version="2.0",a.queue=[],c=e.createElement(f),c.async=!0,c.src=g,d=e.getElementsByTagName(f)[0],d.parentNode.insertBefore(c,d))}(window,document,"script","https://connect.facebook.net/en_US/fbevents.js");fbq("init","1723063321090699");fbq("track","PageView");fbq("track","Purchase");fbq("track","AddPaymentInfo");fbq("track","AddToCart");</script>
+<noscript><img height="1" width="1" style="display:none" src="https://www.facebook.com/tr?id=1723063321090699&amp;ev=PageView&amp;noscript=1"></noscript>
+
+
+	<!-- containerWrap -->
+	 
+	<!-- footWrap -->
+	
+
+
+
+
+<!-- [Layout] Footer 병원몰 -->
+
+<script type="text/javascript" src="/resources/theshop_1st/js/hos/cookieUtil.js"></script>
+
+<script language="javascript">
+
+    
+	if (document.location.protocol == 'http:') {
+		document.location.href = document.location.href.replace('http:', 'https:');
+	}
+    
+
+	function goLinkUrl_f(url) {
+		var userBean = getCookie("USER_BEAN");
+		var hostUrl = document.location.hostname;
+
+		if (userBean == "" || userBean == undefined) {
+			if (hostUrl.indexOf("www") > -1 || hostUrl.indexOf("hani") > -1) {
+				if (!confirm("회원 전용입니다.로그인 하시겠습니까?")) {
+					return;
+				}
+				else {
+					document.location = "https://www.shop.co.kr/";
+					return;
+				}
+			}else{
+				alert("회원전용입니다. 로그인이 필요합니다.");
+			}
+		}
+		else {
+			top.document.location = url;
+		}
+	}
+	function goLinkUrl_f2(url) {
+		top.document.location = url;
+	}
+	//관련사이트 이동
+	function changetSite(obj) {
+		if (obj.value != null && obj.value.length > 0) {
+			window.open(obj.value, "_blank");
+		}
+	}
+
+
+	// 사업자 정보 확인 팝업 표기
+	function openFtcPopup(){
+		var businessCode = "1018162216";	// theShop 사업자 등록번호
+
+		var url = "https://www.ftc.go.kr/bizCommPop.do?wrkr_no=" + businessCode;
+
+		window.open(url, "communicationViewPopup", "width=750, height=700;");
+	}
+</script>
+<!-- footer jinhong -->
+<div id="footer">
+	<div class="linkWrap">
+		<div class="inner">
+		<ul class="footLink">
+		    
+		    <li>
+
+		       <a href="https://theeasyshop.notion.site/TheSHOP-d762c1949b464f17a037cc3c6d0ec00b?pvs=4" target="_blank">개인정보취급방침</a>
+		    </li>
+		    <li>
+		       <a href="#" onclick="javascript:goLinkUrl_f('/hos/customer/siteRule.do');return false;">이용약관</a>
+		    </li>
+		    <li>
+		       <a href="#" onclick="javascript:goLinkUrl_f('/hos/customer/emailNoGether.do', '', 460, 500);return false;">이메일무단수집거부</a>
+		    </li>
+
+		</ul>
+		<fieldset class="familySite">
+		<legend>familySite</legend>
+		<div>
+			<span class="selectbox_title footSelect" style="width:153px;vertical-align:middle;display:inline-block;cursor:pointer;"><strong>관련사이트바로가기</strong></span><select class="footSelect" style="width: 180px; position: absolute; left: -100000px; height: auto;" onchange="changetSite(this)">
+				<option value="">관련사이트바로가기</option>
+				<option value="http://www.doctorville.co.kr/"> 닥터빌</option>
+				<option value="http://www.hidoc.co.kr/healthqna/list"> 하이닥</option>
+				<option value="http://www.ezmedicom.com"> 이지메디컴</option>
+				<option value="http://www.neochart.co.kr"> 네오소프트</option>
+				<option value="http://www.docdocdoc.co.kr"> 청년의사</option>
+				<option value="http://www.mcircle.co.kr"> 엠서클</option>
+				<option value="http://www.ginus.co.kr"> 지누스</option>
+				<option value="http://www.clickmedi.co.kr"> 클릭메디</option>
+			</select>
+		</div>
+		</fieldset>
+		</div>
+	</div>
+	<div class="addressWrap">
+		<div class="inner">
+			<p class="ftLogo">
+			
+			<img src="https://img.shop.co.kr/images/footer/logo_footer02.gif" alt="the SHOP" class="footLogo">
+			
+			</p>
+			<div class="address">
+				㈜이지메디컴 (대표자 : 진재희)<br>
+				주소 : 서울특별시 강남구 논현로 805, 유로프라자 2층,3층(신사동)<br>
+				사업자등록번호: 101-81-62216
+				<br>통신판매업신고: 2019-서울강남-01311<a href="https://www.ftc.go.kr/bizCommPop.do?wrkr_no=1018162216" target="_blank"><img src="https://img.shop.co.kr/images/footer/btn_footBusi02.gif" alt="사업자정보확인"></a>
+				<p class="copyright"><strong>© TheEasyShop Corp.</strong> All rights reserved</p>
+			</div>
+			<div class="csCenter">
+				<em>더샵문의</em><br>상담가능시간 : 09:00 - 18:00 <br>(토·일요일/공휴일 휴무, 점심시간 12:00-13:00)<br>문의 : <strong>1:1 채팅상담</strong><span>|</span>Fax : 02-6488-9771
+				<br>이메일: <a href="mailto:theshopadmin@ezmedicom.com">theshopadmin@ezmedicom.com</a>
+			</div>
+		</div>
+	</div>
+</div>
+<div style="text-align:center">
+	<font color="white">[02]</font>
+
+</div>
+<!-- footer jinhong -->
+<script type="text/javascript" src="/resources/theshop_1st/js/jquery-ui-1.12.1.js"></script>
+
+<script type="text/javascript">
+	$j(function() {
+		 /* 2018-02-27 공지사항 롤링 추가 시작 */
+        var notiRolling = function(){
+            setTimeout(function(){
+                $j('.noti_rolling .list_noti li:first').animate( {marginTop: '-29px'}, 500, function() {
+                    $j(this).detach().appendTo('.noti_rolling .list_noti').removeAttr('style');
+                });
+                notiRolling();
+            }, 4000);
+        };
+        notiRolling();
+        /* 2018-02-27 공지사항 롤링 추가 끝 */
+		var tabIndex = $j('.main_visual ul li').size();
+		$j('.main_visual ul').addClass('list0'+ tabIndex);
+
+		var timer=null, // timer
+			aniTime=6000; // animation time
+
+		// 탭 이동
+		movingTab = function() {
+			var current = $j('.main_visual li.on'),
+				first = $j('.main_visual li').eq(0);
+
+			//현재 li 태그의 클래스를 삭제한다.
+			current.removeClass('on');
+
+			//다음 li태그가 존재하는지 확인
+			if(current.next().size()>0) {
+				//다음 li태그가 있으면 addClass('on');
+				current.next().addClass('on');
+			} else {
+				//다음 li태그가 없으면 첫번째 li태그에 addClass('on');
+				first.addClass('on');
+			}
+			var number = $j(".main_visual ul").find("li.on").index();
+			$j(".show_img p").removeClass("on");
+			$j(".show_img p").eq(number).addClass("on");
+
+		}
+
+		//애니메이션 효과를 멈추게
+		stopMoving = function() {
+			clearInterval(timer);
+		};
+
+		//애니메이션 효과 시작
+		startMoving = function() {
+			clearInterval(timer);
+			timer = setInterval(function() {
+				//anitime시간마다 movingTab호출
+				movingTab();
+			},aniTime);
+		}
+
+		$j('.main_visual li a').on('mouseenter',function() {
+			$j('.main_visual li').removeClass('on');
+			$j(this).closest('li').addClass('on');
+			var number = $j('.main_visual ul').find('li.on').index();
+			$j('.show_img p').removeClass('on');
+			$j('.show_img p').eq(number).addClass('on');
+			return false;
+		})
+		$j('.main_visual').on('mouseover',function() {
+			stopMoving();
+		}).on('mouseleave',function() {
+			startMoving();
+		});
+
+		//페이지 로딩 시 startMoving 실행
+		startMoving();
+
+
+		// 레프트 메뉴
+		$j(".left_menu > ul > li > a").mouseenter(function() {
+			$j(".left_menu > ul > li").removeClass("on");
+			$j(this).parent("li").addClass("on");
+		});
+		$j(".left_menu").mouseleave(function() {
+			$j(".left_menu > ul > li").removeClass("on");
+		});
+
+		// 전체메뉴
+		$j(".btn_allmenu a").click(function(e) {
+			$j("#pop_allmenu").fadeToggle("fast");
+			e.preventDefault();
+		});
+		$j("#pop_allmenu .btn a").click(function(e) {
+			$j("#pop_allmenu").fadeOut("fast");
+			e.preventDefault();
+		});
+
+		// 공급사별보기 2016-11-29 추가
+		//var suppliersHovered = $j("#suppliersMenu").is(":hover");
+
+		$j(".btn_suppliers").mouseenter(function(e) {
+			$j("#suppliersMenu").fadeToggle("fast").addClass("on");
+		});
+		$j(".btn_suppliers").mouseleave(function(e) {
+			$j("#suppliersMenu").fadeOut("fast").removeClass("on");
+		});
+
+		/* 2019-09-02 수정 시작 */
+        // 탑 버튼
+        var topHeight = $j("#header").height() + $j(".visual_medical").height();
+        var btnTop = $j(".btn_top");
+        var scHeight = $j("#footer").offset().top - $j(window).height();
+        $j(window).scroll(function() {
+            if ($j(window).scrollTop() > topHeight ) {
+                btnTop.fadeIn(300)
+            }
+            else {
+                btnTop.fadeOut(300)
+            }
+            if ($j(window).scrollTop() <= scHeight) {
+                $j('.btn_top').css("bottom","80px");
+
+            } else {
+                $j('.btn_top').css("bottom","238px");
+            }
+        });
+        $j(".btn_top").on("click", function(e){
+            e.preventDefault();
+            $j("html").animate({scrollTop: 0});
+        });
+
+        // 의료기기 문의 팝업
+//         $j(".btn_inquiry").on('click', function(e) {
+//         	e.preventDefault();
+//             getMediDeviceCateList();
+//             layerPopup =  $j('#popInquiryMedical').bPopup({
+//                 modalClose : false,
+//                 onOpen: function(){
+//                     $j(".selectArt").addClass("popActive");
+//                 },
+//                 onClose: function(){
+//                     $j(".selectArt").removeClass("popActive");
+//                 }
+//             });
+//         });
+
+        /* 2019-09-02 수정 끝 */
+
+
+		//상단배너
+		$j(".top_banner").slideDown(800);
+		$j(".top_banner .btn_close a").click(function(e){
+
+			$j(".top_banner").slideUp();
+			e.preventDefault();
+		});
+
+		// 최근 본 상품
+		$j(".product_img > li > a").mouseenter(function() {
+			$j(".view_item").hide();
+			$j(this).next("div").show();
+		})
+		$j(".product_img").mouseout(function() {
+			$j(".view_item").hide();
+		});
+
+		// 최근 본 상품_오른쪽 퀵 2015-05-08 추가
+		$j(".right_quick button.next").on("click",function() {
+			var number = parseInt($j(".quick_paging span").html())+1;
+			$j(".quick_paging span").empty().html(number);
+			$j(".product_img").removeClass("on");
+			$j(".product_img").eq(number-1).addClass("on");
+			if(number==4) {
+			var reset = 1;
+				$j(".quick_paging span").empty().html(reset);
+				$j(".product_img").eq(reset-1).addClass("on");
+			}
+		});
+		$j(".right_quick button.prev").on("click",function() {
+			var number = parseInt($j(".quick_paging span").html())-1;
+			$j(".quick_paging span").empty().html(number);
+			$j(".product_img").removeClass("on");
+			$j(".product_img").eq(number-1).addClass("on");
+			if(number==0) {
+			var reset = 3;
+				$j(".quick_paging span").empty().html(reset);
+				$j(".product_img").eq(reset-1).addClass("on");
+			}
+
+		});
+
+		// 팝업 부르기
+		$j(".basket a, .btn_smart a").click(function(e) {
+			var link = $j(this).attr('href').substring(1);
+			$j('#header').find('.' + link).toggleClass('on');
+			e.preventDefault();
+		});
+		$j(".pop_basket a.close").click(function(e) {
+			$j(".pop_basket").removeClass("on");
+			e.preventDefault();
+		});
+		$j(".autocomplete a.close").click(function(e) {
+			$j(".autocomplete").removeClass("on");
+			e.preventDefault();
+		});
+		$j(".pop_smart p.btn a").click(function(e) {
+			$j(".pop_smart").removeClass("on");
+			e.preventDefault();
+		});
+
+		// 추천상품, 테마샵, 공지사항, 타임특가
+		$j(".recommend_tab a").click(function(e) {
+			var src_out = $j(".recommend_tab li.on a").find("img").attr("src").replace("_on","_off");
+			$j(".recommend_tab li.on a").find("img").attr("src", src_out)
+			var link = $j(this).attr("href");
+			$j(".recommend_tab li").removeClass("on");
+			$j(this).parent("li").addClass("on");
+			$j(".recommend_wrap").find(".list").css("display","none");
+			$j(".recommend_wrap").find(link).css("display","block");
+			var src_in =  $j(".recommend_tab li.on a").find("img").attr("src").replace("_off","_on");
+			$j(this).find("img").attr("src", src_in);
+			e.preventDefault();
+		});
+		$j(".news .tab > li > a").click(function(e) {
+			$j(".news .tab > li").removeClass("on");
+			$j(this).parent("li").addClass("on");
+			e.preventDefault();
+		});
+		// Photo slider > Minimal
+		$j(".list").sliderkit({
+			auto:1,
+			tabs:1,
+			circular:1,
+			panelfx:"sliding",
+			fastchange:0
+		});
+		$j("#recommend_list02, #recommend_list03, #recommend_list04, #recommend_list05").css("display","none");
+		$j(".theme_list").sliderkit({
+			auto:true,
+			autospeed:6000,
+			circular:true
+		});
+		$j(".best_banner").sliderkit({
+			auto:true,
+			autospeed:3000,
+			shownavitems:1,
+			circular:true,
+			fastchange:false,
+			scrollspeed:500,
+			start:0,
+			counter: true
+		});
+		$j(".time_banner").sliderkit({
+			auto:true,
+			autospeed:3000,
+			shownavitems:1,
+			circular:true,
+			fastchange:false,
+			scrollspeed:500,
+			start:0,
+			counter: true
+		});
+		$j(".cooperation_banner").sliderkit({ // 2015-07-06 추가
+			auto:true,
+			autospeed:6000,
+			shownavitems:1,
+			circular:true,
+			fastchange:false,
+			scrollspeed:1000,
+			start:0,
+			counter: true
+		});
+
+
+	});
+</script>
+	<!-- footWrap -->
+
+<div class="selectbox_option footSelect" style="position:absolute;width:178px;display:none;z-index:10"><div class="scroll"></div></div><div class="selectbox_option1 selectArt" style="position:absolute;width:392px;display:none;z-index:10"><div class="scroll"></div></div><div class="selectbox_option1 selectArt" style="position:absolute;width:149px;display:none;z-index:10"><div class="scroll"></div></div><div class="selectbox_option1 selectArt" style="position:absolute;width:73px;display:none;z-index:10"><div class="scroll"></div></div><div class="selectbox_optionM selectMain" style="position:absolute;width:56px;display:none;z-index:10"><div class="scroll"></div></div><iframe id="HappytalkIframe" src="https://design.happytalkio.com/button?siteId=1000216754&amp;siteName=%EB%8D%94%EC%83%B5&amp;categoryId=64695&amp;divisionId=64698&amp;params=site_uid=obgynjh,cus_extra_username=%EB%82%98%EC%9E%AC%ED%98%B8,parameter1=%EC%95%95%ED%95%B4%EC%97%B0%ED%95%A9%EC%9D%98%EC%9B%90,parameter2=0010025351,parameter3=%EC%9C%A4%EC%8B%A0%ED%98%84,parameter4=DW_%EA%B4%91%EC%A3%BC1,parameter5=DW&amp;partnerId=&amp;shopId=" allowtransparency="true" frameborder="0" title="채팅상담" tabindex="0" style="color-scheme: light; margin: 0px; z-index: 999999999; width: 96px; height: 96px; position: fixed; left: auto; right: 14px; bottom: 10px;"></iframe></body></html>

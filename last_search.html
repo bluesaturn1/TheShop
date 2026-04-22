@@ -1,0 +1,2700 @@
+
+
+
+
+
+
+
+
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+    <meta http-equiv="content-type" content="text/html; charset=euc-kr" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="shop.co.kr" />
+    <meta name="document-rights" content="Copyrighted shop.co.kr" />
+    <meta name="copyright" content="Copyright (c) shop.co.kr" />
+
+	<title>theSHOP :::</title>
+	<link rel="shortcut icon" type="image/x-icon" href="https://www.shop.co.kr/resources/theshop_1st/favicon.ico"/>
+    
+ 	<link rel="stylesheet" type="text/css" href="https://img.shop.co.kr/css/renew.css" />
+ 
+	<script type="text/javascript" src="/resources/theshop_1st/js/common-front.js"></script>
+	<script type="text/javascript" src="/resources/theshop_1st/js/cookieUtil.js"></script>
+    <script type="text/javascript" src="/resources/theshop_1st/js/common.js"></script>
+    <script type="text/javascript" src="/resources/theshop_1st/js/cart/cart.js"></script>
+	<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+
+
+<script type="text/javascript">
+var _browser = navigator.userAgent.toLowerCase().replace('[(]', '\\\(').replace('[)]', '\\\)');
+if (_browser.indexOf('msie') == -1 || _browser.indexOf('trident') == -1)	{
+	document.write('<style>');
+	document.write('#cnt {width:730px; min-height:700px; height:auto !important; height:700px; margin:0 90px 0 170px; padding:0; text-align:center;}');
+	document.write('</style>');
+}
+</script>
+</head>
+
+<body onload='' leftmargin='0' topmargin='0' >
+<!-- 2012.12.20 리뉴얼 (jys)7
+	header부분 분리하기 위해 div영역을 크게 세부분으로 나눔 
+ 	1.top : 고정영역
+ 	2.cart_preview :장바구니 미리보기 영역 z-index 가장 상위에 존재 해야함.
+ 	3.content-area : 스크롤 영역 
+ 	4.약국몰일 경우에만 헤더 분리, 동물병원몰, 한의원몰은 기존 상태 유지 
+-->
+
+
+<!-- layout -->
+<div id="layout">
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- [Layout] Header 동물병원몰, 한의원몰 -->
+
+<link rel="shortcut icon" type="image/x-icon" href="https://www.shop.co.kr/resources/theshop_1st/favicon.ico"/>
+<script language="javascript" src="/resources/theshop_1st/js/event/AC_RunActiveContent.js" type="text/javascript"></script>
+<script language="javascript" type="text/javascript" src="/resources/theshop_1st/js/prototype.js"></script>
+<script language="javascript" type="text/javascript" src="/resources/theshop_1st/js/common.js"></script>
+<script language="javascript" type="text/javascript" src="/resources/theshop_1st/js/json_sans_eval.js"></script>
+<script language="javascript" type="text/javascript" src="/resources/theshop_1st/js/search.js"></script>
+<script type="text/javascript" src="/resources/theshop_1st/js/jquery-1.2.6.js"></script>
+<script type="text/javascript" language="javascript">
+    var popularKeyword = new Array();   // 인기검색어 배열정보
+    
+</script>
+
+<script>
+	jQuery(document).ready(function() {
+		var userAgent = window.navigator.userAgent;
+		if(userAgent.indexOf("Trident") > 0){
+			 alert("TheSHOP은 Microsoft Edge, Chrome 브라우저에 최적화 되어있습니다. " +
+		        "원활한 사용을 원하시면 Microsoft Edge, Chrome 브라우저를 권장합니다. 확인버튼을 누르면 Edge브라우저로 자동으로 이동됩니다.");
+			window.location = 'microsoft-edge:' + document.location.href;
+			setTimeout(function() {
+				window.location = 'https://go.microsoft.com/fwlink/?linkid=2135547';
+			}, 1);
+		}
+	});
+
+function goPshop(number) {
+    var url = "http://pshop3.cafe24.com/www/intro.php?id=obgynjh&name=나재호&co_no=4119151876&mall_type=1";
+    if (number != undefined) {
+        url += "&number=" + number;
+    }
+    var pshopWin = window.open(url,"pshopWin","");
+    pshopWin.focus();
+}
+
+function goPshopUrl(pUrl) {
+    var winUrl = pUrl + "&id=obgynjh&name=나재호&co_no=4119151876&mall_type=1";
+
+    var pshopWin = window.open(winUrl,"pshopWin","");
+    pshopWin.focus();
+}
+
+function goLshopUrl(lUrl) {
+    var winUrl = lUrl;
+
+    var pshopWin = window.open("","lshopWin","");
+
+    document.lshopForm.action = winUrl;
+    document.lshopForm.target = "lshopWin";
+    document.lshopForm.submit();
+
+    pshopWin.focus();
+}
+
+function goLshopUrl2(lUrl) {
+    var winUrl = lUrl;
+
+    var pshopWin = window.open("","lshopWin2","");
+
+    document.lshopForm.action = winUrl;
+    document.lshopForm.target = "lshopWin2";
+    document.lshopForm.submit();
+
+    pshopWin.focus();
+}
+
+</script>
+
+<style>
+
+
+
+/* #header h1 {margin:0 0 7px 0; padding:30px 0 0 2px;} */
+#header h1 {margin:0 0 36px 0; padding:50px 0 0 2px;}
+
+</style>
+    <!-- header -->
+    <div id="header">
+        <!-- header_cnt -->
+        <div class="header_cnt">
+        
+            <h1>
+                <a href="#" onClick="goHome();return false;" onfocus="blur()">
+                    
+                    <img src="https://img.shop.co.kr/images/renew/logo/www/logo_www.png"/> <!--원래로고-->
+
+                    
+                </a>
+            </h1>
+        
+
+<script language="javascript">
+
+    
+
+    function openRemote() {
+        //window.open('http://www.aswp.co.kr/client/index.aspx?cpcode=daewoong&autostart=true', 'remote');
+        //window.open('http://mcircle.seetrol.com', 'remote');
+    	//window.open('http://zook.mcircle.co.kr', 'remote');
+    	window.open('https://939.co.kr/mcircle', 'remote');
+    }
+
+    var cookieStr = getCookie("USER_BEAN");
+    var mall_type = "1";
+
+    document.write('<ul class="util">');
+    // 비로그인시
+    if (cookieStr == "" || cookieStr == undefined) {
+        document.write('<li><a href="/member/join/memCheckForm.do"><img src="https://img.shop.co.kr/images/renew/common/top_join.gif" alt="회원가입" title="" /></a></li>');
+        document.write('<li><a href="#" onClick="openRemote();return false;"><img src="https://img.shop.co.kr/images/renew/common/util6.gif" alt="원격지원" title="" /></a></li>');
+    }
+    // 로그인시
+    else {
+
+        //document.write('<li><a href="#" onClick="goHome();return false;">HOME</a></li>');
+        document.write('<li><a href="javascript:logout();"><img src="https://img.shop.co.kr/images/renew/common/util0.gif" alt="로그아웃" title="" /></a></li>');
+
+
+        document.write('<li><a href="/cart/cartList.do"><img src="https://img.shop.co.kr/images/renew/common/util1.gif" alt="장바구니" title="" /></a></li>');
+
+
+        
+
+        var domainCookie = getCookie("USER_LOGIN_DOMAIN_ID");
+        if( domainCookie == "www" ) {
+               if( mall_type == "2" ) {
+                   //document.write('<li><a href="/event/introEvent.do?eventId=partnerinfo"><img src="https://img.shop.co.kr/images/renew/common/util3.gif" alt="제휴카드" title="" /></a></li>');
+                   document.write('<li><a href="/service/dlvrIntro.do"><img src="https://img.shop.co.kr/images/renew/common/util4.gif" alt="배송안내" title="" /></a></li>');
+               }
+
+               document.write('<li><a href="/service/supplyNotice.do"><img src="https://img.shop.co.kr/images/renew/common/util5.gif" alt="공급업체안내" title="" /></a></li>');
+               if( mall_type == "1" ) {
+                   document.write('<li><a href="/bbs/customer/customerMainNew.do"><img src="https://img.shop.co.kr/images/renew/common/util10.gif" alt="고객만족센터" title="" /></a></li>');
+               }
+
+        } else if( domainCookie == "tg" ) {
+            document.write('<li><a href="/service/tgDlvrIntro.do"><img src="https://img.shop.co.kr/images/renew/common/util4.gif" alt="배송안내" title="" /></a></li>');
+        }
+
+        document.write('<li><a href="#" onClick="openRemote();return false;"><img src="https://img.shop.co.kr/images/renew/common/util6.gif" alt="원격지원" title="" /></a></li>');
+
+        if (domainCookie == "www" && mall_type == "2") {
+            document.write('<li><a href="/mypage/tradeOrderList.do"><img src="https://img.shop.co.kr/images/renew/common/util8.gif" width="61" height="11" alt="주문/배송조회" title="" /></a></li>');
+            document.write('<li><a href="/mypage/orderReBuyList.do"><img src="https://img.shop.co.kr/images/renew/common/util9.gif" width="67" height="11" alt="주문상품 재구매" title="" /></a></li>');
+        }
+
+        /*if( domainCookie == "www" ) {
+            document.write('<li><a href="https://img.shop.co.kr/images/info/theShop.exe"><img src="https://img.shop.co.kr/images/renew/common/util7.gif" alt="바탕화면바로가기 설치" title="" /></a></li>');
+        } else if( domainCookie == "tg" ) {
+            document.write('<li><a href="https://img.shop.co.kr/images/info/tg.exe"><img src="https://img.shop.co.kr/images/renew/common/util7.gif" alt="바탕화면바로가기 설치" title="" /></a></li>');
+        }*/
+
+        
+    }
+
+    document.write('</ul>');
+</script>
+
+        <p class="shoppingview"><img src="https://img.shop.co.kr/images/renew/common/shoppingview.gif" alt="장바구니 미리보기" title="" id="cartPreviewImg" onclick="cartPreview('https://img.shop.co.kr/images');" style="cursor:pointer;"/></p>
+        <!-- 장바구니 미리보기 -->
+        <div id="cartPreviewDiv" style="position:absolute;z-index:100;top:25px; left:0px; ">
+                 <div id="cartPreviewContentsDiv" style="position:relative; display:none; z-index:100;"></div>
+        </div>
+
+
+
+<script type="text/javascript" language="javascript">
+var arr_len;
+    // 실시간인기검색어 정보  초기화
+    function initKeyword() {
+
+        arr_len = popularKeyword.length;
+
+        if (arr_len == 0) {
+            return;
+        }
+
+        i_random = Math.floor(Math.random() * 1000) % (arr_len - 1);
+
+        if (arr_len == 1) {
+            i_random = 0;
+        }
+        changeKeyword(i_random);
+    }
+
+    // 실시간인기검색어 변경 표시
+    function changeKeyword(num) {
+
+        document.all.spanPopularKeyword.innerHTML = "<a href='#' onClick='javascript:goLinkUrl(\"" + popularKeyword[num].keywordUrl + "\");' onfocus='blur()' style='color:#000000;text-decoration:none;'><strong>" + cutString2JS(popularKeyword[num].keyword )+ "</strong></a>";
+
+        if (arr_len == 1) {
+            return;
+        }
+
+        if (num == arr_len - 1) {
+            num = 0;
+        }
+        else {
+            num = num + 1;
+        }
+
+
+        setTimeout("changeKeyword(" + num + ")", 3000);
+    }
+
+    function search2Goods(){
+
+        document.topSearchForm.elements['goodsInfoDataBean.searchVal'].value
+                = trim(document.topSearchForm.elements['goodsInfoDataBean.searchVal']);
+        if (document.topSearchForm.elements['goodsInfoDataBean.mafcNm'].value == ''
+        	    && (document.topSearchForm.elements['goodsInfoDataBean.ctgCd'] == null || document.topSearchForm.elements['goodsInfoDataBean.ctgCd'].value == '')
+        	    && (document.topSearchForm.elements['goodsInfoDataBean.searchSellerCd'] == null || document.topSearchForm.elements['goodsInfoDataBean.searchSellerCd'].value == '')
+                && (document.topSearchForm.elements['goodsInfoDataBean.searchVal'].value == ''
+                || document.topSearchForm.elements['goodsInfoDataBean.searchVal'].value == '★리쥬랩 10+1 EVENT★')) {
+
+            if (document.topSearchForm.elements['goodsInfoDataBean.searchVal'].value == '★리쥬랩 10+1 EVENT★') {
+                document.location.href = "https://www.shop.co.kr/hos/sellershop/goodsList.do?sellerCd=12373";
+                return false;
+            }
+            alert('검색내용을 넣어주세요');
+            document.topSearchForm.elements['goodsInfoDataBean.searchVal'].focus();
+            return false;
+        }
+        else {
+        	if (document.topSearchForm.elements['goodsInfoDataBean.searchVal'].value == '★리쥬랩 10+1 EVENT★') {
+        		document.topSearchForm.elements['goodsInfoDataBean.searchVal'].value = "";
+            }
+            if(document.topSearchForm.elements['goodsInfoDataBean.searchKey'].value == "policyCd"){
+                document.topSearchForm.elements['goodsInfoDataBean.searchVal'].value = document.topSearchForm.elements['goodsInfoDataBean.searchVal'].value.toUpperCase();
+            }
+
+            if (document.ifm != undefined && document.URL.indexOf("/shop/goodsSpecialList.do") == -1 && '-1' == '-1'  ) {
+                clearSendList();
+
+                   document.topSearchForm.target = "ifm";
+                   document.topSearchForm.action = "/shop/goodsSearchListFrame.do";
+                   document.topSearchForm.submit();
+               }
+               else {
+                   document.topSearchForm.action = "/shop/goodsSearchList.do";
+                   document.topSearchForm.submit();
+               }
+        }
+    }
+
+    function cutString2JS(str){
+        if(str.length > 5){
+            return str.substring(0,5)+"...";
+        }
+        return str;
+    }
+</script>
+<form name="lshopForm" method="post">
+<input type="hidden" name="m_id" value="obgynjh">
+<input type="hidden" name="pwd" value="1234567890">
+<input type="hidden" name="mode" value="D">
+<input type="hidden" name="salemall" value="0">
+
+</form>
+        <!--하나의 action와 method를 사용하여 fieldset 사용하여 각각 항목을 구분하였습니다. 각각의 option의 value값 또한 기존 홈페이지를 참고하여 value값을 입력하였습니다.-->
+<form name="topSearchForm" method="post" style="margin:0;padding:0" class="search_list">
+        
+            <!-- <input type="hidden" name="goodsInfoDataBean.orderBy" value="goodsNm"> -->
+            <input type="hidden" name="goodsInfoDataBean.orderBy" value="relevance">
+        
+            <input type="hidden" name="goodsInfoDataBean.rowPerPage" value="15">
+
+            <fieldset>
+                <legend>카테고리전체</legend>
+                <select name="goodsInfoDataBean.ctgCd" id="ctgCdSel" style="width:110px;">
+                    <option value="">카테고리전체</option>
+                
+                    <option value="H01" >의료소모품(일반)</option>
+                    <option value="H05" >의료기기</option>
+                    <option value="MWH" >의약품</option>
+                    <option value="TMS" >의료소모품(요양)</option>
+                    <option value="TME" >의료소장비</option>
+                    <option value="H08" >일반부외품</option>
+                    <option value="TMO" >기타용품</option>
+                    <option value="H07" >건강기능식품</option>
+                    <option value="LIF" >사무/생활/식음료</option>
+                    <option value="COM" >전산/컴퓨터/토너</option>
+                
+                </select>
+            </fieldset>
+            <fieldset>
+                <legend>제조사</legend>&nbsp;제조사
+                    <input type="text" name="goodsInfoDataBean.mafcNm" class="input" style="width:47px;" value="" onKeyDown="if(event.keyCode==13) return search2Goods();">
+            </fieldset>
+            <fieldset>
+                <legend>공급사전체</legend>
+
+    <select name='goodsInfoDataBean.searchSellerCd'  style='width:90px' class='slist' id='goodsInfoDataBean.searchSellerCd'   > 
+	<option value=''>공급사전체</option> 
+	<option value='10003' >이지메디컴</option> 
+	<option value='11425' >금보메디넷</option> 
+	<option value='11837' >LJ헬스케어(엠서클)</option> 
+	<option value='11838' >KD상사(엠서클)</option> 
+	<option value='11857' >종수약품</option> 
+	<option value='11861' >디엔코스메틱스</option> 
+	<option value='12004' >대웅바이오</option> 
+	<option value='12006' >대웅제약</option> 
+	<option value='12008' >제이웰팜(엠서클)</option> 
+	<option value='12009' >시지바이오</option> 
+	<option value='12014' >보덕메디팜</option> 
+	<option value='12018' >엘재이컴퍼니</option> 
+	<option value='12019' >이메디샵(엠서클)</option> 
+	<option value='12033' >모든오피스</option> 
+	<option value='12035' >한올바이오파마</option> 
+	<option value='12040' >솔리드팜</option> 
+	<option value='12042' >백신공급사</option> 
+	<option value='12047' >피엠오헬시라이프</option> 
+	<option value='12049' >비에프메디컬(엠서클)</option> 
+	<option value='12054' >이지메디컴(렌탈)</option> 
+	<option value='12055' >엠서클</option> 
+	<option value='12101' >메디바이스</option> 
+	<option value='12112' >내일약품</option> 
+	<option value='12115' >의약품공급사</option> 
+	<option value='12123' >비전가(엠서클)</option> 
+	<option value='12132' >웰메디</option> 
+	<option value='12133' >제노덤(엠서클)</option> 
+	<option value='12134' >뉴셀파마코리아(엠서클)</option> 
+	<option value='12171' >유진의료전자(엠서클)</option> 
+	<option value='12192' >SSP</option> 
+	<option value='12197' >VACCINE</option> 
+	<option value='12201' >유벤타헬스케어</option> 
+	<option value='12211' >건강한메디</option> 
+	<option value='12223' >제마헬스케어</option> 
+	<option value='12228' >디엔컴퍼니</option> 
+	<option value='12231' >비더케이(엠서클)</option> 
+	<option value='12252' >얼라이브(엠서클)</option> 
+	<option value='12256' >이지스헬스케어</option> 
+	<option value='12264' >더세이폴(엠서클)</option> 
+	<option value='12271' >백신W</option> 
+	<option value='12299' >에스지메디팜</option> 
+	<option value='12307' >KD상사</option> 
+	<option value='12319' >더편한샵</option> 
+	<option value='12344' >스카이메디</option> 
+	<option value='12348' >에코비엔</option> 
+	<option value='12350' >씨어스테크놀로지</option> 
+	<option value='12359' >에디팜</option> 
+	<option value='12373' >라온스랩</option> 
+	<option value='12382' >에이앤엘팜</option> 
+	<option value='12383' >에이앤엘팜(냉장)</option> 
+	<option value='12388' >(주)아크</option> 
+	<option value='12413' >도팜인(당일배송)</option> 
+	<option value='12422' >(주)다빛바이오</option> 
+	<option value='12431' >아이쿱</option> 
+	<option value='12437' >튠헬스케어</option> 
+	<option value='12442' >알피스페이스</option> 
+	<option value='12444' >지앤씨아이</option> 
+	<option value='12447' >SFit</option> 
+	<option value='12451' >렌탈테스트</option> 
+	<option value='12456' >㈜비즈마켓렌탈</option> 
+	<option value='12480' >(주)이지메디컴</option> 
+</select>
+
+            </fieldset>
+            <fieldset>
+                <legend>가격전체</legend>
+                    <select name="goodsInfoDataBean.goodsSalesType" id='goodsSalesTypeSel' style="width:70px;">
+                        <option value="">전체</option>
+                        <option value="1">특가</option>
+                        <option value="2">타임세일</option>
+                    </select>
+            </fieldset>
+            <!-- 추모 메세지 -->
+<!--             <span style="display: inline-block; margin-top: -20px;margin-left:400px;"><img src="https://img.shop.co.kr/images/main/rip_msg.png"></span> -->
+<script type="text/javascript" language="javascript">
+
+var text;
+
+// 변수값 초기화
+function onGoodsKeyWorldInit(){
+    text = document.getElementById("autoCompleteText");
+    clearSendList();
+}
+
+// 조회
+function listAutoComplete(){
+
+    if (text.value.trim() != "") {
+
+           if (event.keyCode == "13") {
+
+                if (document.ifm != undefined) {
+
+                    document.all.displayDiv.style.display = 'none';
+                    document.topSearchForm.target = "ifm";
+                    document.topSearchForm.action = "/shop/goodsSearchListFrame.do";
+                  }
+                  document.topSearchForm.submit();
+
+               return;
+            }
+
+               if (document.getElementsByName("goodsInfoDataBean.searchKey")[0].value == "goodsCode") {
+                   clearSendList();
+               }
+
+            // 화살표 위
+            if(event.keyCode == 38 || event.keyCode == 40) {
+                keyUpEvent(text);
+            }
+            else {
+                if (document.getElementsByName("goodsInfoDataBean.searchKey")[0].value == "goodsNm") {
+                	 //2021.09.02, JeongHS 크롬 자동검색 이벤트 방지
+                    if (event.keyCode == 229) {
+                        //keyUpEvent(text);
+                    }
+                    // a ~ z, 0 ~ 9 까지의 입력(_ 등의 추가 필요), del키
+                    else if ((event.keyCode >= 48 && event.keyCode <= 90) || (event.keyCode >= 96 && event.keyCode <= 105) || event.keyCode == 8 || event.keyCode == 46) {
+                           getSendHistory(text);
+                    }
+
+                }
+            }
+        }
+        else {
+            clearSendList();
+        }
+}
+function textBlock() {
+    if (text.value.trim() != "") {
+
+        if (document.getElementsByName("goodsInfoDataBean.searchVal")[0].value == '★리쥬랩 10+1 EVENT★') {
+            document.getElementsByName("goodsInfoDataBean.searchVal")[0].value = '';
+        }
+        document.getElementsByName("goodsInfoDataBean.searchVal")[0].select();
+    }
+    try {
+        //document.getElementsByName("goodsInfoDataBean.mafcNm")[0].value = "";
+    } catch (e) {}
+}
+</script>
+
+            <fieldset class="search_box">
+            <legend>상품검색</legend>
+                <select name="goodsInfoDataBean.searchKey" id='searchKeySel' style="width:80px;margin:11px 0 0 30px;">
+                    <option value="goodsNm" selected>상품명</option>
+                    <option value="goodsCode" >상품코드</option>
+
+                    
+                    <option value="goodsDesc" >특징</option>
+                </select>
+                <input type="text" name="goodsInfoDataBean.searchVal" class="input" style="width:210px;ime-mode:active; font-size:12px;" id="autoCompleteText" autocomplete="off" onkeyup="listAutoComplete();" value="?쇱???⑹＜?ш린" onBlur="clearSendList();" onFocus="textBlock();" maxlength="20" onKeyDown="if(event.keyCode==13) return search2Goods();"/>
+                <img src="https://img.shop.co.kr/images/renew/button/search_btn.gif" class="btn" alt="검색" style="cursor:hand" onClick="search2Goods();"/>
+
+                <div id="displayDiv" style="position:absolute;z-index:10001; width:320px;border:1">
+                    <table width="100%" id="sendHistoryTable" style="z-index:10001;" cellspacing=0 cellpadding=0>
+                          <tbody id="sendHistoryTableBody" style="z-index:10001;">
+                          </tbody>
+                     </table>
+                    <table width="100%" bgcolor="#dddddd" style="border:#cccccc 1px solid">
+                        <tr>
+                            <td>&nbsp;최대 15개 상품이 검색됩니다.</td>
+                            <td align="right"><a href="#" onClick="clearSendList();return false;">창닫기</a>&nbsp;</td>
+                        </tr>
+                    </table>
+                </div>
+                <iframe id="displayDivBack" scrolling="no" frameborder="0" style="position:absolute;border:none;z-index:0"></iframe>
+            </fieldset>
+        </form>
+<script type="text/javascript" language="javascript">
+onGoodsKeyWorldInit();
+</script>
+
+<script type="text/javascript" language="javascript">
+jQuery.noConflict();
+function oncate(no) {
+
+    var cateno = jQuery('.cate'+no);
+    jQuery(cateno).show();
+
+}
+function offcate(no) {
+    var cateno = jQuery('.cate'+no);
+    jQuery(cateno).hide();
+}
+
+</script>
+        <div class="menu_box">
+            <ul class="cate_menu">
+                <!-- 상품카테고리 -->
+                <li class="cate_list" onmouseover="oncate(0)" onmouseout="offcate(0)">
+                <a href="#"><img src="https://img.shop.co.kr/images/renew/common/cate_menu0.gif" alt="상품카테고리" title="" /></a>
+                    <div class="cate0" style="display:none;">
+                        <ul>
+                        
+                            <li class="list"><a href="/shop/goodsList.do?ctgCd=H01">의료소모품(일반)</a></li>
+                            <li class="list"><a href="/shop/goodsList.do?ctgCd=H05">의료기기</a></li>
+                            <li class="list"><a href="/shop/goodsList.do?ctgCd=MWH">의약품</a></li>
+                            <li class="list"><a href="/shop/goodsList.do?ctgCd=TMS">의료소모품(요양)</a></li>
+                            <li class="list"><a href="/shop/goodsList.do?ctgCd=TME">의료소장비</a></li>
+                            <li class="list"><a href="/shop/goodsList.do?ctgCd=TMO">기타용품</a></li>
+                            <li class="list"><a href="/shop/goodsList.do?ctgCd=H08">일반부외품</a></li>
+                            <li class="list"><a href="/shop/goodsList.do?ctgCd=H07">건강기능 식품</a></li>
+                            <li class="list"><a href="/shop/goodsList.do?ctgCd=LIF">사무/생활/식음료</a></li>
+                            <li class="list"><a href="/shop/goodsList.do?ctgCd=COM">전산/컴퓨터/토너</a></li>
+                            <li class="list"><a href="/shop/goodsList.do?ctgCd=H09">인체모형</a></li>
+                        
+                        </ul>
+                    </div>
+                </li>
+                <!-- //상품카테고리 -->
+
+
+
+
+                <!-- 공급사별 보기 병원몰 -->
+                <li class="cate_list" onmouseover="oncate(1)" onmouseout="offcate(1)">
+                <a href="#"><img src="https://img.shop.co.kr/images/renew/common/cate_menu1.gif" alt="공급사별 보기" title="" /></a>
+                    <div class="cate1" style="display:none;">
+                        <ul>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=10003">이지메디컴</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=11425">금보메디넷</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=11837">LJ헬스케어(엠서클)</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=11838">KD상사(엠서클)</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=11857">종수약품</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=11861">디엔코스메틱스</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12004">대웅바이오</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12006">대웅제약</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12008">제이웰팜(엠서클)</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12009">시지바이오</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12014">보덕메디팜</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12018">엘재이컴퍼니</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12019">이메디샵(엠서클)</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12033">모든오피스</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12035">한올바이오파마</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12040">솔리드팜</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12042">백신공급사</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12047">피엠오헬시라이프</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12049">비에프메디컬(엠서클)</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12054">이지메디컴(렌탈)</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12055">엠서클</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12101">메디바이스</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12112">내일약품</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12115">의약품공급사</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12123">비전가(엠서클)</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12132">웰메디</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12133">제노덤(엠서클)</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12134">뉴셀파마코리아(엠서클)</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12171">유진의료전자(엠서클)</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12192">SSP</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12197">VACCINE</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12201">유벤타헬스케어</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12211">건강한메디</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12223">제마헬스케어</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12228">디엔컴퍼니</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12231">비더케이(엠서클)</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12252">얼라이브(엠서클)</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12256">이지스헬스케어</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12264">더세이폴(엠서클)</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12271">백신W</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12299">에스지메디팜</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12307">KD상사</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12319">더편한샵</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12344">스카이메디</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12348">에코비엔</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12350">씨어스테크놀로지</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12359">에디팜</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12373">라온스랩</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12382">에이앤엘팜</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12383">에이앤엘팜(냉장)</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12388">(주)아크</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12413">도팜인(당일배송)</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12422">(주)다빛바이오</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12431">아이쿱</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12437">튠헬스케어</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12442">알피스페이스</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12444">지앤씨아이</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12447">SFit</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12451">렌탈테스트</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12456">㈜비즈마켓렌탈</a></li>
+                        
+                            <li class="list"><a href="/shop/goodsSearchList.do?goodsInfoDataBean.searchSellerCd=12480">(주)이지메디컴</a></li>
+                        
+                        </ul>
+                    </div>
+                </li>
+                <!-- //공급사별 보기 병원몰 -->
+
+            </ul>
+            <ul class="menu">
+            
+                <li class="first"><a href="#" onClick="javascript:goLinkUrl('/mypage/main.do');"><img src="https://img.shop.co.kr/images/renew/common/menu0.gif" alt="마이페이지" title="" /></a></li>
+                <li><a href="#" onClick="javascript:goLinkUrl('/shop/goodsSpecialList.do?goodsSalesType=1');"><img src="https://img.shop.co.kr/images/renew/common/menu1.gif" alt="특가상품" title="" /></a></li>
+
+
+
+                <li><a href="#" onClick="javascript:goLinkUrl('/promotion/promotionList.do');"><img src="https://img.shop.co.kr/images/renew/common/menu3.gif" alt="이벤트" title="" /></a></li>
+                
+                
+                <li><a href="#" onClick="javascript:goLinkUrl('/search/searchDrug.do');"><img src="https://img.shop.co.kr/images/renew/common/menu6.gif" alt="약물정보검색" title="" /></a></li>
+                
+                
+                <li><a href="#" onClick="javascript:goLinkUrl('/event/hos/hosEventIntro.do?eventId=partnerinfo');"><img src="https://img.shop.co.kr/images/renew/common/menu8.gif" alt="제휴카드" title="" /></a></li>
+                
+                
+                
+
+            
+            </ul>
+
+			<!-- VIPG 숨김 -->
+			<!-- 소셜커머스 카테고리 -->
+            
+
+
+
+
+<script language="JavaScript">
+    /* var xmlDoc;
+
+    if (window.ActiveXObject) {
+          xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
+          xmlDoc.async = "false";
+          xmlDoc.load("/resources/theshop_1st/product_xml.xml");
+    }
+    else if (window.XMLHttpRequest) {
+           var xmlHttp = new XMLHttpRequest();
+           xmlHttp.open("GET", "/resources/theshop_1st/product_xml.xml", false);
+           xmlHttp.send(null);
+        xmlDoc = xmlHttp.responseXML;
+    }
+    else {
+        xmlDoc = document.implementation.createDocument("","",null);
+        xmlDoc.async = false;
+        xmlDoc.load("/resources/theshop_1st/product_xml.xml");
+    }
+
+    var xmlText = xmlDoc.getElementsByTagName("prd");
+
+    for (i = 0; i < xmlText.length; i++) {
+        document.write("<li class='list'><a href='javascript:goLshopUrl(\"" + xmlText[i].childNodes[0].text + "\");'>" + xmlText[i].childNodes[1].text + "<font color='red'>" + xmlText[i].childNodes[2].text + "</font></a></li>");
+    } */
+</script>
+                 <!--        </ul>
+                    </div>
+                </li>
+            </ul> -->
+			<!-- //소셜커머스 카테고리 -->
+
+
+            <p class="header_banner">
+
+            </p>
+        </div>
+        </div>
+        <!-- //header_cnt -->
+    </div>
+    <!-- //header -->
+
+<!-- 2020-11-17 비밀번호 변경 안내 레이어 팝업 [s] -->
+    <div id="pwLayerPopup" style="display:none;">
+        <div class="dimmed"></div>
+        <div class="popup_wrap">
+            <div class="popup_header">
+                <p class="title">고객님께서는 <em>6개월 동안</em> 비밀번호를 <br>변경하지 않으셨습니다.</p>
+                <p class="desc">고객님의 개인정보를 보호하기 위해서는 주기적으로 비밀번호를 변경하는것이 좋습니다. </p>
+            </div>
+            <div class="popup_body">
+                <form action="#">
+                    <table>
+                        <caption>현재 비밀번호를 입력한 후, 새로 사용할 비밀번호를 입력해 주세요</caption>
+                        <colgroup>
+                            <col style="width:210px;text-align:right;">
+                            <col>
+                        </colgroup>
+                        <tbody>
+                            <tr>
+                                <th>
+                                    <label for="pwlayerId">회원 아이디</label>
+                                </th>
+                                <td>
+                                    <input type="text" id="pwlayerId" name="" readonly class="readonly" value="obgynjh">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <label for="pwlayerCurrentPw">현재 비밀번호</label>
+                                </th>
+                                <td>
+                                    <input id="pwlayerCurrentPw" type="password" name="">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <label for="pwlayerNewPw">새로운 비밀번호</label>
+                                </th>
+                                <td>
+                                    <input id="pwlayerNewPw" type="password" name=""  maxlength="32" placeholder="8자 이상으로 영문, 숫자 조합">
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>
+                                    <label for="pwlayerNewPwConfirm">새로운 비밀번호 재확인</label>
+                                </th>
+                                <td>
+                                    <input id="pwlayerNewPwConfirm" type="password" name=""  placeholder="8자 이상으로 영문, 숫자 조합">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <div class="button_wrap">
+                        <button type="button" class="submit" id="pwdModiBtn"> 비밀번호 변경하기</button>
+                        <button type="button" id="pwdNextBtn">다음에 변경하기(3개월 후)</button>
+                    </div>
+                </form>
+            </div>
+            <div class="popup_footer">
+                <p class="info">비밀번호 설정시, 꼭 알아두세요.</p>
+                <ul>
+                    <li><em>·</em> 반드시 8-32자의 영문, 숫자의 조합으로 하셔야 합니다.</li>
+                    <li><em>·</em> 한 달에 한번정도 주기적으로 비밀번호 변경을 해주시기 바랍니다. </li>
+                </ul>
+            </div>
+            <button type="button" class="close pwclose" id="pwclose" title="닫기"></button>
+        </div>
+    </div>
+    <!-- 2020-11-17 비밀번호 변경 안내 레이어 팝업 [e] -->
+
+<!--2023-12-28 로그아웃 레이어[S]-->
+<div id="logoutLayerPopup" class="layer_dim" style="display:none;">
+    <div id="popRfnChkCom" class="pop_layer_wrap logout2_pop">
+        <div class="pop_layer" style="display: block;">
+            <div class="popup_wrap">
+                <div class="popup_body">
+                    <button type="button" class="btn_close"><span class="ico_close"></span></button>
+                    <div class="title">로그아웃</div>
+                    <div class="conts">
+                        <h4><strong class="primary">통합회원 로그아웃</strong>까지 하시겠습니까?</h4>
+                        <p>통합회원 로그아웃 선택 시, 통합회원 마이페이지로 이동합니다.</p>
+                    </div>
+                    <div class="btn_box">
+                        <button class="btn" onclick="logoutMims();">
+                            네
+                            <div class="bb_box">
+                                <i class="arrow"></i>
+                                <strong class="primary">공용 PC</strong> 시 추천
+                            </div>
+                        </button>
+                        <button class="btn" onclick="location.href='/login/logout.do'">아니요</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--//2023-12-28 로그아웃 레이어 [E]-->
+
+
+<script type="text/javascript" src="/resources/theshop_1st/js/jquery-ui-1.12.1.js"></script>
+<script type="text/javascript" src="/resources/theshop_1st/js/hos/jquery-1.11.2.min.js"></script>
+<script type="text/javascript">
+var $j = jQuery.noConflict();
+
+//로딩시점
+$j(function(){
+	$j.getpwCheckDay();
+});
+
+// 로그아웃 레이어 닫기
+$j('.pop_layer_wrap .btn_close').click(function(){
+    $j('.layer_dim').css('display','none');
+});
+
+// 로그아웃
+function logout() {
+    if ('EMAIL' !== 'NONE') {
+        document.getElementById('logoutLayerPopup').style.display = 'block';
+    } else {
+        location.href = 'https://www.shop.co.kr/login/logout.do';
+    }
+}
+
+// 더샵 로그아웃 후 통합회원 바로가기
+function logoutMims() {
+    var url = 'MIMS';
+    location.href = 'https://www.shop.co.kr/login/logout.do?redirectUrl=' + url;
+}
+
+//닫기 버튼
+$j('body').on("click", "#pwclose", function() {
+	$j.nextpwCheckDay();
+});
+
+//다음에 변경하기
+$j('body').on("click", "#pwdNextBtn", function() {
+	$j.nextpwCheckDay();
+});
+
+//패스워드 변경하기
+$j('body').on("click", "#pwdModiBtn", function() {
+	$j.updatePWD();
+
+});
+
+
+//패스워드 변경날짜 체크
+$j.getpwCheckDay = function() {
+
+	var pwdCheck = "";
+
+	if(pwdCheck=="1"){
+		$j("#pwLayerPopup").css('display','block');
+	}else{
+		$j("#pwLayerPopup").css('display','none');
+		return true;
+	}
+};
+
+$j.nextpwCheckDay = function() {
+	var pathFront = "https://www.shop.co.kr";
+	var url =  pathFront + "/front/api/theshop/user/nextPwModyCheck";
+
+	$j.getJSON(url, null , function(data, status) {
+		if(data.code=="SUCESS"){
+			$j("#pwLayerPopup").css('display','none');
+		}else{
+			$j("#pwLayerPopup").css('display','block');
+		}
+	});
+}
+
+$j.updatePWD = function() {
+	var currenPw = $j("#pwlayerCurrentPw").val();
+	var newPw = $j("#pwlayerNewPw").val();
+	var newPwConfirm = $j("#pwlayerNewPwConfirm").val();
+
+ if(newPw.length < 8 || newPwConfirm.length < 8){
+ 	alert('비밀번호를 8자리 이상 32자리 이하로 입력해 주세요. 다시확인후 입력바랍니다.');
+	return ;
+ }
+ var chk_num = newPw.search(/[0-9]/g);
+ var chk_eng = newPw.search(/[a-z]/ig);
+ if(chk_num < 0 || chk_eng < 0){
+     alert('비밀번호는 숫자와 영문자를 혼용하여야 합니다.');
+     return ;
+ }
+
+ if(newPw != newPwConfirm){
+     alert("변경할 비밀번호가 서로 일치하지 않습니다.\n다시 확인해 주세요.");
+     return;
+ }
+ if(currenPw == newPw || currenPw == newPwConfirm ){
+ 	alert('현재 비밀번호와 다르게 변경해야합니다.');
+	return ;
+ }
+
+ var pathFront = "https://www.shop.co.kr";
+	var url =  pathFront + "/front/api/theshop/user/updatePassword";
+	var param = {"beforePwd": $j("#pwlayerCurrentPw").val(),"newPwd": $j("#pwlayerNewPw").val()};
+	$j.getJSON(url, param , function(data, status) {
+		if(data.result =="SUCESS"){
+			alert('비밀번호가 정상적으로 변경되었습니다.');
+			$j("#pwLayerPopup").css('display','none');
+		}else if(data.result =="notMatch"){
+			alert('현재비밀번호가 일치하지 않습니다. 다시 확인후 변경부탁드립니다.');
+		}else{
+			alert("오류가 발생하였습니다!!\n관리자에게 문의하여 주세요.");
+			$j("#pwLayerPopup").css('display','none');
+		}
+	});
+
+};
+
+/**
+* 쿠키 불러오기
+*/
+$j.fn.getCookie = function(name) {
+	var name = name + "=";
+    var decodedCookie = decodeURIComponent(document.cookie);
+    var ca = decodedCookie.split(';');
+
+    for(var i = 0; i <ca.length; i++) {
+        var c = ca[i];
+        while (c.charAt(0) == ' ') {
+            c = c.substring(1);
+        }
+        if (c.indexOf(name) == 0) {
+            return c.substring(name.length, c.length);
+        }
+    }
+    return "";
+}
+/**
+* 쿠키 생성오기
+*/
+$j.fn.setCookie = function(name, value, expireTime, domain) {
+	var todayDate = new Date();
+    todayDate.setDate(todayDate.getDate() + expireTime);
+    document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + "; domain="+domain + ";";
+}
+</script>
+
+
+
+
+
+	<!-- titimg
+	<div id="tit_box">
+		<p class="tit_cnt"><img src="https://img.shop.co.kr/images/renew/title/mypage_mypage.jpg" alt="마이페이지" title="" /></p>
+	</div> -->
+	<!-- //titimg -->
+	<!-- container -->
+	<div id="container">
+	<div id="ext_left">
+		<div style="position:relative; top:10px;">
+			
+
+
+
+
+
+
+
+
+
+
+
+<script language="javascript" type="text/javascript" src="/resources/theshop_1st/js/rightwings.js"></script>
+<script language="javascript" type="text/javascript">
+
+</script>
+
+<ul id="topBtn_left" class="quick">
+
+</ul>
+        	</div>
+	</div>
+		<!-- wrapper -->
+		<div id="wrapper">
+			<!-- snb -->
+			<div id="snb">
+				
+
+
+
+
+<style type="text/css">
+<!--
+.cat_cart_box {
+	border-right-width: 1px;
+	border-bottom-width: 1px;
+	border-left-width: 1px;
+	border-top-style: none;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	border-right-color: #b5b5b5;
+	border-bottom-color: #b5b5b5;
+	border-left-color: #b5b5b5;
+}
+.cat_cart_text {
+	font-family: "굴림", "돋움", Seoul, "한강체";
+	font-size: 12px;
+	color: #F424242;
+}
+.cat_cart_text01 {
+	font-family: "굴림", "돋움", Seoul, "한강체";
+	font-size: 12px;
+	color: #F424242;
+	border-bottom-width: 1px;
+	border-bottom-style: solid;
+	border-bottom-color: #c6c6c6;
+}
+-->
+    </style>
+<script type="text/javascript">
+function cartSummary(){
+
+	var objNm = "cartSummary";
+	var	url = "/ajax/cart/cartSummary.do";
+	var param = "";
+
+	new Ajax.Updater( {success : objNm}
+					    ,url
+					    ,{method:'post'
+					      ,asynchronous:false
+						  , parameters:param} );
+
+}
+function mOver(obj) {
+	obj.style.fontWeight = "bold";
+	obj.style.color = "black";
+}
+
+function mOut(obj) {
+	obj.style.fontWeight = "";
+	obj.style.color = "#524437";
+}
+
+</script>
+
+	<script language="Javascript">
+
+		function saleCat(i) {
+			if (i == 1) {
+				document.getElementById('div1Notice').style.display = 'block';
+				document.getElementById('div2Notice').style.display = 'none';
+				document.getElementById('div3Notice').style.display = 'none';
+			}
+			else if (i == 2) {
+				document.getElementById('div1Notice').style.display = 'none';
+				document.getElementById('div2Notice').style.display = 'block';
+				document.getElementById('div3Notice').style.display = 'none';
+			}
+			else {
+				document.getElementById('div1Notice').style.display = 'none';
+				document.getElementById('div2Notice').style.display = 'none';
+				document.getElementById('div3Notice').style.display = 'block';
+			}
+		}
+
+		function goNotice(tabFlag) {
+			document.location.href = "/bbs/customer/noticeList.do?tabFlag=" + tabFlag;
+		}
+
+		function timePop(){		
+			document.getElementById("twindow_1").style.display = "";	
+		}
+		function closePop(){
+			document.getElementById("twindow_1").style.display = "none";	
+		}
+	</script>
+
+
+<!-- 약국몰인 경우 -->
+
+<div style="position:relative;width:155px;z-index:1;margin:0; padding:0; border:solid 1px #cdbeb4;">
+<table width="155" border="0" cellspacing="0" cellpadding="0">
+<tr>
+	<td>
+
+
+		<!-- 상품카테고리 시작 -->
+
+		
+
+
+
+
+
+
+<style type="text/css">
+<!--
+.m_munu_details_text {
+	font-family: "굴림", "돋움", Seoul, "한강체";
+	font-size: 12px;
+	color: #545454;
+	padding-top: 4px;
+	padding-right: 0px;
+	padding-bottom: 0px;
+	padding-left: 16px;
+	line-height:160%;
+}
+-->
+</style>
+
+
+	<script language="JavaScript">
+	<!--//
+
+		var xmlDoc;
+
+		if (window.ActiveXObject) {
+		      xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
+		      xmlDoc.async = "false";
+		      xmlDoc.load("/resources/theshop_1st/mall1_cate.xml");
+		}
+		else if (window.XMLHttpRequest) {
+		       var xmlHttp = new XMLHttpRequest();
+		       xmlHttp.open("GET", "/resources/theshop_1st/mall1_cate.xml", false);
+		       xmlHttp.send(null);
+		    xmlDoc = xmlHttp.responseXML;
+		}
+		else {
+		    xmlDoc = document.implementation.createDocument("","",null);
+		    xmlDoc.async = false;
+		    xmlDoc.load("/resources/theshop_1st/mall1_cate.xml");
+		}
+
+		//var xmlDoc = new ActiveXObject("Microsoft.XMLDOM");
+		//xmlDoc.async = false;
+		//xmlDoc.load("/resources/theshop_1st/cate.xml");
+
+    	function initCate(ctgCd, depth) {
+	
+    	    if (depth == 1) {
+    	        if (eval(document.getElementById(ctgCd)).innerHTML.trim() == "") {
+    	            eval(document.getElementById(ctgCd)).innerHTML = makeCate(ctgCd, depth);
+    	        }
+    	    }
+    	    else {
+    	        if (eval(document.getElementById('sub_' + ctgCd )).innerHTML.trim() == "") {
+    	            eval(document.getElementById('sub_' + ctgCd )).style.display = 'block';
+    	            eval(document.getElementById('sub_' + ctgCd )).innerHTML = makeCate(ctgCd, depth);
+    	        }
+    	    }
+
+    	}
+
+    	// 카테고리 생성
+    	function makeCate(ctgCd, depth) {
+
+    	    var xmlText = xmlDoc.getElementsByTagName(ctgCd);
+
+    	    var str = "";
+    	    if (xmlText.length > 0)  {
+
+    	        for (i = 0; i < xmlText[0].childNodes.length; i++) {
+    	            if (xmlText[0].childNodes[i].nodeName != "#text") {
+    	                str += makeCateInfo(xmlText[0].childNodes[i].nodeName, xmlText[0].childNodes[i].getAttribute("name"), xmlText[0].childNodes[i].getAttribute("parentCd"), xmlText[0].childNodes[i].getAttribute("child"), depth);
+    	            }
+    	        }
+    	    }
+
+
+    	    return str;
+    	}
+
+		// 카테고리 중/소분규 정보 생성
+		function makeCateInfo(ctgCd, ctgNm, parentCtgCd, child, depth) {
+
+			if (ctgCd == "" || ctgCd == undefined) {
+				return "";
+			}
+
+			var html = "";
+
+			// 중분류일 경우
+			if (depth == 1) {
+
+				html += "<div id='" + ctgCd + "' parentId='" + parentCtgCd + "' style='display:block'>";
+				html += "&nbsp;&nbsp;"
+
+				// 소분류 카테고리가 존재할 경우
+				if (child == "Y") {
+					html += "<a herf='#' onclick='initCate(\"" + ctgCd + "\", 2);toggleIcon(\"" + ctgCd + "\");return false'>"
+					html += "<img id='img_" + ctgCd + "' src='https://img.shop.co.kr/images/left_new/plus.gif' align='absmiddle'>";
+					html += "</a>"
+
+					html += "<a id='link_" + ctgCd + "' href='#' onfocus='blur()' onClick='initCate(\"" + ctgCd + "\", 2);toggleIcon(\"" + ctgCd + "\");goGoodsList(\"" + ctgCd + "\");return false'>";
+					html += replaceAll(ctgNm, ' ', '');
+					html += "</a>";
+					html += "<div id='sub_" + ctgCd + "' style='display:none'></div>";
+					html += "</div>";
+					html += "</div>";
+
+				}
+				else {
+					html += "<img src='https://img.shop.co.kr/images/left_new/minus.gif' align='absmiddle'>";
+
+					html += "<a id='link_" + ctgCd + "' href='#' onfocus='blur()' onClick='goGoodsList(\"" + ctgCd + "\");return false'>";
+					html += replaceAll(ctgNm, ' ', '');
+					html += "</a>";
+					html += "<div id='sub_" + ctgCd + "' style='display:none'></div>";
+					html += "</div>";
+					html += "</div>";
+				}
+
+			}
+			// 소분류일 경우
+			else {
+
+				html += "<div id='" + ctgCd + "' parentId='" + parentCtgCd + "' style='display:none'>";
+				html += "&nbsp;&nbsp;"
+				html += "<img src='https://img.shop.co.kr/images/left_new/line.gif' align='absmiddle'>";
+				html += "<img src='https://img.shop.co.kr/images/left_new/minus.gif' align='absmiddle'>";
+				html += "<a id='link_" + ctgCd + "' href='#' onfocus='blur()' onClick='goGoodsList(\"" + ctgCd + "\");return false'>";
+				html += replaceAll(ctgNm, ' ', '').substring(0, 8);
+				html += "</a>";
+				html += "</div>";
+			}
+
+			return html;
+		}
+
+        // +/- 아이콘 클릭 시
+		function toggleIcon(ctgCd) {
+			oImg = eval(document.getElementById('img_' + ctgCd));
+			oDiv = document.getElementsByTagName('div');
+
+			if (oImg != undefined) { // 존재하지 않는 카테고리가 넘어온 경우에는 처리안함.
+				if (oImg.src.indexOf('plus') > -1) {
+
+					oImg.src = 'https://img.shop.co.kr/images/left_new/minus.gif'
+					//alert(eval("document.all.sub_" + ctgCd).style.display);
+					eval(document.getElementById('sub_' + ctgCd)).style.display = 'block';
+
+	                for (i = 0; i < oDiv.length; i++) {
+	                    if (oDiv[i].parentNode.id == ctgCd) {
+
+	                        for (j = 0; j < oDiv[i].childNodes.length; j++) {
+	                            oDiv[i].childNodes[j].style.display = 'block';
+	                        }
+	                    }
+	                }
+				}
+				else {
+
+					oImg.src = 'https://img.shop.co.kr/images/left_new/plus.gif'
+					eval(document.getElementById('sub_' + ctgCd)).style.display = 'none';
+
+					for (i = 0; i < oDiv.length; i++) {
+	                    if (oDiv[i].parentNode.id == ctgCd) {
+
+	                        for (j = 0; j < oDiv[i].childNodes.length; j++) {
+	                            oDiv[i].childNodes[j].style.display = 'none';
+	                        }
+	                    }
+	                }
+				}
+			}
+		}
+
+
+		function goGoodsList(ctgCd) {
+
+			// 요양병원 상품 레이어 닫음.
+			try{
+				eval(document.getElementById('submenu_care_3')).style.display = 'none';
+                eval(document.getElementById('submenu_care_4')).style.display = 'none';
+                eval(document.getElementById('submenu_care_5')).style.display = 'none';
+			}catch(e){
+				//병원몰이 아닐 경우 요양 병원이 없다!!
+			}
+
+			try {
+					document.ifm.location = "/shop/goodsListFrame.do?ctgCd=" + ctgCd;
+			}
+			catch (e) {
+				top.document.location = "/shop/goodsList.do?ctgCd=" + ctgCd;
+			}
+
+			boldCtgNm(ctgCd);
+		}
+
+		// 선택한 카테고리 진하게 처리
+		var oldSelObj;
+		var oldCtgCd;
+		function boldCtgNm(ctgCd) {
+			try {
+
+				if (oldCtgCd == undefined) {
+					oldCtgCd = ctgCd.substring(0, 6);
+				}
+				else {
+					if (oldCtgCd != ctgCd.substring(0, 6)) {
+						toggleIcon(oldCtgCd + "000");
+						oldCtgCd = ctgCd.substring(0, 6);
+					}
+				}
+
+				nowSelObj = eval(document.getElementById('link_' + ctgCd));
+				if (oldSelObj != undefined) {
+
+					if (oldSelObj == nowSelObj) {
+						return;
+					}
+
+					oldSelObj.innerHTML = replaceAll(replaceAll(oldSelObj.innerHTML, "<B>" , ""), "</B>", "");
+				}
+
+				oldSelObj = nowSelObj;
+				nowSelObj.innerHTML = "<B>" + nowSelObj.innerHTML + "</B>";
+			}
+			catch(e) {
+			}
+		}
+	//-->
+	</script>
+
+<div style="position:relative;width:155px;z-index:10;" >
+<table width="155" border="0" cellspacing="0" cellpadding="0">
+	<tr>
+		<td><img src="https://img.shop.co.kr/images/renew/shop/left_mem_title_06.gif" width="155" height="32" /></td>
+	</tr>
+	<tr>
+    	<td>
+			<table width="155" border="0" cellspacing="0" cellpadding="0">
+<!--	            <tr>-->
+<!--	              <td height="5" class="m_munu_details_text"></td>-->
+<!--	            </tr>-->
+
+
+
+				<tr>
+			    	<td class="m_munu_details_text"><img src="https://img.shop.co.kr/images/left_new/sale_mem_arrow_off.gif" width="10" height="10" /> <a href="/shop/goodsList.do?ctgCd=H01" onFocus="blur();" onMouseOver="mOver(this)" onMouseOut="mOut(this)">의료소모품</a></td>
+			    </tr>
+
+				<tr id='submenu_0' valign="top" style="DISPLAY: none;">
+					<td>
+						<table width="100%" border="0" cellpadding="3" cellspacing="0"  >
+					    	<tr>
+					        	<td id="H01000000">
+
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+
+
+				<tr>
+			    	<td class="m_munu_details_text"><img src="https://img.shop.co.kr/images/left_new/sale_mem_arrow_off.gif" width="10" height="10" /> <a href="/shop/goodsList.do?ctgCd=H05" onFocus="blur();" onMouseOver="mOver(this)" onMouseOut="mOut(this)">의료기기</a></td>
+			    </tr>
+
+				<tr id='submenu_2' valign="top" style="DISPLAY: none;">
+					<td>
+						<table width="100%" border="0" cellpadding="3" cellspacing="0"  >
+					    	<tr>
+					        	<td id="H05000000">
+
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+
+
+				<tr>
+			    	<td class="m_munu_details_text"><img src="https://img.shop.co.kr/images/left_new/sale_mem_arrow_off.gif" width="10" height="10" /> <a href="/shop/goodsList.do?ctgCd=MWH" onFocus="blur();" onMouseOver="mOver(this)" onMouseOut="mOut(this)">의약품</a></td>
+			    </tr>
+
+				<tr id='submenu_3' valign="top" style="DISPLAY: none;">
+					<td>
+						<table width="100%" border="0" cellpadding="3" cellspacing="0"  >
+					    	<tr>
+					        	<td id="MWH000000">
+
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+
+
+				<tr>
+			    	<td class="m_munu_details_text"><img src="https://img.shop.co.kr/images/left_new/sale_mem_arrow_off.gif" width="10" height="10" /> <a href="/shop/goodsList.do?ctgCd=P02" onFocus="blur();" onMouseOver="mOver(this)" onMouseOut="mOut(this)">닥터스킨케어</a></td>
+			    </tr>
+
+				<tr id='submenu_4' valign="top" style="DISPLAY: none;">
+					<td>
+						<table width="100%" border="0" cellpadding="3" cellspacing="0"  >
+					    	<tr>
+					        	<td id="P02000000">
+
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+
+
+				<tr>
+			    	<td class="m_munu_details_text"><img src="https://img.shop.co.kr/images/left_new/sale_mem_arrow_off.gif" width="10" height="10" /> <a href="/shop/goodsList.do?ctgCd=H07" onFocus="blur();" onMouseOver="mOver(this)" onMouseOut="mOut(this)">건강기능식품</a></td>
+			    </tr>
+
+				<tr id='submenu_5' valign="top" style="DISPLAY: none;">
+					<td>
+						<table width="100%" border="0" cellpadding="3" cellspacing="0"  >
+					    	<tr>
+					        	<td id="H07000000">
+
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+
+
+				<tr>
+			    	<td class="m_munu_details_text"><img src="https://img.shop.co.kr/images/left_new/sale_mem_arrow_off.gif" width="10" height="10" /> <a href="/shop/goodsList.do?ctgCd=H09" onFocus="blur();" onMouseOver="mOver(this)" onMouseOut="mOut(this)">인체모형</a></td>
+			    </tr>
+
+				<tr id='submenu_6' valign="top" style="DISPLAY: none;">
+					<td>
+						<table width="100%" border="0" cellpadding="3" cellspacing="0"  >
+					    	<tr>
+					        	<td id="H09000000">
+
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+
+
+				<tr>
+			    	<td class="m_munu_details_text"><img src="https://img.shop.co.kr/images/left_new/sale_mem_arrow_off.gif" width="10" height="10" /> <a href="/shop/goodsList.do?ctgCd=H13" onFocus="blur();" onMouseOver="mOver(this)" onMouseOut="mOut(this)">사무/생활/가전</a></td>
+			    </tr>
+
+				<tr id='submenu_7' valign="top" style="DISPLAY: none;">
+					<td>
+						<table width="100%" border="0" cellpadding="3" cellspacing="0"  >
+					    	<tr>
+					        	<td id="H13000000">
+
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+
+
+				<tr>
+			    	<td class="m_munu_details_text"><img src="https://img.shop.co.kr/images/left_new/sale_mem_arrow_off.gif" width="10" height="10" /> <a href="/shop/goodsList.do?ctgCd=LIF" onFocus="blur();" onMouseOver="mOver(this)" onMouseOut="mOut(this)">사무/생활/식음료</a></td>
+			    </tr>
+
+				<tr id='submenu_8' valign="top" style="DISPLAY: none;">
+					<td>
+						<table width="100%" border="0" cellpadding="3" cellspacing="0"  >
+					    	<tr>
+					        	<td id="LIF000000">
+
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+
+
+				<tr>
+			    	<td class="m_munu_details_text"><img src="https://img.shop.co.kr/images/left_new/sale_mem_arrow_off.gif" width="10" height="10" /> <a href="/shop/goodsList.do?ctgCd=COM" onFocus="blur();" onMouseOver="mOver(this)" onMouseOut="mOut(this)">전산/컴퓨터/토너</a></td>
+			    </tr>
+
+				<tr id='submenu_9' valign="top" style="DISPLAY: none;">
+					<td>
+						<table width="100%" border="0" cellpadding="3" cellspacing="0"  >
+					    	<tr>
+					        	<td id="COM000000">
+
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+
+
+				<tr>
+			    	<td class="m_munu_details_text"><img src="https://img.shop.co.kr/images/left_new/sale_mem_arrow_off.gif" width="10" height="10" /> <a href="/shop/goodsList.do?ctgCd=H08" onFocus="blur();" onMouseOver="mOver(this)" onMouseOut="mOut(this)">일반부외품</a></td>
+			    </tr>
+
+				<tr id='submenu_10' valign="top" style="DISPLAY: none;">
+					<td>
+						<table width="100%" border="0" cellpadding="3" cellspacing="0"  >
+					    	<tr>
+					        	<td id="H08000000">
+
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+
+<!--				<tr>-->
+<!--			    	<td height="5" class="m_munu_details_text"></td>-->
+<!--				</tr>-->
+			</table>
+		</td>
+	</tr>
+	<tr>
+		<td colspan="2"></td>
+	</tr>
+</table>
+
+
+<!-- ######## 동물병원 ##################### -->
+
+<!-- ######## 동물병원 ##################### -->
+
+
+
+
+	</div>
+
+
+
+<span id="frontLeftMenu"></span>
+<script type="text/javascript" language="javascript">
+<!--
+	//ajax로 left호출
+	var xhr;
+	if(window.XMLHttpRequest){
+		xhr = new XMLHttpRequest();
+	}else if(window.ActiveXObject){
+		xhr = new ActiveXObject("Msxml2.XMLHTTP");
+	}else{
+		throw new Error("Ajax를 지원하지 않는 브라우저입니다");
+	}
+
+	/* 2009.06.19 SON, CHANG DEOK isPrivateMall Parameter 추가 */
+	xhr.open('POST', '/ajax/leftMenu.do?ctgCd=null&isPrivateMall=N&spread=Y&noTitle=Y');
+	xhr.send(null);
+
+	xhr.onreadystatechange = function(){
+		if(xhr.readyState == 4){
+			if(xhr.status >= 200 && xhr.status< 300){
+				//성공
+				document.getElementById("frontLeftMenu").innerHTML=xhr.responseText;
+				
+			}else{
+				//실패
+				alert("상품 카테고리 불러오기 오류");
+			}
+		}
+	}
+-->
+</script>
+
+
+
+		<!-- 상품카테고리 끝 -->
+		<!--공급사별보기 시작-->
+
+		<!-- 공급사별 보기 끝 -->
+
+	</td>
+</tr>
+</table>
+</div>
+
+
+
+
+<!-- cartSummary Start -->
+<div id="cartSummary" style="position:relative;width:155px;z-index:1;margin:0px 0px 7px 0px"></div>
+<script type="text/javascript">
+cartSummary();
+</script>
+<!-- cartSummary End -->
+
+
+
+<!--<p>-->
+
+
+<!-- 자주찾는 상품 시작 -->
+
+<!-- 자주찾는 상품 끝 -->
+
+<!-- Banner 시작 -->
+
+
+
+
+
+<style>
+.left_banner {margin:0; padding:0; list-style:none;}
+.left_banner li {padding-top:10px;}
+</style>
+<ul class="left_banner">
+
+	<li><img src="https://img.shop.co.kr/images/renew/shop/hos_products_banner0.jpg" alt="더샵 친절 고객센터" title="" /></li>
+
+
+
+	<li><a href="/bbs/customer/qaFormNew.do" onfocus="blur()"><img src="https://img.shop.co.kr/images/renew/shop/products_banner2.jpg" alt="고객문의 Q&A" title="" /></a></li>
+
+	<li><a href="/front/theshop/customer/faq/faq_list" onfocus="blur()"><img src="https://img.shop.co.kr/images/renew/shop/products_banner3.jpg" alt="자주묻는질문FAQ" title="" /></a></li>
+
+</ul>
+
+<!-- Banner 끝 -->
+
+
+<div id="twindow_1" style="z-index:10000;border:1px #000000 solid;background-color:#e6e1d5;position:absolute;left:170px;top:50px;display:none" onSelectStart="return false">
+	
+	<table border='0' cellpadding='0' cellspacing='0' width="640">
+		<tr>
+			<td align='center' style='padding:15px;'>
+				<table border='0' cellpadding='0' cellspacing='0'>
+					<tr bgcolor='#f7f4ed' class='pdt10'>
+						<td align='left' class='pdl12'>
+							<div style="font: '', '체', ''; text-align:center; font-size:12px; letter-spacing:-1; color:#524437; background-color:#f7f4ed;">
+								<div>
+									<div><img border="0" alt="" align="top" src="https://img.shop.co.kr/images/renew/shop/tit_img_special-price_2.gif" width="730" height="60" /></div>
+									<div><img border="0" alt="" align="top" src="https://img.shop.co.kr/images/renew/shop/gJUmmcggJpwiOAzPCtvH.gif" width="640" height="323" /></div>	
+								</div>
+							</div>
+						</td>
+					</tr>
+					<tr height=30>
+						<td align='abstop'>
+							<div style="font: '', '체', ''; font-size:12px; letter-spacing:-1; color:#524437;">								
+								<img align='absbottom' src='https://img.shop.co.kr/images/btn/popupclose.gif' onclick="closePop();" style="cursor:pointer"/>
+							</div>
+						</td>
+					</tr>
+				</table>
+			</td>
+		</tr>
+	</table>
+	
+</div>
+	
+			</div>
+			<!-- //snb -->
+			<!-- cnt -->
+			<div id="cnt">
+				<div class="cnt_box">
+					<!-- mypage_cnt  style="position:relative; border:#6B71BD solid 1px; margin:1px;  min-height:1600px; height:auto !important; height:1600px;" -->
+					<div id="products_cnt">
+						<iframe name="ifm" id="ifm" src="/shop/goodsSearchListFrame.do?goodsInfoDataBean.orderBy=relevance&goodsInfoDataBean.rowPerPage=15&goodsInfoDataBean.searchKey=goodsNm&goodsInfoDataBean.mafcNm=&goodsInfoDataBean.searchVal=?쇱???⑹＜?ш린&goodsInfoDataBean.goodsSalesType=&goodsInfoDataBean.ctgCd=" width="730" scrolling="no" height="1600" frameborder="0" topmargin="0" leftmargin="0" marginwidth="0" marginheight="0" hspace="0" vspace="0"></iframe>
+					</div>
+				</div>
+			</div>
+			<!-- //cnt -->
+		</div>
+		<!-- //wrapper -->
+		<!-- ext -->
+		<div id="ext">
+			<div style="position:relative; top:10px; text-align:right;">
+				
+
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<script language="javascript" type="text/javascript">
+	//2023-01-11 무료문자 팝업
+	function smsfunc(){
+		window.open('../front/theshopanimal/popup/sms','sms','width=645, height=752, scrollbars= 0, toolbar=0, menubar=no');
+	}
+	function smsPop_Close(){
+		document.getElementById("layer_dim").style.display="none";
+		document.getElementById("popFreeSms").style.display="none";
+	}
+
+	//배너정보
+	function rWingBannerInfo(bannerUrl, imgPath, bannerTitle, salePrice, lastPrice) {
+	    this.bannerUrl = bannerUrl;
+	    this.imgPath = imgPath;
+	    this.bannerTitle = bannerTitle;    
+	    this.salePrice = salePrice;
+	    this.lastPrice = lastPrice;
+	}
+	
+	// 배너(위치) 이미지를 선택했을 경우
+	function rWingLocOver(obj) {
+	    if (obj == null) {
+	        return;
+	    }
+	
+	    var objIdArr = obj.id.split('_');
+	    var cornCd = objIdArr[1];
+	    var nowIdx = objIdArr[3];
+	
+	    var bannerArr = eval('banner' + cornCd + 'Arr');
+	    
+	
+	    document.getElementById('banner_' + cornCd + '_img').src = 'https://img.shop.co.kr/upload/product/' + bannerArr[nowIdx].imgPath;
+	    document.getElementById('banner_' + cornCd + '_url').href = bannerArr[nowIdx].bannerUrl;
+	    document.getElementById('banner_' + cornCd + '_title').innerHTML = bannerArr[nowIdx].bannerTitle;
+	    document.getElementById('banner_' + cornCd + '_salePrice').innerHTML = bannerArr[nowIdx].salePrice;
+	    document.getElementById('banner_' + cornCd + '_lastPrice').innerHTML = bannerArr[nowIdx].lastPrice;
+	}
+
+</script>
+<ul id="topBtn" class="quick">
+<!-- 2017-04-12 추가[s] -->
+
+<!-- 2017-04-12 추가[e] -->
+
+
+
+
+
+
+	
+
+
+
+
+
+
+
+	
+	
+	<li style="border:solid 1px #cdbeb4;border-bottom:0px;border-top:0px"><a href="/cart/cartList.do"><img src="https://img.shop.co.kr/images/renew/common/shopping-basket.gif" width="78" height="25"/></a></li>
+    <li class="guest_list" style="border:solid 1px #cdbeb4;border-top:0px">
+        <dl>
+            <dt><img src="https://img.shop.co.kr/images/renew/common/quick_menu22.gif" alt="" title=""></dt>
+            <dd><strong><a href="/mypage/coupon/couponList.do">1<span>장</span></a></strong></dd>
+        </dl>
+    </li>
+    <li class="guest_list" style="border:solid 1px #cdbeb4;border-top:0px">
+        <dl>
+            <dt><img src="https://img.shop.co.kr/images/renew/common/quick_menu3.gif" alt="" title=""></dt>
+            <dd><strong><a href="/mypage/reserveAmt/reserveAmtDetailList.do">0<span>원</span></a></strong></dd>
+        </dl>
+
+    </li>
+
+    <li class="guest_list" style="border:solid 1px #cdbeb4;border-top:0px">
+        <dl>
+            <dt><img src="https://img.shop.co.kr/images/renew/common/quick_menu4.gif" alt="" title=""></dt>
+            <dd><strong><a href="/mypage/mileage/mileageList.do">0<span>점</span></a></strong></dd>
+        </dl>
+    </li>
+
+
+
+
+
+
+
+
+	</li>
+    <li style="border:solid 1px #cdbeb4;border-bottom:0px;border-top:0px"><a href="/mypage/tradeOrderList.do" onfocus="blur()"><img src="https://img.shop.co.kr/images/renew/common/quick_menu6.gif" alt="" title=""/></a></li>
+    <li style="border:solid 1px #cdbeb4;border-top:0px;"><a href="/mypage/orderReBuyList.do" onfocus="blur()"><img src="https://img.shop.co.kr/images/renew/common/quick_menu7.gif" alt="" title=""/></a></li>
+
+
+<!-- 약국몰의 경우에만 무료문자 Quick Menu 보여줌 -->
+
+
+</ul>
+<!-- 2017-03-08 상담 버튼 추가[s] -->
+	
+
+<script id="happytalkSDK" src="https://design.happytalkio.com/sdk/happytalk.chat.v2.min.js"></script>
+<script>
+	function showPopUp() {
+		window.open('/front/theshop/popup/popup/pop_pay1','deposit_pop','width=580, height=720, scrollbars= 0, toolbar=0, menubar=no');
+	}
+	//해피톡
+	var ht = null;
+	(function(id, scriptSrc, callback) {
+		var d = document,
+				tagName = 'script',
+				$script = d.createElement(tagName),
+				$element = d.getElementsByTagName(tagName)[0];
+
+		$script.id = id;
+		$script.async = true;
+		$script.src = scriptSrc;
+
+		if (callback) { $script.addEventListener('load', function (e) { callback(null, e); }, false); }
+		$element.parentNode.insertBefore($script, $element);
+	})('happytalkSDK', 'https://design.happytalkio.com/sdk/happytalk.chat.v2.min.js', function() {
+		ht = new Happytalk({
+			siteId: '1000216754',
+			siteName: '더샵',
+			categoryId: '64695',
+			divisionId: '64698',
+			params:'site_uid='+'obgynjh'+',cus_extra_username='+'나재호'
+		});
+	});
+	
+ 	    var agent = navigator.userAgent.toLowerCase(); // 2020-01-08 추가
+	    var trident = navigator.userAgent.match(/Trident\/(\d.\d)/i);
+	    var pharmacyName = "%EC%95%95%ED%95%B4%EC%97%B0%ED%95%A9%EC%9D%98%EC%9B%90";
+	    var userNm = "%EB%82%98%EC%9E%AC%ED%98%B8";
+	    var objectDetailCd = "090";
+	    var CookieNm=getCookie("happyTalk"); // 쿠키네임 지정
+	    var CookieNm1=getCookie("kakaoTalk"); // 쿠키네임 지정
+	    
+	    /* 2020-01-08 수정 시작 */
+        if ( (navigator.appName == 'Netscape' && navigator.userAgent.search('Trident') != -1) || (agent.indexOf("msie") != -1) ) {
+            if(trident != null){
+                if(trident[1] < 6.0){
+                    document.getElementById("happyTalk").style.display = "none";
+                    document.getElementById("happyTalk1").style.display = "none";
+                }
+            } else {
+                document.getElementById("happyTalk").style.display = "none";
+                document.getElementById("happyTalk1").style.display = "none";
+            }
+        } else if ( agent.search( "edge/" ) > -1 ) {
+            document.getElementById("happyTalk").style.display = "block";
+            document.getElementById("happyTalk1").style.display = "block";
+        } else {
+			if (document.getElementById("happyTalk")) {
+            	document.getElementById("happyTalk").style.display = "none";
+			}
+			if (document.getElementById("happyTalk1")) {
+            	document.getElementById("happyTalk1").style.display = "none";
+			}
+        }
+        /* 2020-01-08 수정 끝 */
+	    
+	    if (CookieNm == "yes") {
+	    	
+	    	document.getElementById("happyTalk").style.display = "none";
+	    }
+	    
+	    if (CookieNm1 == "yes") {
+	    	
+	    	document.getElementById("kakaoTalk").style.display = "none";
+	    }
+	    
+	    function goHappyTalk(userId, value){
+	    	
+	    	var url = "/ajax/main/mainOtcPerson.do";
+		    var param = "userId="+userId;
+		    
+		    jQuery.ajax({
+	    		 type:"POST"
+	    		,url:url
+	    		,dataType:"html"
+	    		,data:param
+	    		,success:function(msg) {
+	    			
+	    			if(value == 'happy'){
+	    				if(confirm("상담신청하시겠습니까?")){
+	    					goHappyTalkPopup(msg, userId);
+	    				}
+	    				
+	    			}else{
+	    				
+	    				goKakaoTalk(msg, userId);
+	    			}
+	    		}
+	    	});
+	    }
+	    
+	    function goHappyTalkPopup(msg, userId){
+	    	var url = "https://design.happytalkio.com/chatting?siteId=1000216754&siteName="+encodeURIComponent("더샵")+"&categoryId=64695&divisionId=64698&partnerId=&shopId=&params=site_uid="+userId+",paramter1="+encodeURIComponent(pharmacyName)+",paramter2="+encodeURIComponent(userNm)+",parameter3="+encodeURI(encodeURIComponent(msg));
+			//"1/chat_v4/public_point?go=C&is_login=Y&uid="+userId+"&parameter1="+userNm+"&parameter2="+pharmacyName+"&parameter3="+encodeURI(encodeURIComponent(msg))+"&site_id=1000216754&category_id=62544&division_id=62545&usergb=W&title=[test]"
+	    	var _popUp = window.open(url, "new", "width=400,height=750,left=1400px,top=100px");
+    		_popUp.focus();
+	    }
+	    
+	    function goKakaoTalk(msg, userId){
+	    	
+	    	var _popUp = window.open("https://api.happytalk.io/api/kakao/chat_open?yid=%40%EB%8D%94%EC%83%B5%ED%94%84%EB%A0%8C%EC%A6%88&site_uid="+userId+"&parameter1="+userNm+"&parameter2="+pharmacyName+"&parameter3="+encodeURI(encodeURIComponent(msg))+"&site_id=1000216754&category_id=62544&division_id=62545", "new", "width=400,height=550,left=10%,top=100px");
+    		_popUp.focus();
+	    }
+	    
+	 	// Main 노출 PopupUp Close 처리
+		function closeButton(layerNm, cookieNm, chkObj) {
+		    
+		    setCookieButton( cookieNm, "yes", 4, 1, document.location.hostname );
+		
+		    document.getElementById(layerNm).style.display = "none";
+		}
+		
+		// Main 노출 PopupUp 오늘 하루 열지 않음 Cookie 처리
+		function setCookieButton(name, value, opt, expireTime, domain) {
+		
+		    var todayDate = new Date();
+		    todayDate.setDate(todayDate.getDate() + expireTime);
+		    document.cookie = name + "=" + escape( value ) + "; path=/; expires=" + todayDate.toGMTString() + "; domain="+domain + ";";
+		}
+		
+		/* 2019-04-25 추가 시작 */
+        jQuery(function () {
+            jQuery(".btn_etc_prod").click(function (e) {
+                jQuery("#popEtcProd").toggle();
+                e.preventDefault();
+            })
+            jQuery(".wrap_etc_prod .btn_etc_close").click(function (e) {
+                jQuery(this).parent().hide();
+                e.preventDefault();
+            })
+            jQuery(".wrap_etc_prod .btn_close").click(function () {
+                jQuery(this).parent().hide();
+            })
+            var btnTop = jQuery(".quick .btn_top");
+            var scHeight = jQuery("#header3").height() + jQuery(".quick").height();
+            jQuery("#content-area").scroll(function() {
+                if (jQuery("#content-area").scrollTop() > scHeight) {
+                    jQuery('.wrap_etc_prod, .btn_top').addClass("fixed")
+                } else {
+                    jQuery('.wrap_etc_prod, .btn_top').removeClass("fixed")
+                }
+            });
+            btnTop.click(function(e){
+                e.preventDefault();
+                jQuery("#content-area").animate({scrollTop: 0});
+            });
+        })
+        /* 2019-04-25 추가 끝 */
+
+	</script>
+    <!-- 2017-03-08 상담 버튼 추가[e] -->
+
+		
+
+			</div>
+		</div>
+		<!-- //ext -->
+	</div>
+	<!-- //container -->
+	
+	<!-- footer -->
+	<div id="footer">
+		
+
+
+
+
+<!-- [Layout] Footer 약국몰 마이페이지, 동물병원몰, 한의원몰 -->
+
+<script language="javascript">
+
+    
+    if (document.location.protocol == 'http:') {
+        document.location.href = document.location.href.replace('http:', 'https:');
+    }
+    
+
+
+
+    function goSite(url) {
+		if (url != "") {
+			window.open(url);
+		}
+	}
+
+	function openGuidePop(url, title, w, h) {
+		var userBean = getCookie("USER_BEAN");
+
+		var hostUrl = document.location.hostname;
+
+		if (userBean == "" || userBean == undefined) {
+			if (hostUrl.indexOf("www") > -1 || hostUrl.indexOf("hani") > -1) {
+				if (!confirm("회원 전용입니다. 로그인 하시겠습니까?")) {
+					return;
+				} else {
+					//document.loginForm.elements["memberSearchBean.userId"].focus();
+					top.document.location = "/";
+					return;
+				}
+			} else {
+				alert("회원전용입니다. 로그인이 필요합니다.");
+				//top.document.loginForm.elements["memberSearchBean.userId"].focus();
+			}
+		} else {
+			 if (isNewIeBrowser){
+				 document.location.href = "/front/theshop/guide/userInfoRule?tabMenu=tabEmail";
+			 }else{
+				 window.open(url, title, 'width='+w+', height='+h);
+			 }
+		}
+	}
+
+	function openGuidePop2(url, title, w, h) {
+		 if (isNewIeBrowser){
+			 document.location.href = "/front/theshop/guide/mapInfo";
+		 }else{
+			 window.open(url, title, 'width='+w+', height='+h);
+		 }
+	}
+
+	function jsUserInfoRuleMain(){
+		document.location.href = "/member/join/userInfoRuleMain.do";
+	}
+
+	function goLinkUrl_f(url) {
+		var userBean = getCookie("USER_BEAN");
+
+		var hostUrl = document.location.hostname;
+
+		if (userBean == "" || userBean == undefined) {
+			if (hostUrl.indexOf("www") > -1 || hostUrl.indexOf("hani") > -1) {
+				if (!confirm("회원 전용입니다.로그인 하시겠습니까?")) {
+					return;
+				} else {
+					document.location = "https://www.shop.co.kr/";
+					return;
+				}
+			} else {
+				alert("회원전용입니다. 로그인이 필요합니다.");
+			}
+		} else {
+			top.document.location = url;
+		}
+	}
+
+
+	// 사업자 정보 확인 팝업 표기
+	function openFtcPopup(){
+		var businessCode = "1208610499";	// theShop 사업자 등록번호
+
+		var url = "https://www.ftc.go.kr/bizCommPop.do?wrkr_no=" + businessCode;
+
+		window.open(url, "communicationViewPopup", "width=750, height=700;");
+	}
+
+	// 브라우져 버전체크 , IE 10 이하일경우 return false
+	function isNewIeBrowser () {
+		var msie = -1; // Return value assumes failure.
+		var trident = -1;
+        if (navigator.appName == 'Microsoft Internet Explorer') {
+            var ua = navigator.userAgent;
+            var reMSIE = new RegExp("MSIE ([0-9]{1,}[\.0-9]{0,})");
+            if (reMSIE.exec(ua) != null){
+            	msie = parseFloat(RegExp.$1);
+            }
+
+	        var reTrident = new RegExp("Trident\/([0-9]{1,}[\.0-9]{0,})");
+	        if (reTrident.exec(ua) != null){
+	        	trident = parseFloat(RegExp.$1);
+	        }
+
+		}else{
+			return true;
+		}
+		if(trident != ""){
+			if(trident <= 5){
+				return false;
+			}else{
+				return true;
+			}
+		}else{
+			if(msie == "7"){
+				return false;
+			}else if(msie == "6"){
+				return false;
+			}else{
+				return true;
+			}
+		}
+
+	}
+
+</script>
+
+<!-- footer -->
+<script type="text/javascript" src="/resources/theshop_1st/js/hos/fakeselect.js"></script>
+<div id="footer">
+	<div class="linkWrap">
+		<div class="inner">
+			<ul class="footLink">
+			
+<!-- 					<li><a href="#" onClick="javascript:goLinkUrl_f('/service/serviceMain.do');return false;">이용안내</a></li> -->
+				<!--SHOP-4932 일시 히든 원복 start-->
+					<!--li><a href="/front/theshop/card/card/benefit_card">이용안내</a></li-->
+				<!--SHOP-4932 일시 히든 원복 end-->
+			
+					<li><a href="https://theeasyshop.notion.site/TheSHOP-d762c1949b464f17a037cc3c6d0ec00b?pvs=4" target='_blank'>개인정보취급방침</a></li>
+			
+					<li><a href="#" onClick="javascript:goLinkUrl_f('/guide/siteRule.do');return false;">이용약관</a></li>
+					<li><a href="#" onClick="javascript:openGuidePop('/popup/guide/emailNoGether.do', '', 460, 500);return false;">이메일무단수집거부</a></li>
+<!-- 					<li><a href="#" onClick="javascript:openGuidePop2('/popup/guide/mapInfoPop.do', '', 648, 600);return false;">찾아오시는길</a></li> -->
+            </ul>
+			<fieldset class="familySite">
+				<legend>familySite</legend>
+				
+				<div>
+					<select class="footSelect" style="width:180px;" onchange="changetSite(this)">
+						<option value="">관련사이트바로가기</option>
+						<option value="http://www.doctorville.co.kr/"> 닥터빌</option>
+						<option value="http://www.hidoc.co.kr/healthqna/list"> 하이닥</option>
+						<option value="http://www.ezmedicom.com"> 이지메디컴</option>
+						<option value="http://www.ezdentalshp.co.kr"> 이지덴탈</option>
+						<option value="http://www.medisarang.co.kr"> 메디사랑</option>
+						<option value="http://www.soreemro.com"> 소리케어넷</option>
+						<option value="http://www.docdocdoc.co.kr"> 청년의사</option>
+						<option value="http://www.mcircle.co.kr"> 엠서클</option>
+						<option value="http://www.ginus.co.kr"> 지누스</option>
+						<option value="http://www.neosoft.co.kr"> 네오소프트</option>
+						<option value="http://www.clickmedi.co.kr"> 클릭메디</option>
+					</select>
+				</div>
+				
+			</fieldset>
+		</div>
+	</div>
+	<div class="addressWrap">
+		<div class="inner">
+			<p class="ftLogo"><img src="https://img.shop.co.kr/images/footer/logo_footer02.gif" alt="the SHOP" class="footLogo" /></p>
+			<div class="address">
+				㈜이지메디컴 (대표자 : 진재희)<br/>
+				주소 : 서울특별시 강남구 논현로 805, 유로프라자 2층,3층(신사동)<br/>
+				사업자등록번호: 101-81-62216<br/>
+				통신판매업신고: 2019-서울강남-01311<a href="https://www.ftc.go.kr/bizCommPop.do?wrkr_no=1018162216" target="_blank"><img src="https://img.shop.co.kr/images/footer/btn_footBusi02.gif" alt="사업자정보확인" /></a>
+				<p class="copyright"><strong>&copy; TheEasyShop Corp.</strong> All rights reserved</p>
+			</div>
+			<div class="csCenter">
+				<em>더샵문의</em><br />
+				상담가능시간 : 09:00 - 18:00<br>(토·일요일/공휴일 휴무, 점심시간 12:00-13:00)<br />
+				문의 : <font color="black"><strong>1:1 채팅상담</strong></font><span>|</span>Fax : 02-6488-9771
+				<br>이메일: <a href="mailto:theshopadmin@ezmedicom.com">theshopadmin@ezmedicom.com</a>
+			</div>
+		</div>
+	</div>
+</div>
+<script language="javascript">
+    //관련사이트 이동
+    function changetSite(obj) {
+        if (obj.value != null && obj.value.length > 0) {
+            window.open(obj.value, "_blank");
+        }
+    }
+</script>
+<!-- footer -->
+
+	<font color='white'>[01]</font>
+
+	</div>
+	<!-- //footer -->
+</div>
+<!-- //layout -->
+
+<script language="javascript">
+
+	function getDocHeight(doc){
+		var docHt = 0, sh, oh;
+
+	  	if (doc.height){
+	    	docHt = doc.height;
+	  	}
+	  	else if (doc.body) {
+	    	if (doc.body.scrollHeight) docHt = sh = doc.body.scrollHeight;
+	    	if (doc.body.offsetHeight) docHt = oh = doc.body.offsetHeight;
+	    	if (sh && oh) docHt = Math.max(sh, oh);
+	  	}
+
+	  	return docHt;
+	}
+
+	function getReSize() {
+		var iframeWin = window.frames['ifm'];
+
+	  	var iframeEl = window.document.getElementById? window.document.getElementById('ifm'): document.all? document.all['ifm']: null;
+
+	  	if (iframeEl && iframeWin) {
+	    	var docHt = getDocHeight(iframeWin.document);
+
+	    	if (docHt != iframeEl.style.height) iframeEl.style.height = docHt + 'px';
+	  	}
+	  	else { // firefox
+	    	var docHt = window.document.getElementById('ifm').contentDocument.height;
+	    	window.document.getElementById('ifm').style.height = docHt + 'px';
+	  	}
+	}
+
+
+	function getRetry() {
+	    getReSize();
+	    setTimeout('getRetry()',500);
+	}
+
+	getRetry();
+
+</script>
+</body>
+</html>
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>상품 리스트</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=7">
+    <meta http-equiv="content-type" content="text/html; charset=euc-kr" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="shop.co.kr" />
+    <meta name="document-rights" content="Copyrighted shop.co.kr" />
+    <meta name="copyright" content="Copyright (c) shop.co.kr" />
+
+    <link rel="stylesheet" type="text/css" href="https://img.shop.co.kr/css/renew.css" />
+    <script type="text/javascript" src="/resources/theshop_1st/js/prototype.js"></script>
+	<script type="text/javascript" src="/resources/theshop_1st/js/common-front.js"></script>
+	<script type="text/javascript" src="/resources/theshop_1st/js/cookieUtil.js"></script>
+    <script type="text/javascript" src="/resources/theshop_1st/js/common.js"></script>
+	<script type="text/javascript" src="/resources/theshop_1st/js/jquery-1.2.6.js"></script>
+	<script type="text/javascript" src="/resources/theshop_1st/js/jquery.form.js"></script>
+
+<script type="text/javascript" src="/resources/theshop_1st/js/cart/cart.js"></script>
+<script type="text/javascript">
+
+function detail(seq){
+	popObj = window.open ("/goodsqna/popup/goodsQnaDetailPopup.do?seq="+seq, "list", "scrollbars=no,fullscreen=no,width=505,height=610");
+}
+
+function commentDetail(resultSeq){
+	popObj = window.open ("/goodscomment/popup/goodsCommentDetailPopup.do?resultSeq="+resultSeq, "list", "scrollbars=no,fullscreen=no,width=505,height=550");
+}
+
+function qnaList(goodsCd){
+	popObj = window.open ("/goodsqna/popup/goodsQnaPopup.do?goodsCd="+goodsCd, "list", "scrollbars=no,fullscreen=no,width=505,height=610");
+}
+
+function commentList(goodsCd){
+	popObj = window.open ("/goodscomment/popup/goodsCommentPopup.do?goodsCd="+goodsCd, "list", "scrollbars=no,fullscreen=no,width=505,height=550");
+}
+
+
+function onEnterKeyUp(objVal){
+	
+	if(event.keyCode =='13'){
+		if(jQuery.trim(objVal) != ""){
+			jQuery("#shopForm").trigger('submit');
+		}
+	}
+}
+
+function showDetailSearch() {
+
+	if (document.all.btnSearch.src.indexOf('close_search.gif') > -1) {
+		hideDetailSearch();
+	}
+	else {
+		document.all.dtlSearch.style.display = '';
+		document.all.btnSearch.src = 'https://img.shop.co.kr/images/search/close_search.gif';
+	}
+}
+
+function hideDetailSearch() {
+
+	if (document.all.btnSearch.src.indexOf('close_search.gif') > -1) {
+		document.all.btnSearch.src = 'https://img.shop.co.kr/images/search/open_search.gif';
+	}
+
+	document.all.dtlSearch.style.display = 'none';
+}
+
+var firstLoading = true;
+</script>
+<style type="text/css">
+.pdlistth-1{background:#f4f0e9; border-top:#97918c 1px solid; border-bottom:#97918c 2px solid; text-align:center;}
+.pdlistth-2{background: url(https://img.shop.co.kr/images/shop/pdlist_line.gif) left top no-repeat #f4f0e9; border-top:#97918c 1px solid; border-bottom:#97918c 2px solid; text-align:center; }
+.pdlisttd-1{ border-bottom:#97918c 1px solid; font-size:11px; padding-left:5px; }
+</style>
+</head>
+<body>
+<form method="post" name="shopForm" action="/shop/goodsSearchListFrame.do" id="shopForm" style="margin:0px;padding:0px">
+<input type="hidden" name="goodsInfoDataBean.currentPage" id="currentPage">
+<input type="hidden" name="goodsInfoDataBean.orderBy" id="orderBy" value="relevance">
+<input type="hidden" name="ctgCd" id="ctgCd" value="">
+<input type="hidden" name="goodsInfoDataBean.goodsSalesType"	id="goodsSalesType" value="">
+<input name="goodsInfoDataBean.searchKey" type="hidden" id="searchKey" value="goodsNm"/>
+<input name="goodsInfoDataBean.searchVal" type="hidden" id="searchVal" value="%EF%BF%BD%EC%87%B1%EF%BF%BD%EF%BF%BD%EF%BF%BD%E2%91%B9%EF%BC%9C%EF%BF%BD%D1%88%EB%A6%B0"/>
+<input name="goodsInfoDataBean.mafcNm" type="hidden" id="mafcNm" value=""/>
+
+<input type="hidden" name="goodsInfoDataBean.goodsMasterCd" id="goodsMasterCd" value="">
+<input type="hidden" name="goodsInfoDataBean.chainGoodsMasterCd" id="chainGoodsMasterCd" >
+<input type="hidden" name="goodsInfoDataBean.chainSearchYn" id="chainSearchYn" >
+<input type="hidden" name="goodsInfoDataBean.ingreSearchYn" id="ingreSearchYn" >
+<input type="hidden" name="goodsInfoDataBean.policyCd" id="policyCd" >
+<input type="hidden" name="goodsInfoDataBean.ingrelWhoAtc" id="ingrelWhoAtc" >
+
+<input type="hidden" name="goodsInfoDataBean.kpisSearchYn" id="kpisSearchYn" >
+<input type="hidden" name="goodsInfoDataBean.kpisStdCd" id="kpisStdCd" >
+
+<input type="hidden" name="searchGoodsCd" id="searchGoodsCd" value="">
+
+
+
+	<input name="goodsInfoDataBean.searchSellerCd" type="hidden" id="searchSellerCd" value=""/>
+
+
+	<!-- products_cnt -->
+	<div id="products_cnt">
+	<table width="730" border="0" cellspacing="0" cellpadding="0" class="mgt5">
+		<tr>
+			<td width="730" valign="top">
+				<table width="730" border="0" cellspacing="0" cellpadding="0" class="mgt5">
+					
+		        	<tr>
+		            	<!--상품리스트 시작-->
+		                <td width="415" valign="top" id="goodsList">
+
+		                      <!--상품리스트 끝-->
+						</td>
+		                <td width="5"></td>
+</form>
+<form name="cartForm" id="cartForm" style="margin:0;padding:0">
+		            	<td width="310" valign="top" >
+			            	<div style="margin:0 0 10px 0;">
+								
+							</div>
+			            	<div id="goodsDetail"></div>
+		                	<!--상품 상세 보기 시작-->
+		                    <!--상품 상세 보기 끝-->
+						</td>
+</form>
+					</tr>
+					<!-- <tr>
+					<td width="415"></td>
+		            <td width="5"></td>
+					<form name="cartForm" id="cartForm" style="margin:0;padding:0">
+						<td width="310" valign="top" id="goodsDetail2">
+		                	상품 상세 보기 시작
+		                    상품 상세 보기 끝
+						</td>
+					</form>
+					</tr> -->
+					
+				</table>
+
+				<table width="420" border="0" cellspacing="0" cellpadding="0">
+					<tr></tr>
+		        </table>
+			</td>
+		</tr>
+	</table>
+<!--con end-->
+</div>
+<!-- //products_cnt -->
+
+
+<script type="text/javascript" language="javascript">
+jQuery.noConflict();
+var param = jQuery("#shopForm").formSerialize();
+//var param = {"ctgCd":"null"};
+	(function($){
+		$('#goodsList').load("/ajax/goodsSearchListEgAjax.do", param,function(data) {
+			firstLoding = false;
+		});
+		
+	})(jQuery);
+</script>
+
+
+<div id="hidepage" style="position: absolute; left:140px; top:300px; background-color: wihte; layer-background-color: white; display:none"> 
+	  <script type="text/javascript">
+//AC_FL_RunContent( 'codebase','http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0','width','186','height','74','src','roarding_flash3','quality','high','pluginspage','http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash','movie','roarding_flash3' ); //end AC code
+</script>
+<!--  
+<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0" width="150" height="150">
+    <param name="movie" value="/resources/theshop_1st/flash/roarding_flash_5.swf" />
+        <param name="quality" value="high" />
+        <embed src="/resources/theshop_1st/flash/roarding_flash_5.swf" quality="high" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="150" height="150"></embed>
+    </object>
+-->    
+</div> 
+
+</body>
+</html>
+
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<title>상품 리스트</title>
+	<meta http-equiv="X-UA-Compatible" content="IE=7">
+    <meta http-equiv="content-type" content="text/html; charset=euc-kr" />
+	<meta http-equiv="Content-Script-Type" content="text/javascript" />
+	<meta http-equiv="Content-Style-Type" content="text/css" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta name="description" content="" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="shop.co.kr" />
+    <meta name="document-rights" content="Copyrighted shop.co.kr" />
+    <meta name="copyright" content="Copyright (c) shop.co.kr" />
+
+    <link rel="stylesheet" type="text/css" href="https://img.shop.co.kr/css/renew.css" />
+    <script type="text/javascript" src="/resources/theshop_1st/js/prototype.js"></script>
+	<script type="text/javascript" src="/resources/theshop_1st/js/common-front.js"></script>
+	<script type="text/javascript" src="/resources/theshop_1st/js/cookieUtil.js"></script>
+    <script type="text/javascript" src="/resources/theshop_1st/js/common.js"></script>
+	<script type="text/javascript" src="/resources/theshop_1st/js/jquery-1.2.6.js"></script>
+	<script type="text/javascript" src="/resources/theshop_1st/js/jquery.form.js"></script>
+
+<script type="text/javascript" src="/resources/theshop_1st/js/cart/cart.js"></script>
+<script type="text/javascript">
+
+function detail(seq){
+	popObj = window.open ("/goodsqna/popup/goodsQnaDetailPopup.do?seq="+seq, "list", "scrollbars=no,fullscreen=no,width=505,height=610");
+}
+
+function commentDetail(resultSeq){
+	popObj = window.open ("/goodscomment/popup/goodsCommentDetailPopup.do?resultSeq="+resultSeq, "list", "scrollbars=no,fullscreen=no,width=505,height=550");
+}
+
+function qnaList(goodsCd){
+	popObj = window.open ("/goodsqna/popup/goodsQnaPopup.do?goodsCd="+goodsCd, "list", "scrollbars=no,fullscreen=no,width=505,height=610");
+}
+
+function commentList(goodsCd){
+	popObj = window.open ("/goodscomment/popup/goodsCommentPopup.do?goodsCd="+goodsCd, "list", "scrollbars=no,fullscreen=no,width=505,height=550");
+}
+
+
+function onEnterKeyUp(objVal){
+	
+	if(event.keyCode =='13'){
+		if(jQuery.trim(objVal) != ""){
+			jQuery("#shopForm").trigger('submit');
+		}
+	}
+}
+
+function showDetailSearch() {
+
+	if (document.all.btnSearch.src.indexOf('close_search.gif') > -1) {
+		hideDetailSearch();
+	}
+	else {
+		document.all.dtlSearch.style.display = '';
+		document.all.btnSearch.src = 'https://img.shop.co.kr/images/search/close_search.gif';
+	}
+}
+
+function hideDetailSearch() {
+
+	if (document.all.btnSearch.src.indexOf('close_search.gif') > -1) {
+		document.all.btnSearch.src = 'https://img.shop.co.kr/images/search/open_search.gif';
+	}
+
+	document.all.dtlSearch.style.display = 'none';
+}
+
+var firstLoading = true;
+</script>
+<style type="text/css">
+.pdlistth-1{background:#f4f0e9; border-top:#97918c 1px solid; border-bottom:#97918c 2px solid; text-align:center;}
+.pdlistth-2{background: url(https://img.shop.co.kr/images/shop/pdlist_line.gif) left top no-repeat #f4f0e9; border-top:#97918c 1px solid; border-bottom:#97918c 2px solid; text-align:center; }
+.pdlisttd-1{ border-bottom:#97918c 1px solid; font-size:11px; padding-left:5px; }
+</style>
+</head>
+<body>
+<form method="post" name="shopForm" action="/shop/goodsSearchListFrame.do" id="shopForm" style="margin:0px;padding:0px">
+<input type="hidden" name="goodsInfoDataBean.currentPage" id="currentPage">
+<input type="hidden" name="goodsInfoDataBean.orderBy" id="orderBy" value="relevance">
+<input type="hidden" name="ctgCd" id="ctgCd" value="">
+<input type="hidden" name="goodsInfoDataBean.goodsSalesType"	id="goodsSalesType" value="">
+<input name="goodsInfoDataBean.searchKey" type="hidden" id="searchKey" value="goodsNm"/>
+<input name="goodsInfoDataBean.searchVal" type="hidden" id="searchVal" value="%3F%EF%BF%BD%EF%BF%BD%3F%3F%3F%EF%BF%BD%EB%B1%84%EF%BF%BD%3F%EF%BF%BD%E7%94%B1%EF%BF%BD"/>
+<input name="goodsInfoDataBean.mafcNm" type="hidden" id="mafcNm" value=""/>
+
+<input type="hidden" name="goodsInfoDataBean.goodsMasterCd" id="goodsMasterCd" value="">
+<input type="hidden" name="goodsInfoDataBean.chainGoodsMasterCd" id="chainGoodsMasterCd" >
+<input type="hidden" name="goodsInfoDataBean.chainSearchYn" id="chainSearchYn" >
+<input type="hidden" name="goodsInfoDataBean.ingreSearchYn" id="ingreSearchYn" >
+<input type="hidden" name="goodsInfoDataBean.policyCd" id="policyCd" >
+<input type="hidden" name="goodsInfoDataBean.ingrelWhoAtc" id="ingrelWhoAtc" >
+
+<input type="hidden" name="goodsInfoDataBean.kpisSearchYn" id="kpisSearchYn" >
+<input type="hidden" name="goodsInfoDataBean.kpisStdCd" id="kpisStdCd" >
+
+<input type="hidden" name="searchGoodsCd" id="searchGoodsCd" value="">
+
+
+
+	<input name="goodsInfoDataBean.searchSellerCd" type="hidden" id="searchSellerCd" value=""/>
+
+
+	<!-- products_cnt -->
+	<div id="products_cnt">
+	<table width="730" border="0" cellspacing="0" cellpadding="0" class="mgt5">
+		<tr>
+			<td width="730" valign="top">
+				<table width="730" border="0" cellspacing="0" cellpadding="0" class="mgt5">
+					
+		        	<tr>
+		            	<!--상품리스트 시작-->
+		                <td width="415" valign="top" id="goodsList">
+
+		                      <!--상품리스트 끝-->
+						</td>
+		                <td width="5"></td>
+</form>
+<form name="cartForm" id="cartForm" style="margin:0;padding:0">
+		            	<td width="310" valign="top" >
+			            	<div style="margin:0 0 10px 0;">
+								
+							</div>
+			            	<div id="goodsDetail"></div>
+		                	<!--상품 상세 보기 시작-->
+		                    <!--상품 상세 보기 끝-->
+						</td>
+</form>
+					</tr>
+					<!-- <tr>
+					<td width="415"></td>
+		            <td width="5"></td>
+					<form name="cartForm" id="cartForm" style="margin:0;padding:0">
+						<td width="310" valign="top" id="goodsDetail2">
+		                	상품 상세 보기 시작
+		                    상품 상세 보기 끝
+						</td>
+					</form>
+					</tr> -->
+					
+				</table>
+
+				<table width="420" border="0" cellspacing="0" cellpadding="0">
+					<tr></tr>
+		        </table>
+			</td>
+		</tr>
+	</table>
+<!--con end-->
+</div>
+<!-- //products_cnt -->
+
+
+<script type="text/javascript" language="javascript">
+jQuery.noConflict();
+var param = jQuery("#shopForm").formSerialize();
+//var param = {"ctgCd":"null"};
+	(function($){
+		$('#goodsList').load("/ajax/goodsSearchListEgAjax.do", param,function(data) {
+			firstLoding = false;
+		});
+		
+	})(jQuery);
+</script>
+
+
+<div id="hidepage" style="position: absolute; left:140px; top:300px; background-color: wihte; layer-background-color: white; display:none"> 
+	  <script type="text/javascript">
+//AC_FL_RunContent( 'codebase','http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0','width','186','height','74','src','roarding_flash3','quality','high','pluginspage','http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash','movie','roarding_flash3' ); //end AC code
+</script>
+<!--  
+<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" codebase="http://download.macromedia.com/pub/shockwave/cabs/flash/swflash.cab#version=9,0,28,0" width="150" height="150">
+    <param name="movie" value="/resources/theshop_1st/flash/roarding_flash_5.swf" />
+        <param name="quality" value="high" />
+        <embed src="/resources/theshop_1st/flash/roarding_flash_5.swf" quality="high" pluginspage="http://www.adobe.com/shockwave/download/download.cgi?P1_Prod_Version=ShockwaveFlash" type="application/x-shockwave-flash" width="150" height="150"></embed>
+    </object>
+-->    
+</div> 
+
+</body>
+</html>
