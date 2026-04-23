@@ -1,0 +1,30 @@
+{
+"last_orderable_keys": [
+"dr|1111|2",
+"dr|1131|3",
+"dr|1177|5"
+],
+"key_meta": {
+"dr|1111|2": {
+"key": "dr|1111|2",
+"source": "drmro",
+"title": "일회용주사기",
+"url": "https://drmro.com/goods/goods_view.php?goodsNo=1111",
+"vol": 2
+},
+"dr|1131|3": {
+"key": "dr|1131|3",
+"source": "drmro",
+"title": "일회용주사기",
+"url": "https://drmro.com/goods/goods_view.php?goodsNo=1131",
+"vol": 3
+},
+"dr|1177|5": {
+"key": "dr|1177|5",
+"source": "drmro",
+"title": "일회용주사기",
+"url": "https://drmro.com/goods/goods_view.php?goodsNo=1177",
+"vol": 5
+}
+}
+}

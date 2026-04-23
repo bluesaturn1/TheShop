@@ -2,14 +2,25 @@
 import os
 from pathlib import Path
 
-from dotenv import load_dotenv
+from dotenv import dotenv_values, load_dotenv
 
 _ROOT = Path(__file__).resolve().parent
 load_dotenv(_ROOT / ".env")
-# Optional: same machine — reuse Doctorville .env for MIMS/telegram when keys missing here
-_dv = _ROOT.parent / "Doctorville" / ".env"
-if _dv.is_file():
-    load_dotenv(_dv, override=False)
+# Doctorville .env(형제 폴더) — TheShop에 키가 없거나 **빈 값**일 때 TELEGRAM 등 보강
+_custom = (os.environ.get("DOCTORVILLE_ENV_PATH") or "").strip()
+if _custom:
+    _dv_path = Path(_custom)
+else:
+    _dv_path = _ROOT.parent / "Doctorville" / ".env"
+if _dv_path.is_file():
+    load_dotenv(_dv_path, override=False)
+    # TELEGRAM_* 가 TheSHOP .env에 "키만 있고 비어 있음"이면 load_dotenv(override=False)로는 못 덮어서, 파일에서 직접 읽어 채움
+    _dvm = dotenv_values(_dv_path)
+    for _k in ("TELEGRAM_BOT_TOKEN", "TELEGRAM_CHAT_ID"):
+        if not (os.environ.get(_k) or "").strip():
+            _v = (_dvm.get(_k) or "").strip()
+            if _v:
+                os.environ[_k] = _v
 
 # MIMS (same account as Doctorville if you use Mcircle)
 SHOP_ID = (os.getenv("SHOP_ID") or os.getenv("DOCTORVILLE_ID") or "").strip()
@@ -71,9 +82,34 @@ def _parse_alert_patterns() -> list[str]:
 
 ALERT_PATTERNS = _parse_alert_patterns()
 STATE_FILE = _ROOT / (os.getenv("THE_SHOP_STATE_FILE") or "theshop_monitor_state.json")
-# "true"면 검색 전체 요약을 매번 보냄(과거 동작). 기본은 알림(키워드 매칭)만.
+# TheSHOP+drmro 통합: 23G·1"·2/3/5cc 주문가능(이전 런 스냅샷과 달라질 때만 텔레그램, 기본 10분 간격은 THE_SHOP_CHECK_INTERVAL_MINUTES)
+STOCK_NOTIFY_STATE_FILE = _ROOT / (
+    os.getenv("STOCK_NOTIFY_STATE_FILE") or "stock_notify_state.json"
+)
+# false(기본): drmro 또는 theshop **한 쪽**만 2/3/5cc·23G1이 있어도 [추가/최초] 알림(검색어에 규격 맞는 theshop 0건인 경우에도 drmro만으로 알림).
+# true: TheSHOP·drmro **각각** 1건 이상일 때만 [추가/최초] 알림(‘빠짐’만 있을 땐 항상 알림)
+_snrb = (os.getenv("STOCK_NOTIFY_REQUIRE_BOTH_SITES") or "false").strip().lower()
+STOCK_NOTIFY_REQUIRE_BOTH_SITES = _snrb in ("1", "true", "yes", "y")
+# true면 ‘변화’ 텔레그램이 나갈 때 TheSHOP 규격목록(23G1·2/3/5)을 같은 메시지에 덧붙임(10분마다 별도 전송 아님)
 TELEGRAM_FULL_LIST = (os.getenv("THE_SHOP_TELEGRAM_FULL_LIST") or "false").strip().lower() in (
     "1",
     "true",
     "yes",
 )
+
+# drmro.com (닥터엠알오) — 로그인은 JS 암호화이므로 Playwright 권장, 또는 DRMRO_COOKIE
+DRMRO_BASE = (os.getenv("DRMRO_BASE") or "https://drmro.com").strip().rstrip("/")
+DRMRO_LOGIN_URL = (os.getenv("DRMRO_LOGIN_URL") or f"{DRMRO_BASE}/member/login.php").strip()
+DRMRO_ID = (os.getenv("DRMRO_ID") or "").strip()
+DRMRO_PW = (os.getenv("DRMRO_PW") or "").strip()
+DRMRO_COOKIE = (os.getenv("DRMRO_COOKIE") or "").strip() or None
+USER_DATA_DIR_DRMRO = _ROOT / (os.getenv("DRMRO_USER_DATA_DIR") or "playwright_data_drmro")
+DRMRO_HEADLESS = (os.getenv("DRMRO_HEADLESS", "true") or "true").strip().lower() == "true"
+DRMRO_GOODS_SEARCH = f"{DRMRO_BASE}/goods/goods_search.php"
+# 상품상세(goods_view)로 재고·품절 재확인 (검색리스트는 품절과 불일치할 수 있음)
+_dv = (os.getenv("DRMRO_VERIFY_DETAIL") or "true").strip().lower()
+DRMRO_VERIFY_DETAIL = _dv in ("1", "true", "yes")
+try:
+    DRMRO_DETAIL_DELAY_SEC = float((os.getenv("DRMRO_DETAIL_DELAY_SEC") or "0.2").strip())
+except ValueError:
+    DRMRO_DETAIL_DELAY_SEC = 0.2
