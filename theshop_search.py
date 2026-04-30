@@ -29,6 +29,7 @@ BASE = SHOP_BASE
 SEARCH_URL = SHOP_GOODS_SEARCH_LIST
 SEARCH_FRAME_URL = SHOP_GOODS_SEARCH_FRAME
 SEARCH_LIST_PATH = urlparse(SEARCH_URL).path
+SEARCH_FRAME_PATH = urlparse(SEARCH_FRAME_URL).path
 
 _MSG_MEMBER = "\uc68c\uc6d0\uc804\uc6a9\uc785\ub2c8\ub2e4"
 
@@ -148,6 +149,40 @@ def parse_goods_list(html: str) -> list[dict[str, str]]:
     out: list[dict[str, str]] = []
     seen: set[str] = set()
 
+    # Prefer the canonical list table (contains real masterCd + price).
+    # If we already have reliable rows here, return early to avoid mixing in
+    # other heuristics that sometimes pick up non-product codes.
+    for tr in soup.select("table.goobsList tbody tr"):
+        code = (tr.get("alt") or "").strip()
+        if not code:
+            mic = tr.find("input", attrs={"name": "masterCdList"})
+            if mic and (mic.get("value") or "").strip():
+                code = mic.get("value", "").strip()
+        tit = tr.select_one("a.titBTb")
+        title = _norm_space(tit.get_text()) if tit else ""
+        if not code:
+            continue
+        if not _is_plausible_goods_code(code):
+            continue
+        if code in seen:
+            continue
+        seen.add(code)
+        pr = tr.select_one("span[id^='priceTd_']")
+        price = _norm_space(pr.get_text()) if pr else ""
+        # TheSHOP UI는 팝업으로 새 창을 띄우는 게 아니라,
+        # /hos/shop/goodsSearchList.do?goodsCode= 로 들어가 오른쪽 패널을 갱신하는 형태다.
+        detail_url = f"{SHOP_BASE}/hos/shop/goodsSearchList.do?goodsCode={code}"
+        row: dict[str, str] = {
+            "goodsCd": code,
+            "title": title,
+            "url": detail_url,
+        }
+        if price:
+            row["price"] = price
+        out.append(row)
+    if out:
+        return out
+
     for tag in soup.find_all(True):
         for k, v in (tag.attrs or {}).items():
             if k in ("data-goods-cd", "data-goodscd", "data-gdscd") and v and str(v).strip():
@@ -160,7 +195,7 @@ def parse_goods_list(html: str) -> list[dict[str, str]]:
                             "title": _norm_space(
                                 tag.get("title", "") or tag.get("alt", "") or ""
                             ),
-                            "url": f"{SHOP_GOODS_DTAIL_POPUP}?goodsInfoDataBean.goodsCd={c}",
+                            "url": f"{SHOP_BASE}/hos/shop/goodsSearchList.do?goodsCode={c}",
                         }
                     )
     for inp in soup.find_all("input"):
@@ -178,7 +213,7 @@ def parse_goods_list(html: str) -> list[dict[str, str]]:
             {
                 "goodsCd": c,
                 "title": "",
-                "url": f"{SHOP_GOODS_DTAIL_POPUP}?goodsInfoDataBean.goodsCd={c}",
+                "url": f"{SHOP_BASE}/hos/shop/goodsSearchList.do?goodsCode={c}",
             }
         )
 
@@ -239,34 +274,6 @@ def parse_goods_list(html: str) -> list[dict[str, str]]:
                     "url": f"{SHOP_GOODS_DTAIL_POPUP}?goodsInfoDataBean.goodsCd={code}",
                 }
             )
-
-    for tr in soup.select("table.goobsList tbody tr"):
-        code = (tr.get("alt") or "").strip()
-        if not code:
-            mic = tr.find("input", attrs={"name": "masterCdList"})
-            if mic and (mic.get("value") or "").strip():
-                code = mic.get("value", "").strip()
-        tit = tr.select_one("a.titBTb")
-        title = _norm_space(tit.get_text()) if tit else ""
-        if not code and not title:
-            continue
-        if code and not _is_plausible_goods_code(code):
-            continue
-        if not code:
-            continue
-        if code in seen:
-            continue
-        seen.add(code)
-        pr = tr.select_one("span[id^='priceTd_']")
-        price = _norm_space(pr.get_text()) if pr else ""
-        row: dict[str, str] = {
-            "goodsCd": code,
-            "title": title,
-            "url": f"{SHOP_GOODS_DTAIL_POPUP}?goodsInfoDataBean.goodsCd={code}",
-        }
-        if price:
-            row["price"] = price
-        out.append(row)
 
     return out
 
@@ -471,12 +478,12 @@ def _search_html_playwright_browser(keyword: str) -> str | None:
         )
         try:
             page = ctx.new_page()
-            for url in (f"{SHOP_BASE}/main.do", f"{SHOP_BASE}/"):
-                try:
-                    page.goto(url, wait_until="domcontentloaded", timeout=90_000)
-                    break
-                except Exception:
-                    continue
+            # Use the actual search page where topSearchForm + iframe(ifm) are guaranteed.
+            page.goto(
+                f"{SHOP_BASE}/hos/shop/goodsSearchList.do",
+                wait_until="domcontentloaded",
+                timeout=90_000,
+            )
             inp = page.locator(
                 'input[name="goodsInfoDataBean.searchVal"], #autoCompleteText'
             )
@@ -671,7 +678,18 @@ def run_search(keyword: str, cookie: str | None) -> dict:
             "message": "requests failed and Playwright search also failed (run login once).",
         }
     if _looks_like_login_block(html):
-        return {"error": "login_required", "items": []}
+        # requests로 받은 HTML이 로그인 차단이면,
+        # (재로그인 직후/쿠키 인코딩 문제 등으로) requests에서는 계속 막힐 수 있어
+        # Playwright 영구 프로필로 한 번 더 확인한다.
+        if from_requests:
+            html2 = _search_html_via_playwright(keyword)
+            if html2 and html2.strip() and not _looks_like_login_block(html2):
+                html = html2
+                from_requests = False
+            else:
+                return {"error": "login_required", "items": []}
+        else:
+            return {"error": "login_required", "items": []}
     items = _dedupe_by_code(parse_goods_list(html))
     if not items:
         items = _dedupe_by_code(_extract_goods_by_regex(html))
@@ -716,6 +734,293 @@ def run_search(keyword: str, cookie: str | None) -> dict:
             "html_sample": re.sub(r"\s+", " ", html[:5000]),
         }
     return {"keyword": keyword, "count": len(items), "items": items}
+
+
+# -------------------------
+# TheSHOP 상세(팝업) 품절/주문가능 확인
+# -------------------------
+
+_RE_TS_UNAVAIL_DETAIL = re.compile(
+    r"품절|매진|일시[^가-힣]{0,8}품절|재고\s*없|단종|sold\s*out|품\s*절",
+    re.I,
+)
+
+
+def fetch_goods_detail_popup_html(
+    goods_cd: str,
+    cookie: str | None,
+    *,
+    session: requests.Session | None = None,
+) -> str:
+    """
+    TheSHOP 상세 팝업(goodsDtail) HTML fetch.
+    cookie 는 obtain_cookie() 로 얻은 헤더 문자열을 그대로 넣는다.
+    """
+    c = (goods_cd or "").strip()
+    if not c:
+        return ""
+    headers = {
+        "User-Agent": (
+            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
+            "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36"
+        ),
+        "Accept": "text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8",
+        "Referer": f"{SHOP_BASE}/",
+    }
+    safe_ck = _ascii_only_cookie_header(cookie)
+    if safe_ck:
+        headers["Cookie"] = safe_ck
+    url = requote_uri(f"{SHOP_GOODS_DTAIL_POPUP}?goodsInfoDataBean.goodsCd={c}")
+    sess = session or requests.Session()
+    r = sess.get(url, headers=_latin1_safe_http_headers(headers), timeout=45)
+    r.raise_for_status()
+    return decode_html(r)
+
+
+def theshop_detail_is_orderable(html: str) -> tuple[bool | None, str]:
+    """
+    True: 주문/장바구니 가능으로 보임
+    False: 품절/판매불가로 보임
+    None: 로그인/파싱불가 등 신뢰 불가
+    """
+    if not html:
+        return None, "empty_html"
+    # Some goods codes return only a JS alert+close.
+    # 이 경우가 항상 "품절/판매불가"는 아니어서(세션/권한/일시적 오류 등),
+    # alert 문구가 '판매불가/품절'을 명시할 때만 False로 두고,
+    # 그 외에는 불확실(None)로 취급해 필터 단계에서 누락되지 않게 한다.
+    if len(html) < 1200 and "alert(" in html and "window.close" in html:
+        # try to extract alert('...') message
+        m = re.search(r"alert\(\s*['\"]([^'\"]+)['\"]\s*\)", html, re.I)
+        msg = (m.group(1) if m else "").strip()
+        if re.search(r"판매\s*되지|판매\s*중지|판매\s*불가|품절|매진", msg, re.I):
+            return False, "popup_alert_unavailable"
+        return None, "popup_alert_unknown"
+    if _looks_like_login_block(html):
+        return None, "login_required"
+    if _RE_TS_UNAVAIL_DETAIL.search(html):
+        return False, "unavail_text"
+
+    # 장바구니/주문 버튼이 보이면 주문가능 쪽으로 판단
+    # (사이트 DOM이 자주 바뀌므로 키워드/클래스 기반 휴리스틱)
+    if re.search(r"장바구니|바로\s*구매|주문\s*하기", html):
+        return True, "cta_text"
+    if re.search(r"btn[_-]?add[_-]?cart|add[_-]?cart|cart", html, re.I) and not re.search(
+        r"soldout|품절|매진", html, re.I
+    ):
+        return True, "cta_class_heuristic"
+
+    # TheSHOP 상세 팝업은 버튼/문구가 케이스별로 달라 "주문가능" 신호를 못 찾는 경우가 있다.
+    # 품절/판매불가 신호가 없으면 주문가능으로 간주(미탐 방지).
+    return True, "no_unavail_marker"
+
+
+def verify_theshop_items_with_detail(
+    items: list[dict],
+    cookie: str | None,
+) -> list[dict]:
+    """
+    TheSHOP 규격필터로 걸러진 후보(items)를 상세 팝업으로 재확인.
+    주문가능(True)만 반환. 불확실(None)은 제외(오탐 방지).
+    """
+    if not items:
+        return []
+    sess = requests.Session()
+    out: list[dict] = []
+    for it in items:
+        gc = (it.get("goodsCd") or "").strip()
+        if not gc:
+            continue
+        try:
+            h = fetch_goods_detail_popup_html(gc, cookie, session=sess)
+        except requests.RequestException:
+            out.append({**it, "detailOk": False, "detailReason": "detail_fetch_failed"})
+            continue
+        ok, reason = theshop_detail_is_orderable(h)
+        if ok is False:
+            # 상세 팝업이 "판매불가/품절"로 보이더라도, 실제 목록 노출과 불일치/권한/세션 이슈가 있어
+            # 모니터링 단계에서 완전히 누락되면 사용자 입장에선 '뜬 줄도 모르고' 지나갈 수 있다.
+            # 따라서 제외하지 않고 표시만 남긴다(알림/목록에 포함되며 detailReason으로 구분 가능).
+            out.append({**it, "detailOk": False, "detailReason": reason})
+            continue
+        if ok is True:
+            out.append({**it, "detailOk": True, "detailReason": reason})
+        else:
+            # unknown → keep (list filter already excluded obvious 품절 문구)
+            out.append({**it, "detailOk": False, "detailReason": reason})
+    return out
+
+
+def enrich_theshop_items_with_stock_qty(
+    items: list[dict],
+    *,
+    keyword_for_ui: str | None = None,
+) -> list[dict]:
+    """
+    TheSHOP UI(오른쪽 패널) 기준으로 재고(가능수량)를 읽어 items에 stockQty를 붙인다.
+
+    - TheSHOP은 상품을 클릭하면 새 페이지/팝업이 아니라 iframe 내부 오른쪽 패널이 갱신된다.
+    - requests만으로는 그 패널 로딩 로직(ajax + 세션 상태)을 안정적으로 재현하기 어려워,
+      Playwright 브라우저로 검색→행 클릭→패널 DOM을 읽는 방식을 사용한다.
+    """
+    if not items:
+        return []
+    try:
+        from playwright.sync_api import sync_playwright
+    except Exception:
+        return items
+
+    from config import SHOP_BASE, SHOP_HEADLESS, USER_DATA_DIR
+
+    # choose a keyword that guarantees the item row exists in list
+    kw = (keyword_for_ui or "").strip()
+    if not kw:
+        kw = "일회용주사기"
+
+    # map by goodsCd
+    codes = [str((it.get("goodsCd") or "")).strip() for it in items]
+    codes = [c for c in codes if c]
+    if not codes:
+        return items
+
+    USER_DATA_DIR.mkdir(parents=True, exist_ok=True)
+    stock_by_code: dict[str, int] = {}
+
+    with sync_playwright() as p:
+        ctx = p.chromium.launch_persistent_context(
+            str(USER_DATA_DIR),
+            headless=SHOP_HEADLESS,
+            viewport={"width": 1400, "height": 900},
+            args=["--disable-blink-features=AutomationControlled"],
+        )
+        try:
+            page = ctx.new_page()
+            # Use the actual search page where #autoCompleteText + iframe(ifm) are guaranteed.
+            page.goto(
+                f"{SHOP_BASE}/hos/shop/goodsSearchList.do",
+                wait_until="domcontentloaded",
+                timeout=90_000,
+            )
+            inp = page.locator('#autoCompleteText, input[name="goodsInfoDataBean.searchVal"]')
+            if inp.count() == 0:
+                return items
+            inp.first.fill("", timeout=5_000)
+            inp.first.fill(kw, timeout=5_000)
+            page.evaluate(
+                """
+                (actionPath) => {
+                  const f = document.topSearchForm
+                    || document.querySelector('form.search_list');
+                  if (!f) return false;
+                  f.action = actionPath;
+                  f.target = "ifm";
+                  f.submit();
+                  return true;
+                }
+                """,
+                SEARCH_FRAME_PATH,
+            )
+            # iframe ajax render
+            time.sleep(4.0)
+
+            # iframe "ifm" hosts list + right panel
+            fr = page.frame(name="ifm")
+            if not fr:
+                # sometimes frame name is lost; pick by URL
+                for f in page.frames:
+                    if "goodsSearchListFrame.do" in (f.url or ""):
+                        fr = f
+                        break
+            if not fr:
+                return items
+
+            # wait list rows
+            try:
+                fr.wait_for_selector("table.goobsList tbody tr[alt]", timeout=45_000)
+            except Exception:
+                return items
+
+            for code in codes:
+                if code in stock_by_code:
+                    continue
+                row = fr.locator(f"table.goobsList tbody tr[alt='{code}']")
+                if row.count() == 0:
+                    continue
+                try:
+                    row.first.click()
+                except Exception:
+                    continue
+                # wait right panel update; parse HTML for digits near stock-ish tokens.
+                try:
+                    fr.wait_for_timeout(800)  # let ajax render
+                except Exception:
+                    pass
+                try:
+                    gd = fr.locator("#goodsDetail")
+                    if gd.count() == 0:
+                        continue
+                    html = gd.inner_html()
+                except Exception:
+                    continue
+
+                # Heuristics (most reliable first):
+                # 1) In the right panel, the order row often has:
+                #    <td id="goodsPrice">...</td><td>STOCK</td><td><input name="orderQty"...>
+                #    We'll parse the TD immediately before the orderQty TD.
+                n: int | None = None
+                try:
+                    soup = BeautifulSoup(html, "html.parser")
+                    oq = soup.select_one("input#orderQty, input[name='orderQty']")
+                    if oq:
+                        td = oq.find_parent("td")
+                        if td:
+                            prev = td.find_previous_sibling("td")
+                            if prev:
+                                tx = re.sub(r"[^\d]", "", prev.get_text(" ", strip=True) or "")
+                                if tx.isdigit():
+                                    n = int(tx)
+                except Exception:
+                    n = None
+
+                # 2) Fallback: explicit stock/qty markers in HTML/JS.
+                if n is None:
+                    m = re.search(
+                        r"(?i)(stock|remain|qty|quantity)[^0-9]{0,20}([0-9]{1,6})",
+                        html,
+                    )
+                    if not m:
+                        m = re.search(r'(?i)max\\s*=\\s*\\"([0-9]{1,6})\\"', html)
+                    if not m:
+                        m = re.search(
+                            r'(?i)(?:주문|구매)[^0-9]{0,30}([0-9]{1,6})\\s*(?:개|EA)',
+                            html,
+                        )
+                    if m:
+                        try:
+                            n = int(m.group(2) if m.lastindex and m.lastindex >= 2 else m.group(1))
+                        except Exception:
+                            n = None
+
+                if n is None:
+                    continue
+                if 0 <= n <= 999999:
+                    stock_by_code[code] = n
+        finally:
+            try:
+                ctx.close()
+            except Exception:
+                pass
+
+    if not stock_by_code:
+        return items
+    out: list[dict] = []
+    for it in items:
+        code = str((it.get("goodsCd") or "")).strip()
+        if code and code in stock_by_code:
+            out.append({**it, "stockQty": stock_by_code[code]})
+        else:
+            out.append(it)
+    return out
 
 
 def main() -> int:

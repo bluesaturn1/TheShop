@@ -1,7 +1,29 @@
+# 비밀·로컬 설정
 .env
-playwright_data_theshop/
+.env.local
+.env.*.local
+
+# Python
 __pycache__/
-*.pyc
+*.py[cod]
+*$py.class
 .venv/
 venv/
+.mypy_cache/
+.pytest_cache/
+.ruff_cache/
+
+# Playwright persistent context — 프로필·쿠키·캐시 등 로컬 전용
+playwright_data*/
+
+# 모니터링·알림 상태(JSON)
 theshop_monitor_state.json
+stock_notify_state.json
+
+# 디버그(HTML 덤프)
+last_search.html
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini

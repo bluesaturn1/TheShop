@@ -71,17 +71,53 @@ except ValueError:
 def _parse_alert_patterns() -> list[str]:
     raw = (os.getenv("THE_SHOP_ALERT_PATTERNS") or "").strip()
     if not raw:
-        return ["3cc 23G", "5cc 23G"]
+        return ["2cc 23G", "3cc 23G", "5cc 23G"]
     parts: list[str] = []
     for chunk in raw.split(","):
         c = chunk.strip()
         if c:
             parts.append(c)
-    return parts if parts else ["3cc 23G", "5cc 23G"]
+    return parts if parts else ["2cc 23G", "3cc 23G", "5cc 23G"]
 
 
 ALERT_PATTERNS = _parse_alert_patterns()
 STATE_FILE = _ROOT / (os.getenv("THE_SHOP_STATE_FILE") or "theshop_monitor_state.json")
+
+
+def _parse_drmro_alert_patterns() -> list[str]:
+    """drmro 검색 규격 조각(부분): 기본은 THE_SHOP 과 동일하게 3cc·5cc."""
+    raw = (os.getenv("DRMRO_ALERT_PATTERNS") or "").strip()
+    if not raw:
+        return ["2cc 23G", "3cc 23G", "5cc 23G"]
+    parts: list[str] = []
+    for chunk in raw.split(","):
+        c = chunk.strip()
+        if c:
+            parts.append(c)
+    return parts if parts else ["2cc 23G", "3cc 23G", "5cc 23G"]
+
+
+def _build_drmro_goods_search_queries() -> list[str]:
+    """
+    drmro goods_search.php 에 넣을 키워드 목록.
+    - DRMRO_SEARCH_QUERIES: 쉼표로 구분한 **전체 검색문**(이 값이 있으면 다른 규격 env 무시)
+    - 없으면: DRMRO_SEARCH_PREFIX + 각 DRMRO_ALERT_PATTERNS 조각 + DRMRO_SEARCH_SUFFIX
+    """
+    raw_full = (os.getenv("DRMRO_SEARCH_QUERIES") or "").strip()
+    if raw_full:
+        qs = [c.strip() for c in raw_full.split(",") if c.strip()]
+        if qs:
+            return qs
+    prefix = (os.getenv("DRMRO_SEARCH_PREFIX") or "일회용주사기").strip()
+    suffix = (os.getenv("DRMRO_SEARCH_SUFFIX") or "1inch").strip()
+    queries: list[str] = []
+    for part in _parse_drmro_alert_patterns():
+        bits = [prefix, part, suffix]
+        queries.append(" ".join(b for b in bits if b))
+    return queries
+
+
+DRMRO_GOODS_SEARCH_QUERIES = _build_drmro_goods_search_queries()
 # TheSHOP+drmro 통합: 23G·1"·2/3/5cc 주문가능(이전 런 스냅샷과 달라질 때만 텔레그램, 기본 10분 간격은 THE_SHOP_CHECK_INTERVAL_MINUTES)
 STOCK_NOTIFY_STATE_FILE = _ROOT / (
     os.getenv("STOCK_NOTIFY_STATE_FILE") or "stock_notify_state.json"
@@ -90,7 +126,7 @@ STOCK_NOTIFY_STATE_FILE = _ROOT / (
 # true: TheSHOP·drmro **각각** 1건 이상일 때만 [추가/최초] 알림(‘빠짐’만 있을 땐 항상 알림)
 _snrb = (os.getenv("STOCK_NOTIFY_REQUIRE_BOTH_SITES") or "false").strip().lower()
 STOCK_NOTIFY_REQUIRE_BOTH_SITES = _snrb in ("1", "true", "yes", "y")
-# true면 ‘변화’ 텔레그램이 나갈 때 TheSHOP 규격목록(23G1·2/3/5)을 같은 메시지에 덧붙임(10분마다 별도 전송 아님)
+# true면 ‘변화’ 텔레그램이 나갈 때 TheSHOP 규격목록(23G1·2/3/5cc)을 같은 메시지에 덧붙임(10분마다 별도 전송 아님)
 TELEGRAM_FULL_LIST = (os.getenv("THE_SHOP_TELEGRAM_FULL_LIST") or "false").strip().lower() in (
     "1",
     "true",

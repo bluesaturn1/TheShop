@@ -29,7 +29,7 @@ from config import (
 from drmro_search import filter_theshop_syringe_23g1_235cc
 from drmro_syringe_check import run as drmro_syringe_run
 from telegram_notify import chunk_telegram_text, send_message
-from theshop_search import obtain_cookie, run_search
+from theshop_search import obtain_cookie, run_search, verify_theshop_items_with_detail
 
 
 def _ts() -> str:
@@ -131,12 +131,15 @@ def _format_item_block_lines(
 ) -> list[str]:
     vol = it.get("volumeMl", "?")
     title = (it.get("title") or "").strip() or "(제목없음)"
+    brand = (it.get("brand") or "").strip()
     spec = (it.get("spec") or "").strip()
     pr = (it.get("price") or "").strip()
     gc = (it.get("goodsCd") or it.get("productCode") or "").strip()
     u = (it.get("url") or "").strip()
     dr = (it.get("detailReason") or "").strip()
     one = f"· [{vol}ml] {title}"
+    if brand and it.get("source") == "drmro":
+        one += f" / {brand}"
     if spec:
         one += f" / {spec}"
     if pr:
@@ -159,6 +162,9 @@ def _format_telegram_change(
     removed_keys: set[str],
     last_meta: dict[str, dict],
 ) -> str:
+    # NOTE: 사용자 요구사항: "빠짐(-)" 은 텔레그램으로 알리지 않는다.
+    # 메시지 본문에서도 제거(빠짐) 섹션을 표시하지 않도록 removed_keys 는 무시한다.
+    removed_keys = set()
     lines: list[str] = [
         (
             "[주사기] 23G 1Inch · 2/3/5cc — 최초 스냅샷(주문가능)"
@@ -166,7 +172,7 @@ def _format_telegram_change(
             else "[주사기] 23G 1Inch · 2/3/5cc — 모니터링 변화"
         ),
         f"TheSHOP 검색어: {theshop_keyword}",
-        f"+추가 {len(added)}건, -빠짐 {len(removed_keys)}건"
+        f"+추가 {len(added)}건"
         if not is_initial
         else f"주문가능 {len(added)}건 (이후부터는 이 목록이 바뀔 때만 알림)",
         "",
@@ -187,19 +193,6 @@ def _format_telegram_change(
             for it in ch:
                 lines.extend(_format_item_block_lines(it))
             lines.append("")
-
-    if removed_keys and not is_initial:
-        lines.append("— 빠짐(이전 러닝엔 있었음) —")
-        for rk in sorted(removed_keys):
-            m = last_meta.get(rk) or {}
-            t = m.get("title") or ""
-            u = m.get("url") or ""
-            src = m.get("source") or "?"
-            line = t if t else f"(키) {rk}"
-            lines.append(f"· ({src}) {line}")
-            if u:
-                lines.append(f"  {u}")
-        lines.append("")
 
     return "\n".join(lines).rstrip()
 
@@ -235,6 +228,23 @@ def _print_theshop_list(
         f"  → 규격필터(23G 1Inch·2/3/5cc, 품절문구제외): {len(theshop_spec)}건",
         file=sys.stderr,
     )
+    if theshop_spec:
+        for it in theshop_spec:
+            vol = it.get("volumeMl")
+            title = (it.get("title") or "").strip()
+            pr = (it.get("price") or "").strip()
+            gc = (it.get("goodsCd") or "").strip()
+            dr = (it.get("detailReason") or "").strip()
+            stock = it.get("stockQty")
+            line = f"  [{vol}ml] {title}"
+            if pr:
+                line += f" | {pr}"
+            line += f" | 재고 {stock}개" if stock is not None else " | 재고 ?개"
+            if gc:
+                line += f"  #{gc}"
+            if dr:
+                line += f" ({dr})"
+            print(line, file=sys.stderr)
 
 
 def _print_drmro_list(drm: dict) -> None:
@@ -254,8 +264,10 @@ def _print_drmro_list(drm: dict) -> None:
     )
     for it in drm.get("items") or []:
         vol = it.get("volumeMl")
+        brand = (it.get("brand") or "").strip()
         line = (
-            f"  [{vol}ml] {it.get('title', '')} | {it.get('spec', '')} | "
+            f"  [{vol}ml] {it.get('title', '')}"
+            f"{' | ' + brand if brand else ''} | {it.get('spec', '')} | "
             f"{it.get('price', '')} | {it.get('url', '')}"
         )
         print(line, file=sys.stderr)
@@ -303,9 +315,17 @@ def run_combined_once(
         from theshop_login import login_cookie_header
 
         print(f"[{_ts()}] TheSHOP | 세션 만료, 재로그인…", file=sys.stderr)
-        ck = login_cookie_header()
-        if ck:
+        ck2 = login_cookie_header()
+        if ck2:
+            ck = ck2
+            print(f"[{_ts()}] TheSHOP | 재로그인 쿠키 획득 OK", file=sys.stderr)
             data = run_search(theshop_keyword, ck)
+        else:
+            print(
+                f"[{_ts()}] TheSHOP | 재로그인 실패(쿠키 미획득). "
+                f"다시 'login_required'가 날 수 있음.",
+                file=sys.stderr,
+            )
     if data.get("error"):
         err = str(data.get("error"))
         _print_run_error(theshop_keyword, err, data, verbose=verbose)
@@ -317,7 +337,19 @@ def run_combined_once(
     theshop_orderable = filter_theshop_syringe_23g1_235cc(
         data.get("items") or []
     )
-    _print_theshop_list(theshop_keyword, data, theshop_spec=theshop_orderable)
+    # 상세 팝업으로 품절/주문가능 재확인 → 주문가능만 남김
+    theshop_orderable_verified = verify_theshop_items_with_detail(theshop_orderable, ck)
+    # 링크 출력 대신, 오른쪽 패널 기준 '재고 n개'를 붙이기 위해 UI에서 재고를 읽어온다.
+    try:
+        from theshop_search import enrich_theshop_items_with_stock_qty
+
+        theshop_orderable_verified = enrich_theshop_items_with_stock_qty(
+            theshop_orderable_verified,
+            keyword_for_ui=theshop_keyword,
+        )
+    except Exception:
+        pass
+    _print_theshop_list(theshop_keyword, data, theshop_spec=theshop_orderable_verified)
     if verbose:
         print(json.dumps(data, ensure_ascii=False, indent=2), file=sys.stderr)
 
@@ -336,14 +368,14 @@ def run_combined_once(
 
     # -------- 주문가능 집합 변화(최초 / 추가·빠짐) → 텔레그램 --------
     last_keys, last_meta = _load_orderable_state()
-    all_orderable: list[dict] = theshop_orderable + drmro_items
+    all_orderable: list[dict] = theshop_orderable_verified + drmro_items
     current_keys, current_meta = _build_key_meta(all_orderable)
     added_keys = current_keys - last_keys
     removed_keys = last_keys - current_keys
     is_initial = (len(last_keys) == 0 and len(current_keys) > 0 and len(removed_keys) == 0)
 
     if force_send:
-        n_ts, n_dr = len(theshop_orderable), len(drmro_items)
+        n_ts, n_dr = len(theshop_orderable_verified), len(drmro_items)
         if not (TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID):
             print(
                 f"[{_ts()}] --force-send: TELEGRAM_BOT_TOKEN / TELEGRAM_CHAT_ID 필요",
@@ -369,10 +401,10 @@ def run_combined_once(
             removed_keys=set(),
             last_meta={},
         )
-        if TELEGRAM_FULL_LIST and theshop_orderable:
+        if TELEGRAM_FULL_LIST and theshop_orderable_verified:
             body = body + "\n\n" + _format_telegram_theshop_spec_list(
                 theshop_keyword,
-                theshop_orderable,
+                theshop_orderable_verified,
                 int(data.get("count") or 0),
             )
         parts = chunk_telegram_text(body)
@@ -394,6 +426,7 @@ def run_combined_once(
         )
         return 0
 
+    # 변화 없음(추가도 빠짐도 없음) → 전송 없음, 상태만 갱신
     if not added_keys and not removed_keys:
         _save_orderable_state(current_keys, current_meta)
         if not (TELEGRAM_BOT_TOKEN and TELEGRAM_CHAT_ID):
@@ -417,7 +450,16 @@ def run_combined_once(
             )
         return 0
 
-    n_ts, n_dr = len(theshop_orderable), len(drmro_items)
+    # 사용자 요구사항: 빠짐(-)은 알리지 않음. (추가가 없으면 전송하지 않는다)
+    if not added_keys:
+        _save_orderable_state(current_keys, current_meta)
+        print(
+            f"[{_ts()}] 텔레그램: 추가(+0)만 감지 — 빠짐(-{len(removed_keys)})은 알림 생략, 상태만 갱신",
+            file=sys.stderr,
+        )
+        return 0
+
+    n_ts, n_dr = len(theshop_orderable_verified), len(drmro_items)
     if STOCK_NOTIFY_REQUIRE_BOTH_SITES:
         if removed_keys:
             can_send = True
@@ -456,10 +498,10 @@ def run_combined_once(
         removed_keys=removed_keys,
         last_meta=last_meta,
     )
-    if TELEGRAM_FULL_LIST and theshop_orderable:
+    if TELEGRAM_FULL_LIST and theshop_orderable_verified:
         body = body + "\n\n" + _format_telegram_theshop_spec_list(
             theshop_keyword,
-            theshop_orderable,
+            theshop_orderable_verified,
             int(data.get("count") or 0),
         )
     parts = chunk_telegram_text(body)
@@ -487,6 +529,8 @@ def run_combined_once(
 def run_loop(
     keyword: str, *, verbose: bool, no_drmro_login: bool = False
 ) -> None:
+    # 첫 실패는 텔레그램 없음 → 10분 후 재시도. 연속 두 번째 실패일 때만 알림.
+    prior_run_failed = False
     while True:
         try:
             run_combined_once(
@@ -494,16 +538,28 @@ def run_loop(
                 verbose=verbose,
                 skip_drmro_login=no_drmro_login,
             )
+            prior_run_failed = False
         except KeyboardInterrupt:
             print(f"[{_ts()}] 종료(Ctrl+C)", file=sys.stderr)
             raise SystemExit(0)
         except Exception as e:
             print(f"[{_ts()}] 오류: {e}", file=sys.stderr)
-            try:
-                for part in chunk_telegram_text(f"[TheSHOP+drmro] error: {e}"):
-                    send_message(part)
-            except Exception:
-                pass
+            if prior_run_failed:
+                try:
+                    for part in chunk_telegram_text(
+                        f"[TheSHOP+drmro] 연속 실패(재시도 후에도 오류): {e}"
+                    ):
+                        send_message(part)
+                except Exception:
+                    pass
+                prior_run_failed = False
+            else:
+                print(
+                    f"[{_ts()}] 텔레그램 생략(1회 실패) — {max(1, CHECK_INTERVAL_MINUTES)}분 후 재시도, "
+                    f"그때도 실패하면 알림",
+                    file=sys.stderr,
+                )
+                prior_run_failed = True
         m = max(1, CHECK_INTERVAL_MINUTES)
         next_ts = (datetime.datetime.now() + datetime.timedelta(minutes=m)).strftime(
             "%H:%M"

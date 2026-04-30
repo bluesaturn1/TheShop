@@ -1,6 +1,7 @@
 """
-drmro.com: 로그인(선택) 후 일회용주사기 검색 → 품절 제외 → 2·3·5ml(cc) + 23G + 1Inch 만 표시.
+drmro.com: 로그인(선택) 후 일회용주사기 검색 → 품절 제외 → 3·5ml(cc) + 23G + 1Inch 만 표시.
 .env: DRMRO_ID, DRMRO_PW 또는 DRMRO_COOKIE
+검색 키워드: DRMRO_ALERT_PATTERNS(기본 3cc 23G,5cc 23G → 접두·접미와 조합) 또는 DRMRO_SEARCH_QUERIES(전체 문구 덮어쓰기) — config.DRMRO_GOODS_SEARCH_QUERIES 참고
 """
 from __future__ import annotations
 
@@ -10,7 +11,7 @@ import sys
 from collections import defaultdict
 
 import config  # noqa: F401
-from config import DRMRO_COOKIE, DRMRO_ID, DRMRO_PW
+from config import DRMRO_COOKIE, DRMRO_GOODS_SEARCH_QUERIES, DRMRO_ID, DRMRO_PW
 from drmro_login import login_cookie_header
 from drmro_search import (
     filter_orderable_and_spec,
@@ -18,14 +19,6 @@ from drmro_search import (
     search_get,
     verify_drmro_items_with_detail,
 )
-
-# cc/ml 혼용 검색 (사이트는 규격에 주로 ml 표기)
-_DEFAULT_QUERIES = (
-    "일회용주사기 2cc 23G 1inch",
-    "일회용주사기 3cc 23G 1inch",
-    "일회용주사기 5cc 23G 1inch",
-)
-
 
 def _obtain_cookie(*, skip_playwright: bool) -> str | None:
     if not skip_playwright and DRMRO_ID and DRMRO_PW:
@@ -44,7 +37,7 @@ def _dedupe_key(it: dict) -> str:
 def run(
     queries: tuple[str, ...] | list[str] | None, *, skip_playwright: bool
 ) -> dict:
-    qlist = list(queries) if queries else list(_DEFAULT_QUERIES)
+    qlist = list(queries) if queries else list(DRMRO_GOODS_SEARCH_QUERIES)
     ck = _obtain_cookie(skip_playwright=skip_playwright)
     if not ck and not skip_playwright and (DRMRO_ID and DRMRO_PW):
         return {
@@ -100,7 +93,7 @@ def main() -> int:
         "--query",
         action="append",
         dest="queries",
-        help="검색어(여러 번 지정 가능). 기본: 2/3/5cc 각각 한 번씩",
+        help="검색어(여러 번 지정 가능). 기본: .env DRMRO_ALERT_PATTERNS(+접두/접미) 또는 DRMRO_SEARCH_QUERIES",
     )
     p.add_argument("--json", action="store_true", help="JSON만 stdout")
     args = p.parse_args()

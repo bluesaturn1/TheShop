@@ -125,7 +125,9 @@ def search_get(keyword: str, cookie: str | None) -> str:
 
 # 규격: 2|3|5 + ml|cc, 23G, 1 inch (×/x/공백 허용)
 _RE_VOL = re.compile(
-    r"(?P<vol>[235])\s*(?:ml|mL|ML|cc|CC|Cc)\b",
+    # NOTE: TheSHOP 제목에 `3CC23G1inch`처럼 규격이 붙어서 나오는 케이스가 있어
+    # `CC` 뒤 단어경계(\b)를 강제하면 매칭이 실패한다. 뒤가 숫자/문자여도 허용.
+    r"(?P<vol>[235])\s*(?:ml|mL|ML|cc|CC|Cc)",
     re.I,
 )
 _RE_23G = re.compile(r"23\s*G", re.I)
